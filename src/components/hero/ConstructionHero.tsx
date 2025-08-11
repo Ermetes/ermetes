@@ -57,7 +57,7 @@ const ConstructionHero = () => {
           </div>
         </div>
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-0 pt-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             
             {/* Left Column - Text Content */}
@@ -68,8 +68,8 @@ const ConstructionHero = () => {
                 }`}
               >
                 <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ')[0]}</span>
-                <span className="block text-accent drop-shadow-lg">{content.hero.title.split(' ').slice(1, 3).join(' ')}</span>
-                <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(3).join(' ')}</span>
+                <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(1, 2).join(' ')}</span>
+                <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(2).join(' ')}</span>
               </h1>
 
               {/* Subtitle */}

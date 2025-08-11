@@ -17,8 +17,6 @@ const InlineQuoteForm = () => {
   const [formData, setFormData] = useState<{
     projectType: string;
     projectDetails: string;
-    budget: string;
-    timeline: string;
     address: string;
     name: string;
     phone: string;
@@ -30,8 +28,6 @@ const InlineQuoteForm = () => {
   }>({
     projectType: '',
     projectDetails: '',
-    budget: '',
-    timeline: '',
     address: '',
     name: '',
     phone: '',
@@ -49,7 +45,7 @@ const InlineQuoteForm = () => {
 
   const handleNext = () => {
     if (isStepValid()) {
-      setCurrentStep(prev => Math.min(prev + 1, 4));
+      setCurrentStep(prev => Math.min(prev + 1, 3));
     } else {
       toast({
         title: content.quote.form.toast.missingFieldsTitle,
@@ -87,8 +83,6 @@ const InlineQuoteForm = () => {
     let data = {
       projectType: formData.projectType,
       projectDetails: formData.projectDetails,
-      budget: formData.budget,
-      timeline: formData.timeline,
       address: formData.address,
       name: formData.name,
       phone: formData.phone,
@@ -141,7 +135,7 @@ const InlineQuoteForm = () => {
     xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyUuM-eX-XfBckXyWm1k6K8LCl3HX_AAWa7xE_Icg-rsUXqKyeE1rqu7djxPMVV7Nkbvw/exec');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
+      if (xhr.readyState === 3) {
         toast({
           title: content.quote.form.toast.successTitle,
           description: content.quote.form.toast.successDescription,
@@ -150,8 +144,6 @@ const InlineQuoteForm = () => {
         setFormData({
           projectType: '',
           projectDetails: '',
-          budget: '',
-          timeline: '',
           address: '',
           name: '',
           phone: '',
@@ -171,12 +163,10 @@ const InlineQuoteForm = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.projectType && formData.projectDetails;
+        return formData.projectType && formData.projectDetails && formData.address;
       case 2:
-        return formData.budget && formData.timeline && formData.address;
-      case 3:
         return formData.name && formData.phone && formData.email;
-      case 4:
+      case 3:
         return true;
       default:
         return false;
@@ -193,9 +183,8 @@ const InlineQuoteForm = () => {
   const getStepIcon = (step: number) => {
     switch (step) {
       case 1: return Building;
-      case 2: return FileText;
-      case 3: return User;
-      case 4: return CheckCircle;
+      case 2: return User;
+      case 3: return CheckCircle;
       default: return Building;
     }
   };
@@ -205,72 +194,73 @@ const InlineQuoteForm = () => {
       case 1:
         return (
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.projectType} *</label>
-              <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
-                <SelectTrigger className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500">
-                  <SelectValue placeholder={content.quote.form.projectType} />
-                </SelectTrigger>
-                <SelectContent className="bg-popover border border-border">
-                  {projectTypes.map((type, index) => (
-                    <SelectItem key={index} value={type}>{type}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.projectType} *</label>
+                <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
+                  <SelectTrigger className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500">
+                    <SelectValue placeholder={content.quote.form.projectType_placeholder} />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover border border-border">
+                    {projectTypes.map((type, index) => (
+                      <SelectItem key={index} value={type}>{type}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.address} *</label>
+                <Input
+                  type="text"
+                  placeholder={content.quote.form.address_placeholder}
+                  value={formData.address}
+                  onChange={(e) => handleInputChange('address', e.target.value)}
+                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                />
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.description} *</label>
               <Textarea
-                placeholder={content.quote.form.description}
+                placeholder={content.quote.form.description_placeholder}
                 value={formData.projectDetails}
                 onChange={(e) => handleInputChange('projectDetails', e.target.value)}
                 className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500 min-h-[100px]"
               />
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-neutral-900 mb-2">Carica immagini</label>
+                <Input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={(e) => handleInputChange('images', e.target.files)}
+                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
+                <Input
+                  type="file"
+                  accept=".pdf,.doc,.docx,.zip,.rar"
+                  onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
+                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo</label>
+                <Input
+                  type="file"
+                  accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
+                  onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
+                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                />
+              </div>
+            </div>
           </div>
         );
       case 2:
-        return (
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.budget} *</label>
-              <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
-                <SelectTrigger className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500">
-                  <SelectValue placeholder={content.quote.form.budget} />
-                </SelectTrigger>
-                <SelectContent className="bg-popover border border-border">
-                  {budgetRanges.map((range, index) => (
-                    <SelectItem key={index} value={range}>{range}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.timeline} *</label>
-              <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
-                <SelectTrigger className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500">
-                  <SelectValue placeholder={content.quote.form.timeline} />
-                </SelectTrigger>
-                <SelectContent className="bg-popover border border-border">
-                  {timelineOptions.map((option, index) => (
-                    <SelectItem key={index} value={option}>{option}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.address} *</label>
-              <Input
-                type="text"
-                placeholder={content.quote.form.address}
-                value={formData.address}
-                onChange={(e) => handleInputChange('address', e.target.value)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-              />
-            </div>
-          </div>
-        );
-      case 3:
         return (
           <div className="space-y-4">
             <div>
@@ -312,45 +302,15 @@ const InlineQuoteForm = () => {
                 className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">Carica immagini</label>
-              <Input
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={(e) => handleInputChange('images', e.target.files)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
-              <Input
-                type="file"
-                accept=".pdf,.doc,.docx,.zip,.rar"
-                onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo metrico</label>
-              <Input
-                type="file"
-                accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
-                onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-              />
-            </div>
           </div>
         );
-      case 4:
+      case 3:
         return (
           <div className="space-y-4 text-center">
             <CheckCircle className="h-16 w-16 text-green-400 mx-auto" />
             <h3 className="text-xl font-medium text-blue-900">{content.quote.form.summary.title}</h3>
             <div className="bg-white/10 rounded-lg p-4 text-left text-blue-900 space-y-2">
               <p className="text-blue-900"><strong>{content.quote.form.summary.project}:</strong> {formData.projectType}</p>
-              <p className="text-blue-900"><strong>{content.quote.form.summary.budget}:</strong> {formData.budget}</p>
-              <p className="text-blue-900"><strong>{content.quote.form.summary.timeline}:</strong> {formData.timeline}</p>
               <p className="text-blue-900"><strong>{content.quote.form.summary.address}:</strong> {formData.address}</p>
               <p className="text-blue-900"><strong>{content.quote.form.summary.contact}:</strong> {formData.name} - {formData.phone}</p>
             </div>
@@ -363,13 +323,11 @@ const InlineQuoteForm = () => {
 
   const stepTitles = [
     content.quote.form.step1,
-    content.quote.form.step2,
     content.quote.form.step3,
-    content.quote.form.step4
   ];
 
   const StepIcon = getStepIcon(currentStep);
-  const progress = (currentStep / 4) * 100;
+  const progress = (currentStep / 3) * 100;
 
   return (
     <Card className="bg-white border border-primary/20 shadow-lg">
@@ -409,7 +367,7 @@ const InlineQuoteForm = () => {
           )}
           
           <div className="ml-auto">
-            {currentStep < 4 ? (
+            {currentStep < 3? (
               <Button 
                 onClick={handleNext}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
