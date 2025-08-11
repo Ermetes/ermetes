@@ -335,7 +335,6 @@ const InlineQuoteForm = () => {
     <Card className="bg-white border border-primary/20 shadow-lg">
       <CardHeader className="pb-4">
         <div className="flex items-center mb-4">
-          <Calculator className="h-5 w-5 text-primary mr-2" />
           <CardTitle className="text-lg font-medium text-primary">{content.quote.title}</CardTitle>
         </div>
         
