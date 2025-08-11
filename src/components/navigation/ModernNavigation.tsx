@@ -2,13 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import articlesData from "@/data/articles.json";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 // Using uploaded image directly
 // import ermetesLogo from "@/assets/ermetes-logo.png";
 
@@ -130,18 +124,10 @@ const ModernNavigation = () => {
           <div className="md:hidden border-t border-border/10 bg-background/95 backdrop-blur-md">
             <div className="py-4 space-y-3">
               {navigationItems.map((item) => {
-                let href;
-                if (item.key === 'articles') {
-                  href = `https://ermetes.github.io/ermetes#articles`;
-                } else {
-                  href = isArticlePage
-                    ? `https://ermetes.github.io/ermetes#${item.key}`
-                    : `#${item.key}`;
-                }
                 return (
                   <a
                     key={item.key}
-                    href={href}
+                    href={item.href}
                     className="block w-full text-left px-4 py-2 text-foreground/80 hover:text-foreground hover:bg-muted/50 transition-colors font-light"
                   >
                     {item.label}
