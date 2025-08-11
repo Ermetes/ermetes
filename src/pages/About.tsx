@@ -1,7 +1,7 @@
 import ModernNavigation from "@/components/navigation/ModernNavigation";
 import Footer from "@/components/sections/Footer";
 
-export default function About() {
+export default function AboutPage() {
   return (
     <div className="relative min-h-screen bg-background">
       <ModernNavigation />
