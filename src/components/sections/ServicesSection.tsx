@@ -61,7 +61,7 @@ const ServicesSection = () => {
                 <Button
                   className="mt-4 text-white px-6 py-2 rounded-lg shadow"
                   style={{ backgroundColor: '#FFAA00' }}
-                  onClick={() => window.location.href = '/ermetes/About'}
+                  onClick={() => window.location.href = '/ermetes/about'}
                 >
                   CLICCA QUI
                 </Button>
