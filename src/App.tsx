@@ -10,7 +10,7 @@ import PreventivoModal from "./pages/PreventivoModal";
 import Article from "./pages/Article";
 import NotFound from "./pages/NotFound";
 import Articles from "./pages/Articles";
-import About from "./pages/about";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
