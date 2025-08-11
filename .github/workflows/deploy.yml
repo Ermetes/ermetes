@@ -3,9 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_call:
+  workflow_dispatch:
+  repository_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -18,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20.19.0'
           cache: 'yarn'
 
       - name: Install dependencies
@@ -27,12 +32,12 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Verify dist contents
-        run: ls -la ./dist
+      - name: Verify out contents
+        run: ls -la ./out
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./out
           force_orphan: true
