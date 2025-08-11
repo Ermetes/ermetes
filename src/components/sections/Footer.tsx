@@ -6,7 +6,7 @@ const Footer = () => {
   const { content } = useLanguage();
 
   return (
-    <footer className="bg-[#00338D] text-background py-16">
+    <footer className="bg-[#00338D] text-background py-16" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -47,43 +47,6 @@ const Footer = () => {
                 <span className="text-background/80">{content.footer.email}</span>
               </div>
             </div>
-          </div>
-
-          {/* Services */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{content.footer.servicesTitle}</h3>
-            <ul className="space-y-2 text-background/80">
-              {content.footer.services.map((service: string, idx: number) => (
-                <li key={idx}>{service}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{content.footer.linksTitle}</h3>
-            <ul className="space-y-2 text-background/80">
-              <li>
-                <a href="#" className="hover:text-background transition-colors">
-                  {content.footer.links.privacy}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-background transition-colors">
-                  {content.footer.links.terms}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-background transition-colors">
-                  {content.footer.links.social}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-background transition-colors">
-                  {content.footer.links.certifications}
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
 

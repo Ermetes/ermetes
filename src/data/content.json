@@ -4,56 +4,95 @@
       "quoteButton": "Richiedi Preventivo Simile",
       "detailsButton": "Maggiori Dettagli",
     "summaryTitle": "Riepilogo Richiesta",
-      "title": "I Nostri Progetti",
+      "title": "I Nostri Lavori",
       "subtitle": "Esplora i nostri lavori e il loro impatto sociale nella comunità",
-      "categories": ["Tutti", "Edilizia Residenziale", "Ristrutturazione", "Impatto Sociale", "Manutenzione"],
+      "categories": ["Tutti", "Edilizia Residenziale",  "Manutenzione", "Articles"],
       "projects": [
         {
-          "title": "Rifacimento copertura edificio Trento",
+          "title": "Coperture in Legno: La Soluzione Definitiva per la Casa Moderna",
           "category": "Edilizia Residenziale",
-          "description": "Costruzione di una copertura in legno lamellare per edificio residenziale.",
+          "description": "Scopri come Ermetes trasforma la copertura in legno in una soluzione definitiva per comfort, efficienza e valorizzazione immobiliare, grazie a innovazione digitale e materiali naturali.",
           "image": "./assets/Rifacimento copertura edificio Trento.jpg",
           "icon": "🪵",
-          "extendedInfo": "Struttura del tetto realizzata con travi in legno lamellare, isolamento e barriera al vapore per garantire efficienza energetica e durabilità. Lavoro svolto con attenzione ai dettagli e materiali di alta qualità.",
-          "status": "In corso",
+          "extendedInfo": "Soluzioni innovative per coperture in legno, comfort abitativo, efficienza energetica e valorizzazione immobiliare.",
+          "status": "Completato",
           "duration": "3 mesi",
           "budget": "€ 120K",
-          "features": ["Legno Lamellare", "Efficienza Energetica", "Isolamento", "Durabilità"]
+          "features": ["Legno Lamellare", "Efficienza Energetica", "Isolamento", "Durabilità"],
+          "link": "/ermetes/magazine/it/tetto-legno"
         },
         {
-          "title": "Ristrutturazione abitazione privata, Trento",
-          "category": "Ristrutturazione",
-          "description": "Installazione di impianto radiante a pavimento e massetto in edificio esistente.",
-          "image": "./assets/Ristrutturazione abitazione privata, Trento.jpg",
-          "icon": "🏡",
-          "extendedInfo": "Lavori di ristrutturazione con posa di impianto di riscaldamento a pavimento, isolamento perimetrale e stesura massetto. Miglioramento comfort abitativo e risparmio energetico.",
+          "title": "Manutenzioni",
+          "category": "Manutenzione",
+          "description": "Servizi di manutenzione ordinaria e straordinaria per edifici pubblici e privati",
+          "image": "./assets/construction-2.jpg",
+          "icon": "🔧",
+          "extendedInfo": "Supporto organizzativo con calendario cronoprogramma dei lavori e pianificazione di cantiere già costruita a monte tramite l'ufficio amministrativo della Cooperativa. Supporto formativo continuo per i soci e lavoratori con formazione continua e aggiornamento delle competenze dei lavoratori sia organizzative che operative.",
           "status": "Completato",
-          "duration": "2 mesi",
-          "budget": "€ 45K",
-          "features": ["Riscaldamento Radiante", "Isolamento", "Comfort", "Efficienza Energetica"]
+          "duration": "Settimanale",
+          "budget": "Variabile",
+          "features": ["Manutenzione Ordinaria", "Manutenzione Straordinaria", "Edifici Pubblici", "Edifici Privati"],
+          "link": "",
+          "details": {
+            "organization": "Supporto organizzativo con calendario cronoprogramma dei lavori e pianificazione di cantiere già costruita a monte tramite l'ufficio amministrativo della Cooperativa.",
+            "training": "Supporto formativo continuo per i soci e lavoratori con formazione continua e aggiornamento delle competenze dei lavoratori sia organizzative che operative."
+          }
         },
         {
-          "title": "Ristrutturazione bar Ospedale S.Maurizio Bolzano",
-          "category": "Impatto Sociale",
-          "description": "Realizzazione di interni moderni per attività commerciale con materiali di pregio.",
+          "title": "Riscaldamento a Pavimento: Comfort Intelligente per Ogni Casa",
+          "category": "Edilizia Residenziale",
+          "description": "Scopri come il riscaldamento a pavimento migliora comfort ed efficienza energetica nelle ristrutturazioni moderne, offrendo benefici finanziari e ambientali ai clienti.",
+          "image": "./assets/Ristrutturazione abitazione privata, Trento.jpg",
+          "icon": "🔥",
+          "extendedInfo": "Comfort intelligente, risparmio energetico e sostenibilità con impianti radianti a pavimento.",
+          "status": "Completato",
+          "duration": "1 mese",
+          "budget": "€ 45K",
+          "features": ["Riscaldamento Radiante", "Isolamento", "Comfort", "Efficienza Energetica"],
+          "link": "/ermetes/magazine/it/riscaldamento-pavimento"
+        },
+        {
+          "title": "Spazi Commerciali: Design, Efficienza e Identità con Ermetes",
+          "category": "Edilizia Residenziale",
+          "description": "Scopri come Ermetes trasforma spazi commerciali in ambienti di successo, integrando design, efficienza gestionale e tecnologie avanzate per risultati concreti e duraturi.",
           "image": "./assets/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
           "icon": "🏢",
-          "extendedInfo": "Progetto chiavi in mano per la realizzazione di un locale commerciale: pavimentazione in legno, illuminazione a LED, arredi su misura e vetrine espositive. Attenzione a design, funzionalità e accessibilità.",
+          "extendedInfo": "Design, efficienza gestionale e tecnologie avanzate per spazi commerciali di successo.",
+          "status": "Completato",
+          "duration": "2 mesi",
+          "budget": "€ 80K",
+          "features": ["Design Moderno", "Accessibilità", "Materiali di Pregio"],
+          "link": "/ermetes/magazine/it/spazio-commerciale"
+        },
+        {
+          "title": "Costruttori di Successo: Come i General Contractor Gestiscono Rischi e Valore",
+          "category": "Edilizia Residenziale",
+          "description": "Scopri come i migliori general contractor EMEA trasformano rischi e complessità in valore reale, grazie a strategie innovative di gestione e tecnologie digitali avanzate.",
+          "image": "./assets/construction-1.jpg",
+          "icon": "🏗️",
+          "extendedInfo": "Strategie innovative e tecnologie digitali per la gestione di rischi e valore in edilizia.",
           "status": "Completato",
           "duration": "4 mesi",
           "budget": "€ 200K",
-          "features": ["Design Moderno", "Accessibilità", "Efficienza Energetica", "Materiali di Pregio"]
+          "features": ["Gestione Rischi", "Tecnologie Digitali", "Valore Reale"],
+          "link": "/ermetes/magazine/it/redditivita-rischio"
+        },
+        {
+          "title": "Dati e Decisioni: La Nuova Frontiera del Cost Management in Edilizia",
+          "category": "Edilizia Residenziale",
+          "description": "Scopri come la digitalizzazione e l’uso dei dati stanno rivoluzionando la gestione dei costi in edilizia, offrendo trasparenza, efficienza e valore aggiunto ai clienti.",
+          "image": "./assets/construction-2.jpg",
+          "icon": "📊",
+          "extendedInfo": "Digitalizzazione e dati per la nuova frontiera del cost management in edilizia.",
+          "status": "Completato",
+          "duration": "3 mesi",
+          "budget": "€ 150K",
+          "features": ["Digitalizzazione", "Efficienza", "Valore Aggiunto"],
+          "link": "/ermetes/magazine/it/tecnologia-cost-management"
         }
       ]
     },
     "pages": {
-      "spazioCommerciale": {
-        "title": "Spazi Commerciali: Design e Funzionalità",
-        "imgAlt": "Spazio commerciale",
-        "paragraph1": "La realizzazione di un ambiente commerciale moderno richiede attenzione ai materiali, all’illuminazione e all’accessibilità. Il progetto ha visto l’utilizzo di pavimentazione in legno, illuminazione a LED e arredi su misura, creando uno spazio funzionale e accogliente.",
-        "paragraph2": "Ogni dettaglio è stato studiato per favorire la fruibilità degli spazi, con soluzioni che coniugano estetica e praticità. L’accessibilità è garantita da percorsi privi di barriere e da una disposizione degli arredi pensata per il comfort di tutti.",
-        "paragraph3": "Scopri le scelte progettuali, i materiali impiegati e il valore di un design attento alle esigenze del cliente."
-      },
       "tettoLegno": {
         "title": "Un Tetto di Innovazione: La Nuova Copertura in Legno",
         "imgAlt": "Tetto in legno",
@@ -85,7 +124,7 @@
       "quoteButton": "Richiedi Preventivo"
     },
     "constructionShowcase": {
-      "title": "I Nostri Progetti",
+      "title": "I Nostri Lavori",
       "subtitle": "Esempi della nostra esperienza in edilizia e costruzioni moderne",
       "projects": [
         {
@@ -134,8 +173,7 @@
       "badge": "Oltre 15 anni di esperienza",
       "title": "Professionisti dell'edilizia con un cuore sociale",
       "subtitle": "Riconstruiamo spazi e portiamo serenità",
-      "cta": "Richiedi Preventivo Gratuito",
-      "ctaSecondary": "Scopri i Nostri Progetti"
+      "cta": "Richiedi Preventivo Gratuito"
     },
     "services": {
       "title": "I Nostri Servizi",
@@ -185,11 +223,10 @@
     "about": {
       "title": "Chi Siamo",
       "subtitle": "Ermetes Società Cooperativa Sociale",
-      "description": "Ermetes Società Cooperativa Sociale è una cooperativa a mutualità prevalente che nasce con l'obiettivo di supportare l'inserimento professionale e la continuità lavorativa di personale svantaggiato in particolare disoccupati che faticano a rientrare nel mondo del lavoro, rifugiati politici, cittadini stranieri, giovani NEET… tramite attività coordinata nell'ambito delle manutenzioni, pulizie, edilizia residenziale e altri servizi connessi.",
-      "mission": "Per portare a buon fine i lavori Ermetes si organizza tramite piccole squadre composte da 3 persone di cui una professionalizzata che coordina e organizza e due svantaggiate, segnalate dall'ufficio welfare comunale, che affiancano.",
+      "description": "Ermetes è una cooperativa a mutualità prevalente che nasce con l'obiettivo di supportare l'inserimento professionale e la continuità lavorativa tramite atti coordinata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi Ermetes ci tiene davvero all'ambiente. Grazie a un apposito gestionale oltre a pianificare nel dettaglio le commesse e a condividere anche a distanza gli avanzamenti quotidiani con il connessi.",
       "sustainability": {
         "title": "Un occhio di riguardo all'ambiente e alla sostenibilità",
-        "description": "Ermetes ci tiene davvero all'ambiente. Grazie a un apposito gestionale che tiene traccia sia a preventivo che a consuntivo dell'impatto ambientale dei lavori e delle commesse. Grazie alla partnership con l'organizzazione no profit 'Sustainable Economy Association' le emissioni misurate possono essere compensate tramite progetti di piantumazione e riforestazione."
+        "description": "Ermetes ci tiene davvero all'ambiente. Grazie a un apposito gestionale oltre a pianificare nel dettaglio le commesse e a condividere anche a distanza gli avanzamenti quotidiani con il committente tramite cloud tiene traccia sia a preventivo che a consuntivo dell'impatto ambientale dei lavori e delle commesse. Utilizza se richiesto dal cliente materiali sostenibili e sa gestire la tracciabilità di filiera e la contabilità emissiva LCA delle commesse."
       },
       "stats": [
         {
@@ -287,7 +324,6 @@
       "links": {
         "privacy": "Privacy Policy",
         "terms": "Termini e Condizioni",
-        "social": "Impatto Sociale",
         "certifications": "Certificazioni"
       },
       "copyright": "© 2025 Sintija Birgele. Tutti i diritti riservati."

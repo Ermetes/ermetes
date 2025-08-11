@@ -84,7 +84,7 @@ const ModernProjectsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-editorial text-foreground mb-6">
-            I Nostri Progetti
+            I Nostri Lavori
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light">
             Ogni progetto è un'opportunità di crescita e integrazione sociale. 

@@ -25,14 +25,14 @@ const ConstructionHero = () => {
         {/* YouTube Video Background */}
         <div className="absolute inset-0 z-0">
           <iframe
-            src="https://www.youtube.com/embed/Bdl1qJ7czm4?autoplay=1&mute=1&loop=1&playlist=Bdl1qJ7czm4&controls=0&showinfo=0&rel=0&modestbranding=1"
+            src="https://wwsw.youtube.com/embed/Bdl1qJ7czm4?autoplay=1&mute=1&loop=1&playlist=Bdl1qJ7czm4&controls=0&showinfo=0&rel=0&modestbranding=1"
             allow="autoplay; encrypted-media"
             allowFullScreen
             className="w-full h-full object-cover hidden lg:block"
             style={{ pointerEvents: 'none' }}
           />
           <iframe
-            src="https://www.youtube.com/embed/__2oTC6jOqY?autoplay=1&mute=1&loop=1&playlist=__2oTC6jOqY&controls=0&showinfo=0&rel=0&modestbranding=1"
+            src="https://wwsw.youtube.com/embed/__2oTC6jOqY?autoplay=1&mute=1&loop=1&playlist=__2oTC6jOqY&controls=0&showinfo=0&rel=0&modestbranding=1"
             allow="autoplay; encrypted-media"
             allowFullScreen
             className="w-full h-full object-cover sm:block"
@@ -63,7 +63,7 @@ const ConstructionHero = () => {
             {/* Left Column - Text Content */}
             <div className="space-y-8 text-white">
               <h1 
-                className={`text-5xl sm:text-6xl md:text-7xl font-light leading-tight transform transition-all duration-700 delay-100 ${
+                className={`text-5xl sm:text-6xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 ${
                   loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
               >
@@ -93,15 +93,6 @@ const ConstructionHero = () => {
               <div className={`flex items-start transform transition-all duration-700 delay-400 ${
                 loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  onClick={() => scrollToSection('projects')}
-                  className="border-1 border-white/10 text-white bg-white/20 hover:bg-[#FFAA00] hover:text-white px-8 py-4 text-lg font-medium group rounded-lg"
-                >
-                  <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                  {content.hero.ctaSecondary}
-                </Button>
               </div>
             </div>
 

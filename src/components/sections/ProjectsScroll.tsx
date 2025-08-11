@@ -14,17 +14,24 @@ const ProjectsScroll = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  // Redirect to About page if About category is selected
+  useEffect(() => {
+    if (normalize(selectedCategory) === "articles") {
+      window.location.href = "/ermetes/magazine";
+    }
+  }, [selectedCategory]);
 
   // Reset selectedCategory to 'All' when categories change (i.e., language switch)
   useEffect(() => {
     setSelectedCategory(categories[0]);
   }, [categories]);
+  console.log(selectedCategory)
 
   // Normalize category names for filtering (handle translation/case)
   const normalize = (str: string) => str.trim().toLowerCase().replace(/\s+/g, " ");
   let filteredProjects = projects;
   if (categories.length > 0 && selectedCategory && normalize(selectedCategory) !== normalize(categories[0])) {
-    filteredProjects = projects.filter(project => normalize(project.category) === normalize(selectedCategory));
+    filteredProjects = filteredProjects.filter(project => normalize(project.category) === normalize(selectedCategory));
   }
 
   useEffect(() => {
@@ -66,7 +73,7 @@ const ProjectsScroll = () => {
               {projectsScroll?.subtitle || 'Explore our work and its social impact in the community'}
             </p>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-1">
             {categories.map((category) => (
               <Button
@@ -83,28 +90,41 @@ const ProjectsScroll = () => {
               </Button>
             ))}
           </div>
+
+          {/* Category Description */}
+          <div className="text-center mt-2 mb-4">
+            {normalize(selectedCategory) === "edilizia residenziale" && (
+              <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
+                Ristrutturazione completa di edifici residenziali e interventi manutentivi di strutture appartamenti dalla struttura grezza fino alle finiture
+              </p>
+            )}
+            {normalize(selectedCategory) === "manutenzione" && (
+              <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
+                Pianifichiamo ogni settimana interventi manutentori distruttore private e pubbliche su tutto il territorio trentino
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Scrollable Projects - Light background integration */}
-      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50" ref={containerRef}>
-        {/* Center Line - Lighter style */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-accent/60 to-primary/60">
+      {/* Scrollable Projects - Center line and icons on the left, projects in a row */}
+      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex" ref={containerRef}>
+        {/* Center Line & Icons on the left */}
+        <div className="relative flex flex-col items-center py-12 px-2 w-32">
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-accent/60 to-primary/60" style={{left: '50%'}} />
           <div className="sticky top-1/2 -translate-y-1/2">
-            <div className="w-16 h-16 -ml-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-3xl transition-all duration-500 transform shadow-xl border-4 border-background/80">
+            <div className={`w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-2xl transition-all duration-500 transform shadow-xl border-4 border-background/80 border-primary`}>
               {filteredProjects[activeIndex]?.icon}
             </div>
           </div>
         </div>
 
-        {/* Project Panels */}
-        <div className="relative max-w-7xl mx-auto">
+        {/* Project Panels in a row next to the line */}
+        <div className="flex-1 flex flex-col">
           {filteredProjects.map((project, index) => (
             <div
               key={project.title}
-              className={`flex items-center min-h-screen ${
-                index % 2 === 0 ? "justify-start" : "justify-end"
-              }`}
+              className="flex items-center min-h-screen pb-8"
             >
               <div className="w-full max-w-xl p-8">
                 <div 
@@ -112,7 +132,7 @@ const ProjectsScroll = () => {
                     activeIndex === index ? "scale-110 shadow-3xl" : "scale-100 hover:scale-105"
                   }`}
                   style={{
-                    transformOrigin: index % 2 === 0 ? "left center" : "right center",
+                    transformOrigin: "left center",
                   }}
                 >
                   <div className="relative">
@@ -133,7 +153,13 @@ const ProjectsScroll = () => {
                             {project.status}
                           </Badge>
                       <h3 className="text-3xl font-bold text-white mb-3">
-                        {project.title}
+                        {project.link ? (
+                          <a href={project.link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                            {project.title}
+                          </a>
+                        ) : (
+                          project.title
+                        )}
                       </h3>
                       <p className="text-white/90 leading-relaxed">
                         {project.description}
