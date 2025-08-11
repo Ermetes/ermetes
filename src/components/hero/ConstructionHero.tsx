@@ -25,14 +25,14 @@ const ConstructionHero = () => {
         {/* YouTube Video Background */}
         <div className="absolute inset-0 z-0">
           <iframe
-            src="https://wwsw.youtube.com/embed/Bdl1qJ7czm4?autoplay=1&mute=1&loop=1&playlist=Bdl1qJ7czm4&controls=0&showinfo=0&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/Bdl1qJ7czm4?autoplay=1&mute=1&loop=1&playlist=Bdl1qJ7czm4&controls=0&showinfo=0&rel=0&modestbranding=1"
             allow="autoplay; encrypted-media"
             allowFullScreen
             className="w-full h-full object-cover hidden lg:block"
             style={{ pointerEvents: 'none' }}
           />
           <iframe
-            src="https://wwsw.youtube.com/embed/__2oTC6jOqY?autoplay=1&mute=1&loop=1&playlist=__2oTC6jOqY&controls=0&showinfo=0&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/__2oTC6jOqY?autoplay=1&mute=1&loop=1&playlist=__2oTC6jOqY&controls=0&showinfo=0&rel=0&modestbranding=1"
             allow="autoplay; encrypted-media"
             allowFullScreen
             className="w-full h-full object-cover sm:block"
