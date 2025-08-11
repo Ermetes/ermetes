@@ -1,0 +1,110 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "/luca_bazzanella",
+  "redirects": [
+    {
+      "source": "/luca_bazzanella",
+      "destination": "/luca_bazzanella/",
+      "basePath": false,
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^/luca_bazzanella$"
+    },
+    {
+      "source": "/:file((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+)/",
+      "destination": "/:file",
+      "internal": true,
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-nextjs-data"
+        }
+      ],
+      "statusCode": 308,
+      "regex": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+))/$"
+    },
+    {
+      "source": "/:notfile((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+)",
+      "destination": "/:notfile/",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+))$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [
+      {
+        "source": "/luca_bazzanella//_next/:path+",
+        "destination": "/luca_bazzanella/_next/:path+",
+        "regex": "^/luca_bazzanella//_next(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))(?:/)?$"
+      }
+    ],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/Article",
+      "regex": "^/Article(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Article(?:/)?$"
+    },
+    {
+      "page": "/Articles",
+      "regex": "^/Articles(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Articles(?:/)?$"
+    },
+    {
+      "page": "/Index",
+      "regex": "^/Index(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Index(?:/)?$"
+    },
+    {
+      "page": "/NotFound",
+      "regex": "^/NotFound(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/NotFound(?:/)?$"
+    },
+    {
+      "page": "/PreventivoModal",
+      "regex": "^/PreventivoModal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/PreventivoModal(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/tetto-legno",
+      "regex": "^/tetto\\-legno(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tetto\\-legno(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

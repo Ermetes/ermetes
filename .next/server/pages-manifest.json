@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/Article": "pages/Article.js",
+  "/Articles": "pages/Articles.js",
+  "/Index": "pages/Index.js",
+  "/NotFound": "pages/NotFound.js",
+  "/PreventivoModal": "pages/PreventivoModal.js",
+  "/about": "pages/about.js",
+  "/tetto-legno": "pages/tetto-legno.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js"
+}

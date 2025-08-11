@@ -97,7 +97,7 @@ const ModernNavigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-12">
             {navigationItems.map((item) => {
-              let href = item.href || `#${item.key}`;
+              const href = item.href || `#${item.key}`;
               return (
                 <a
                   key={item.key}

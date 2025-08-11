@@ -13,7 +13,7 @@ const InlineQuoteFormTrigger = ({ buttonText = 'Richiedi un Preventivo Personali
         </Button>
       ) : (
         <div className="animate-fade-in">
-          <InlineQuoteForm onClose={() => setShowForm(false)} />
+          <InlineQuoteForm />
         </div>
       )}
       <style>

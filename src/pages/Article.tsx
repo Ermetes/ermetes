@@ -61,7 +61,7 @@ const Article = () => {
   }, []);
 
   // Find article by slug (match link ending)
-  let article = articles.find((a) => a.link.endsWith(slug));
+  const article = articles.find((a) => a.link.endsWith(slug));
 
   // If not found, try to map slug from other language and redirect
   if (!article) {
