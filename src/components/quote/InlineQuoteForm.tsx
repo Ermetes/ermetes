@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ArrowRight, ArrowLeft, Calculator, Building, User, FileText, CheckCircle } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Calculator, Building, User, FileText, CheckCircle, Image } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -38,6 +38,7 @@ const InlineQuoteForm = () => {
     metricFile: null
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showFileInputs, setShowFileInputs] = useState(false);
 
   const handleInputChange = (field: string, value: string | File | FileList | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -230,7 +231,52 @@ const InlineQuoteForm = () => {
                 className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500 min-h-[100px]"
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Improved file upload UX for mobile */}
+            <div className="block md:hidden">
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full flex items-center justify-center gap-2 border-primary/30 text-primary mb-2"
+                onClick={() => setShowFileInputs((v) => !v)}
+              >
+                <Image className="h-5 w-5" />
+                Allega documenti
+              </Button>
+              {showFileInputs && (
+                <div className="grid grid-cols-1 gap-4 mt-2">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-900 mb-2">Carica immagini</label>
+                    <Input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={(e) => handleInputChange('images', e.target.files)}
+                      className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
+                    <Input
+                      type="file"
+                      accept=".pdf,.doc,.docx,.zip,.rar"
+                      onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
+                      className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo</label>
+                    <Input
+                      type="file"
+                      accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
+                      onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
+                      className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* Desktop: show file inputs as before */}
+            <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-900 mb-2">Carica immagini</label>
                 <Input

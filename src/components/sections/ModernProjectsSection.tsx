@@ -83,7 +83,7 @@ const ModernProjectsSection = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-editorial text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl font-editorial text-foreground mb-6 mt-6">
             I Nostri Lavori
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light">
