@@ -45,17 +45,17 @@ const ServicesSection = () => {
   return (
     <section id="services" className="relative bg-white">
       {/* Company Information Section */}
-      <div id="about" className="bg-white py-20">
+      <div id="about" className="bg-white py-5 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-8">
-            <div className="bg-gradient-to-br from-[#00338D]/5 to-[#00338D]/10 rounded-2xl p-8 border border-[#00338D]/20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-4">
+            <div className="bg-gradient-to-br from-[#00338D]/5 to-[#00338D]/10 rounded-2xl p-4 lg:p-8 border border-[#00338D]/20">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-[#00338D]/10 flex items-center justify-center">
                   <Users className="h-6 w-6 text-[#00338D]" />
                 </div>
                 <h3 className="text-3xl font-light text-[#00338D]">{content.about.title}</h3>
               </div>
-              <p className="text-gray-600 font-light mb-6 leading-relaxed">
+              <p className="text-gray-600 font-light mb-6 leading-relaxed text-justify">
                 {content.about.description}
                 <span className="block mt-6 text-base text-[#00338D] font-medium">Par separa di più pulla noaina mibafon a dibaoila</span>
                 <Button
@@ -75,7 +75,7 @@ const ServicesSection = () => {
                 </div>
                 <h3 className="text-3xl font-light text-[#00338D]">{content.about.sustainability.title}</h3>
               </div>
-              <p className="text-gray-600 font-light mb-6 leading-relaxed">
+              <p className="text-gray-600 font-light mb-6 leading-relaxed text-justify">
                 {content.about.sustainability.description}
               </p>
             </div>
@@ -89,9 +89,13 @@ const ServicesSection = () => {
           <h3 className="text-3xl font-light text-white mb-6">
             {content.services.ctaTitle}
           </h3>
-          <p className="text-xl text-white/90 font-light mb-8">
-            {content.services.ctaDescription}
-          </p>
+          <Button
+            className="mt-2 text-white px-6 py-2 rounded-lg shadow"
+            style={{ backgroundColor: '#FFAA00' }}
+            onClick={() => window.location.href = 'mailto:info@ermetes.it?subject=Ermetes:lavora con noi'}
+          >
+            Contattaci
+          </Button>
           {/* Removed modal trigger button for quote request */}
         </div>
       </div>
