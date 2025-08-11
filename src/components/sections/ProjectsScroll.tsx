@@ -13,7 +13,10 @@ const ProjectsScroll = () => {
     : ["All"];
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  // Preselect 'Edilizia Residenziale' if present, else fallback to first
+  const defaultCategory = categories.find(cat => cat.toLowerCase().includes("edilizia residenziale")) || categories[0];
+  const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
+
   // Redirect to About page if About category is selected
   useEffect(() => {
     if (normalize(selectedCategory) === "articles") {
@@ -23,7 +26,7 @@ const ProjectsScroll = () => {
 
   // Reset selectedCategory to 'All' when categories change (i.e., language switch)
   useEffect(() => {
-    setSelectedCategory(categories[0]);
+    setSelectedCategory(defaultCategory);
   }, [categories]);
   console.log(selectedCategory)
 
@@ -63,7 +66,7 @@ const ProjectsScroll = () => {
   return (
     <section id="projects">
       {/* Category Filter */}
-      <div className="bg-background sm:py-2 md:py-6 sticky top-16 z-40 border-b border-border shadow-sm">
+      <div className="bg-background sm:py-2 md:py-6 lg:sticky top-16 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center sm:mb-4 md:mb-8">
             <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-4">
@@ -74,13 +77,13 @@ const ProjectsScroll = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-1">
+          <div className="flex flex-nowrap overflow-x-auto gap-1 pb-2 md:flex-wrap md:overflow-x-visible md:pb-0 justify-center w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
             {categories.map((category) => (
               <Button
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 whitespace-nowrap ${
                   selectedCategory === category 
                     ? "bg-primary text-primary-foreground shadow-lg scale-105" 
                     : "hover:bg-primary/10 hover:border-primary/50 hover:text-primary"
@@ -108,9 +111,9 @@ const ProjectsScroll = () => {
       </div>
 
       {/* Scrollable Projects - Center line and icons on the left, projects in a row */}
-      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex" ref={containerRef}>
-        {/* Center Line & Icons on the left */}
-        <div className="relative flex flex-col items-center py-12 px-2 w-32">
+      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex flex-col md:flex-row" ref={containerRef}>
+        {/* Center Line & Icons on the left (hidden on mobile) */}
+        <div className="hidden md:relative md:flex md:flex-col md:items-center md:py-12 md:px-2 md:w-32">
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-accent/60 to-primary/60" style={{left: '50%'}} />
           <div className="sticky top-1/2 -translate-y-1/2">
             <div className={`w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-2xl transition-all duration-500 transform shadow-xl border-4 border-background/80 border-primary`}>
@@ -119,17 +122,17 @@ const ProjectsScroll = () => {
           </div>
         </div>
 
-        {/* Project Panels in a row next to the line */}
+        {/* Project Panels: vertical stack on mobile, row on desktop */}
         <div className="flex-1 flex flex-col">
           {filteredProjects.map((project, index) => (
             <div
               key={project.title}
-              className="flex items-center min-h-screen pb-8"
+              className="flex flex-col md:flex-row items-center min-h-[20vh] md:min-h-screen pb-8"
             >
-              <div className="w-full max-w-xl p-8">
+              <div className="w-full max-w-xl p-4 md:p-8">
                 <div 
                   className={`group relative rounded-3xl overflow-hidden transition-all duration-500 shadow-2xl ${
-                    activeIndex === index ? "scale-110 shadow-3xl" : "scale-100 hover:scale-105"
+                    activeIndex === index ? "scale-105 shadow-3xl" : "scale-100 hover:scale-105"
                   }`}
                   style={{
                     transformOrigin: "left center",
@@ -140,9 +143,9 @@ const ProjectsScroll = () => {
                     {project.image && <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-[250px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
                     />}
-                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                    <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
                       <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
                         {project.category}
                       </Badge>
@@ -152,7 +155,7 @@ const ProjectsScroll = () => {
                           >
                             {project.status}
                           </Badge>
-                      <h3 className="text-3xl font-bold text-white mb-3">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                         {project.link ? (
                           <a href={project.link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                             {project.title}
@@ -161,17 +164,16 @@ const ProjectsScroll = () => {
                           project.title
                         )}
                       </h3>
-                      <p className="text-white/90 leading-relaxed">
+                      <p className="text-white/90 leading-relaxed text-sm md:text-base">
                         {project.description}
                       </p>
-                      
                     </div>
                   </div>
 
-                  {/* Expanded Content */}
+                  {/* Expanded Content: only on desktop */}
                   {activeIndex === index && (
                     <div 
-                      className="relative inset-0 bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in"
+                      className="hidden md:block relative inset-0 bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in"
                     >
                       <div className="h-full flex flex-col justify-between">
                         <div>
