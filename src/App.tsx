@@ -23,11 +23,12 @@ const App = () => (
           <Sonner />
           <BrowserRouter basename="/ermetes">
             <Routes>
-              <Route path="/" element={<Index />} />
               {/* Multilingual magazine article route */}
               <Route path="/magazine/:lang/:slug" element={<Article />} />
               <Route path="/magazine" element={<Articles />} />
               <Route path="/about" element={<About />} />
+              <Route path="/" element={<Index />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
