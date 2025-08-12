@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Building2, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -18,9 +18,9 @@ const Footer = () => {
               {content.footer.description}
             </p>
             <div className="flex space-x-4">
-              <Facebook className="h-5 w-5 text-background/80 hover:text-background cursor-pointer transition-colors" />
-              <Instagram className="h-5 w-5 text-background/80 hover:text-background cursor-pointer transition-colors" />
-              <Linkedin className="h-5 w-5 text-background/80 hover:text-background cursor-pointer transition-colors" />
+              <a href="http://instagram.com/ermetes_coop" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-5 w-5 text-background/80 hover:text-background cursor-pointer transition-colors" />
+              </a>
             </div>
           </div>
 
