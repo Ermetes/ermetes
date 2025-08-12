@@ -97,7 +97,7 @@ export default function AboutPage() {
               <h2 className="text-2xl font-semibold mb-4">
                 L’importanza per la società del nostro progetto sociale
               </h2>
-              <p className="mb-4 text-lg text-muted-foreground">
+              <p className="mb-4 text-lg text-muted-foreground text-justify">
                 Un progetto specialistico come quello proposto da Ermetes per
                 l’inserimento professionale di figure in difficoltà e svantaggiate
                 nel settore delle manutenzioni e dell’edilizia diventa sempre più

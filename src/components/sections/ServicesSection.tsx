@@ -68,7 +68,7 @@ const ServicesSection = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-[#00338D]/5 rounded-2xl p-8 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-[#00338D]/5 rounded-2xl p-4 lg:p-8 border border-green-200">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
                   <Leaf className="h-6 w-6 text-green-600" />

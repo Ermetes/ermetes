@@ -127,7 +127,7 @@ const ProjectsScroll = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={project.title}
-              className="flex flex-col md:flex-row items-center min-h-[20vh] md:min-h-screen pb-2"
+              className="flex flex-col md:flex-row items-center min-h-[20vh] md:min-h-screen"
             >
               <div className="w-full max-w-xl p-4 md:p-8">
                 <div 
