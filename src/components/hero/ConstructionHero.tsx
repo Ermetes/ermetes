@@ -34,7 +34,7 @@ const ConstructionHero = () => {
             className="w-full h-full object-cover"
             style={{ pointerEvents: 'none' }}
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
         <div className="absolute inset-0 z-10">
