@@ -139,7 +139,7 @@ const ProjectsScroll = () => {
                       alt={project.title}
                       className="w-full h-[250px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-2xl md:rounded-l-xl md:rounded-t-none rounded-b-2xl"
                     />}
-                    <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
+                    <div className="absolute inset-0 p-4 md:p-8 md:flex flex-col justify-end block md:flex">
                       <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
                         {project.category}
                       </Badge>

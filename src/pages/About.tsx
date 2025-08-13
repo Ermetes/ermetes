@@ -1,5 +1,6 @@
 import ModernNavigation from "@/components/navigation/ModernNavigation";
 import Footer from "@/components/sections/Footer";
+import { ArrowLeft } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -8,6 +9,11 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid gap-12 max-w-3xl mx-auto">
+            {/* Back to home link */}
+            <a href="/ermetes" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              Torna alla home
+            </a>
             <h1 className="text-4xl md:text-5xl font-editorial text-foreground text-center">
               Chi siamo, approccio operativo e organizzazione
             </h1>

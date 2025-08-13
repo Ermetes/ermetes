@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, User } from "lucide-react";
+import { Clock, User, ArrowLeft } from "lucide-react";
 import articlesData from "@/data/articles.json";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -39,6 +39,12 @@ const EditorialSection = () => {
   return (
     <section id="articles" className="py-20 bg-background">
       <div className="container mx-auto px-4">
+        {/* Back to home link */}
+        <a href="/ermetes" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
+          <ArrowLeft className="h-5 w-5 mr-2" />
+          Torna alla home
+        </a>
+
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-editorial text-foreground mb-6">
