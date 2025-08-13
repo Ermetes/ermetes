@@ -129,17 +129,11 @@ const ProjectsScroll = () => {
               key={project.title}
               className="flex flex-col md:flex-row items-center min-h-[20vh] md:min-h-screen"
             >
-              <div className="w-full max-w-xl p-4 md:p-8">
-                <div 
-                  className={`group relative rounded-3xl overflow-hidden transition-all duration-500 shadow-2xl ${
-                    activeIndex === index ? "scale-105 shadow-3xl" : "scale-100 hover:scale-105"
-                  }`}
-                  style={{
-                    transformOrigin: "left center",
-                  }}
-                >
+              <div className="w-full max-w-5xl mx-auto flex flex-row items-stretch">
+                <div className="w-full max-w-xl flex flex-col justify-between">
+                  {/* Left: Image and summary */}
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm transition-all duration-300 group-hover:from-black/70" />
+                    <div className="absolute inset-0 rounded-l-xl bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm transition-all duration-300 group-hover:from-black/70" />
                     {project.image && <img
                       src={project.image}
                       alt={project.title}
@@ -169,61 +163,60 @@ const ProjectsScroll = () => {
                       </p>
                     </div>
                   </div>
-
-                  {/* Expanded Content: only on desktop */}
-                  {activeIndex === index && (
-                    <div 
-                      className="hidden md:block relative inset-0 bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in"
-                    >
-                      <div className="h-full flex flex-col justify-between">
-                        <div>
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="text-3xl">{project.icon}</div>
+                </div>
+                {activeIndex === index && (
+                  <div 
+                    className="hidden md:flex bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in flex-1 min-h-0 rounded-r-xl"
+                    style={{ flexBasis: 0 }}
+                  >
+                    <div className="flex flex-col justify-between w-full h-full">
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="text-3xl">{project.icon}</div>
+                        </div>
+                        <p className="text-white/90 mb-6 leading-relaxed">
+                          {project.extendedInfo}
+                        </p>
+                        
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                          <div>
+                            <p className="text-white/70 text-sm">Durata</p>
+                            <p className="text-white font-semibold">{project.duration}</p>
                           </div>
-                          <p className="text-white/90 mb-6 leading-relaxed">
-                            {project.extendedInfo}
-                          </p>
-                          
-                          <div className="grid grid-cols-2 gap-4 mb-6">
-                            <div>
-                              <p className="text-white/70 text-sm">Durata</p>
-                              <p className="text-white font-semibold">{project.duration}</p>
-                            </div>
-                            <div>
-                              <p className="text-white/70 text-sm">Budget</p>
-                              <p className="text-white font-semibold">{project.budget}</p>
-                            </div>
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-2 mb-6">
-                            {project.features.map((feature, i) => (
-                              <Badge key={i} variant="outline" className="text-white border-white/30">
-                                {feature}
-                              </Badge>
-                            ))}
+                          <div>
+                            <p className="text-white/70 text-sm">Budget</p>
+                            <p className="text-white font-semibold">{project.budget}</p>
                           </div>
                         </div>
                         
-                        <div className="space-y-3 w-full items-stretch flex flex-col">
-                          <Button 
-                            className="w-full bg-primary hover:bg-primary/90"
-                            size="lg"
-                            onClick={() => {
-                              setTimeout(() => {
-                                const element = document.getElementById('quote');
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth' });
-                                }
-                              }, 100);
-                            }}
-                          >
-                            {content.projectsScroll?.quoteButton || content.hero.cta}
-                          </Button>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.features.map((feature, i) => (
+                            <Badge key={i} variant="outline" className="text-white border-white/30">
+                              {feature}
+                            </Badge>
+                          ))}
                         </div>
                       </div>
+                      
+                      <div className="space-y-3 w-full items-stretch flex flex-col">
+                        <Button 
+                          className="w-full bg-primary hover:bg-primary/90"
+                          size="lg"
+                          onClick={() => {
+                            setTimeout(() => {
+                              const element = document.getElementById('quote');
+                              if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                              }
+                            }, 100);
+                          }}
+                        >
+                          {content.projectsScroll?.quoteButton || content.hero.cta}
+                        </Button>
+                      </div>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
