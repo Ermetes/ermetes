@@ -129,7 +129,7 @@ const ProjectsScroll = () => {
               key={project.title}
               className="flex flex-col md:flex-row items-center min-h-[10vh] md:min-h-[60vh] pb-4 md:pb-6"
             >
-              <div className="w-full max-w-5xl mx-auto flex flex-row items-stretch">
+              {activeIndex === index && (<div className="animate-fade-in w-full max-w-5xl mx-auto flex flex-row items-stretch">
                 <div className="w-full max-w-xl flex flex-col justify-between">
                   {/* Left: Image and summary */}
                   <div className="relative">
@@ -164,7 +164,6 @@ const ProjectsScroll = () => {
                     </div>
                   </div>
                 </div>
-                {activeIndex === index && (
                   <div 
                     className="hidden md:flex bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in flex-1 min-h-0 rounded-r-xl"
                     style={{ flexBasis: 0 }}
@@ -216,8 +215,8 @@ const ProjectsScroll = () => {
                       </div>
                     </div>
                   </div>
-                )}
               </div>
+              )}
             </div>
           ))}
         </div>
