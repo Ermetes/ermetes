@@ -127,17 +127,19 @@ const ProjectsScroll = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={project.title}
-              className="flex flex-col md:flex-row items-center min-h-[10vh] md:min-h-[60vh] pb-4 md:pb-6"
+              className="flex flex-col md:flex-row items-center min-h-[20vh] md:min-h-screen px-2 md:px-0 mb-6"
             >
-              {activeIndex === index && (<div className="animate-fade-in w-full max-w-5xl mx-auto flex flex-row items-stretch">
-                <div className="w-full max-w-xl flex flex-col justify-between">
-                  {/* Left: Image and summary */}
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-l-xl bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm transition-all duration-300 group-hover:from-black/70" />
+              {/* On mobile, stack left and right blocks vertically; on desktop, show as row */}
+                {activeIndex === index && (<div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-stretch rounded-2xl md:rounded-none bg-white md:bg-transparent shadow md:shadow-none overflow-hidden">
+                {/* Left: Image and summary (always visible) */}
+                <div className="animate-fade-in w-full max-w-xl flex flex-col justify-between">
+                  {/* ...existing image and summary code... */}
+                  <div className="relative rounded-t-2xl md:rounded-l-xl md:rounded-t-none overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm transition-all duration-300 group-hover:from-black/70" />
                     {project.image && <img
                       src={project.image}
                       alt={project.title}
-                      className="rounded-l-xl w-full h-[250px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-[250px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105"
                     />}
                     <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-end">
                       <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
@@ -164,6 +166,7 @@ const ProjectsScroll = () => {
                     </div>
                   </div>
                 </div>
+                {/* Right: Expanded content (only on desktop and if active) */}
                   <div 
                     className="hidden md:flex bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in flex-1 min-h-0 rounded-r-xl"
                     style={{ flexBasis: 0 }}
@@ -215,6 +218,7 @@ const ProjectsScroll = () => {
                       </div>
                     </div>
                   </div>
+                
               </div>
               )}
             </div>
