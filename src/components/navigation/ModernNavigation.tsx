@@ -82,7 +82,7 @@ const ModernNavigation = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img 
-              src="https://ermetes.github.ioassets/logo.png" 
+              src="https://ermetes.github.io/ermetes/assets/logo.png" 
               alt="Ermetes Multiservizi" 
               className="h-12 w-auto"
             />
