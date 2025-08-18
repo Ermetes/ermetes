@@ -95,7 +95,7 @@ const QuoteForm = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-2">Scrivici direttamente</p>
-                <p className="font-semibold text-foreground">info@ermetes.it</p>
+                <p className="font-semibold text-foreground">management@ermetes.it</p>
                 <p className="text-sm text-muted-foreground mt-1">Risposta entro 24h</p>
               </CardContent>
             </Card>

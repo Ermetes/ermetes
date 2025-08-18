@@ -150,7 +150,7 @@
       "services": "Servizi",
       "projects": "Progetti",
       "articles": "Articoli",
-      "contact": "Contatti",
+      "contact": "Contattaci",
       "quote": "Richiedi Preventivo"
     },
     "hero": {
@@ -209,7 +209,7 @@
       "subtitle": "Ermetes Società Cooperativa Sociale",
       "description": "Ermetes è una cooperativa a mutualità prevalente che nasce con l'obiettivo di supportare l'inserimento professionale e la continuità lavorativa tramite atti coordinata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi Ermetes ci tiene davvero all'ambiente. Grazie a un apposito gestionale oltre a pianificare nel dettaglio le commesse e a condividere anche a distanza gli avanzamenti quotidiani con il connessi.",
       "sustainability": {
-        "title": "Un occhio di riguardo all'ambiente e alla sostenibilità",
+        "title": "Un occhio di riguardo all'organizzatione dei lavori, trasparenza e sostenibilità",
         "description": "Ermetes ci tiene davvero all'ambiente. Grazie a un apposito gestionale oltre a pianificare nel dettaglio le commesse e a condividere anche a distanza gli avanzamenti quotidiani con il committente tramite cloud tiene traccia sia a preventivo che a consuntivo dell'impatto ambientale dei lavori e delle commesse. Utilizza se richiesto dal cliente materiali sostenibili e sa gestire la tracciabilità di filiera e la contabilità emissiva LCA delle commesse."
       },
       "stats": [
@@ -296,12 +296,11 @@
       "company": "Ermetes Società Cooperativa Sociale",
       "address": "Via San Francesco d'Assisi 10 - 38122 - Trento (TN)",
       "fiscalCode": "Codice fiscale e numero di iscrizione al registro imprese: 02755460223",
-      "registrationNumber": "Numero REA: TN – 247632",
       "registration": "Iscrizione al Registro degli Enti Cooperativi: Numero C142156",
       "phone": "+39 0461 123456",
-      "email": "info@ermetes.it",
-      "description": "Società Cooperativa Sociale specializzata in edilizia, manutenzioni e servizi con impatto sociale positivo.",
-      "contactTitle": "Contatti",
+      "email": "management@ermetes.it",
+      "description": "Ermetes è una cooperativa a mutualità prevalente che nasce con l'obiettivo di supportare l'inserimento professionale e la continuità lavorativa tramite attività coordinata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi connessi.",
+      "contactTitle": "Contattaci",
       "servicesTitle": "Servizi",
       "services": ["Edilizia Residenziale", "Manutenzioni", "Pulizie Professionali", "Consulenza Tecnica"],
       "linksTitle": "Link Utili",
@@ -584,10 +583,9 @@
       "company": "Ermetes Social Cooperative Society",
       "address": "Via San Francesco d'Assisi 10 - 38122 - Trento (TN)",
       "fiscalCode": "Tax code and company registration number: 02755460223",
-      "registrationNumber": "Registration Nr: TN – 247632",
       "registration": "Register of Cooperative Entities: Numero C142156",
       "phone": "+39 0461 123456",
-      "email": "info@ermetes.it",
+      "email": "management@ermetes.it",
       "description": "Social Cooperative Society specialized in construction, maintenance and services with positive social impact.",
       "contactTitle": "Contact",
       "servicesTitle": "Services",

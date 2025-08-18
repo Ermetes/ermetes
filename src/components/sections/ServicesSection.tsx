@@ -57,11 +57,11 @@ const ServicesSection = () => {
               </div>
               <p className="text-gray-600 font-light mb-6 leading-relaxed text-justify">
                 {content.about.description}
-                <span className="block mt-6 text-base text-[#00338D] font-medium">Par separa di più pulla noaina mibafon a dibaoila</span>
+                <span className="block mt-6 text-base text-[#00338D] font-medium">Per saperne di più sulla nostra mission e filosofia</span>
                 <Button
                   className="mt-4 text-white px-6 py-2 rounded-lg shadow"
                   style={{ backgroundColor: '#FFAA00' }}
-                  onClick={() => window.location.href = '/ermetes/about'}
+                  onClick={() => window.location.href = '/ermetes/impact'}
                 >
                   CLICCA QUI
                 </Button>
@@ -92,9 +92,9 @@ const ServicesSection = () => {
           <Button
             className="mt-2 text-white px-6 py-2 rounded-lg shadow"
             style={{ backgroundColor: '#FFAA00' }}
-            onClick={() => window.location.href = 'mailto:info@ermetes.it?subject=Ermetes:lavora con noi'}
+            onClick={() => window.location.href = 'mailto:management@ermetes.it?subject=Ermetes:lavora con noi'}
           >
-            Contattaci
+            Contact us
           </Button>
           {/* Removed modal trigger button for quote request */}
         </div>
