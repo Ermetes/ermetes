@@ -26,7 +26,7 @@ const ModernProjectsSection = () => {
       description: "Progetto di restauro conservativo che combina tecniche tradizionali e moderne per preservare il patrimonio storico locale.",
       location: "Centro Storico, Trento",
       date: "2024-2025",
-      category: "restauro",
+      category: "edilizia",
       image: "/lovable-uploads/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
       impact: "3 persone svantaggiate integrate",
       teamSize: 6
@@ -37,7 +37,7 @@ const ModernProjectsSection = () => {
       description: "Interventi di manutenzione stradale e urbana con focus sulla sicurezza e sostenibilità ambientale.",
       location: "Provincia di Trento",
       date: "2024",
-      category: "infrastrutture",
+      category: "manutenzione",
       image: "/lovable-uploads/fd6f4117-d936-47b8-8777-dc00af82dd86.png",
       impact: "5 lavoratori formati",
       teamSize: 12
@@ -67,8 +67,6 @@ const ModernProjectsSection = () => {
   ];
 
   const categories = [
-    { key: "restauro", label: "Restauro" },
-    { key: "infrastrutture", label: "Infrastrutture" },
     { key: "edilizia", label: "Edilizia" },
     { key: "manutenzione", label: "Manutenzione" }
   ];

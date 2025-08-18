@@ -71,10 +71,25 @@ const ProjectsScroll = () => {
     filteredProjects = filteredProjects.filter(project => normalize(project.category) === normalize(selectedCategory));
   }
 
-  // Carousel state for each project
+  // Responsive check (mobile/desktop)
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // Per-project carousel state for mobile (current image index)
+  const [mobileCurrents, setMobileCurrents] = useState<{ [projectIdx: number]: number }>({});
+  // Per-project film roll state for desktop
+  const [offsets, setOffsets] = useState<{ [projectIdx: number]: number }>({});
+  const [paused, setPaused] = useState<{ [projectIdx: number]: boolean }>({});
+  const containerRefs = useRef<{ [projectIdx: number]: HTMLDivElement | null }>({});
+
+  // Carousel state for each project (for legacy per-slide carousel)
   const [carouselIndexes, setCarouselIndexes] = useState<{ [projectIdx: number]: number }>({});
 
-  // Preload next two images for the active carousel to avoid loading delay
+  // Preload next two images for the active carousel to avoid loading delay (desktop only)
   useEffect(() => {
     if (!filteredProjects[activeIndex]) return;
     const project = filteredProjects[activeIndex];
@@ -90,6 +105,70 @@ const ProjectsScroll = () => {
       }
     });
   }, [activeIndex, carouselIndexes, filteredProjects]);
+
+  // Mobile: Autoplay for each project's image
+  useEffect(() => {
+    if (!isMobile) return;
+    const intervals: { [projectIdx: number]: NodeJS.Timeout } = {};
+    filteredProjects.forEach((project, idx) => {
+      const folder = getFolderFromImagePath(project.image);
+      const images = folder && Array.isArray(assetImages[folder]) ? assetImages[folder] : [];
+      if (images.length > 1) {
+        intervals[idx] = setInterval(() => {
+          setMobileCurrents(prev => ({
+            ...prev,
+            [idx]: ((prev[idx] || 0) + 1) % images.length
+          }));
+        }, 3500);
+      }
+    });
+    return () => {
+      Object.values(intervals).forEach(clearInterval);
+    };
+  }, [isMobile, filteredProjects]);
+
+  // Desktop: Animate film roll for each project
+  useEffect(() => {
+    if (isMobile) return;
+    const animationFrames: { [projectIdx: number]: number } = {};
+    const running: { [projectIdx: number]: boolean } = {};
+    filteredProjects.forEach((project, idx) => {
+      const folder = getFolderFromImagePath(project.image);
+      const images = folder && Array.isArray(assetImages[folder]) ? assetImages[folder] : [];
+      const filmImages = images.length > 0 ? [...images, ...images] : [project.image];
+      if (filmImages.length <= 1 || paused[idx]) return;
+      running[idx] = true;
+      const animate = () => {
+        setOffsets(prev => {
+          const container = containerRefs.current[idx];
+          if (!container) return prev;
+          const totalWidth = container.scrollWidth / 2;
+          let next = (prev[idx] || 0) + 0.5;
+          if (next >= totalWidth) next = 0;
+          return { ...prev, [idx]: next };
+        });
+        if (running[idx]) animationFrames[idx] = requestAnimationFrame(animate);
+      };
+      animationFrames[idx] = requestAnimationFrame(animate);
+    });
+    return () => {
+      Object.values(animationFrames).forEach(cancelAnimationFrame);
+    };
+  }, [isMobile, filteredProjects, paused]);
+
+  // Handlers for desktop film roll
+  const handleArrow = (projectIdx: number, dir: 'left' | 'right', imagesLen: number) => {
+    const container = containerRefs.current[projectIdx];
+    if (!container) return;
+    const totalWidth = container.scrollWidth / 2;
+    const imgWidth = totalWidth / imagesLen;
+    setOffsets(prev => {
+      let next = dir === 'left' ? (prev[projectIdx] || 0) - imgWidth : (prev[projectIdx] || 0) + imgWidth;
+      if (next < 0) next = totalWidth + next;
+      if (next >= totalWidth) next = next - totalWidth;
+      return { ...prev, [projectIdx]: next };
+    });
+  };
 
     // Preload next two images for the active carousel to avoid loading delay
   useEffect(() => {
@@ -236,75 +315,17 @@ const ProjectsScroll = () => {
                   <div className="relative rounded-t-2xl md:rounded-l-xl rounded-r-xl overflow-visible md:overflow-hidden mx-1 lg:mx-0 group focus-within:z-10" tabIndex={0}>
                     <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl${index === activeIndex ? '' : ' backdrop-blur-sm'}`} />
                     {/* Carousel: show all images in the same folder as project.image */}
+                    {/* Refactored: All hooks at top level, render logic below */}
                     {(() => {
-                      // All hooks must be at the top level
                       const folder = getFolderFromImagePath(project.image);
                       const images = (folder && Array.isArray(assetImages[folder])) ? assetImages[folder] : [];
-                      // Responsive check
-                      const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
-                      useEffect(() => {
-                        const check = () => setIsMobile(window.innerWidth < 768);
-                        window.addEventListener('resize', check);
-                        return () => window.removeEventListener('resize', check);
-                      }, []);
-
-                      // Mobile carousel state
-                      const [mobileCurrent, setMobileCurrent] = useState(0);
-                      useEffect(() => {
-                        if (!isMobile || !images || images.length <= 1) return;
-                        const interval = setInterval(() => {
-                          setMobileCurrent(prev => (prev + 1) % images.length);
-                        }, 3500);
-                        return () => clearInterval(interval);
-                      }, [isMobile, images && images.length]);
-
-                      // Desktop film roll state
-                      const filmImages = (images && images.length > 0) ? [...images, ...images] : [project.image];
-                      const [offset, setOffset] = useState(0);
-                      const speed = 0.5; // px per frame
-                      const containerRef = useRef<HTMLDivElement>(null);
-                      const [paused, setPaused] = useState(false);
-                      useEffect(() => {
-                        if (isMobile || filmImages.length <= 1 || paused) return;
-                        let animationFrame: number;
-                        let running = true;
-                        const animate = () => {
-                          setOffset(prev => {
-                            const container = containerRef.current;
-                            if (!container) return prev;
-                            const totalWidth = container.scrollWidth / 2;
-                            let next = prev + speed;
-                            if (next >= totalWidth) next = 0;
-                            return next;
-                          });
-                          if (running) animationFrame = requestAnimationFrame(animate);
-                        };
-                        animationFrame = requestAnimationFrame(animate);
-                        return () => {
-                          running = false;
-                          cancelAnimationFrame(animationFrame);
-                        };
-                      }, [isMobile, filmImages.length, paused]);
-
-                      const handleArrow = (dir: 'left' | 'right') => {
-                        const container = containerRef.current;
-                        if (!container) return;
-                        const totalWidth = container.scrollWidth / 2;
-                        const imgWidth = totalWidth / images.length;
-                        setOffset(prev => {
-                          let next = dir === 'left' ? prev - imgWidth : prev + imgWidth;
-                          if (next < 0) next = totalWidth + next;
-                          if (next >= totalWidth) next = next - totalWidth;
-                          return next;
-                        });
-                      };
-
-                      // Render mobile or desktop carousel
+                      const idx = index;
                       if (isMobile) {
+                        const current = mobileCurrents[idx] || 0;
                         return (
                           <div className="relative w-full h-[300px] overflow-hidden rounded-2xl">
                             <img
-                              src={images && images.length > 0 ? images[mobileCurrent % images.length] : project.image}
+                              src={images && images.length > 0 ? images[current % images.length] : project.image}
                               alt={project.title}
                               className="h-full w-full object-cover select-none pointer-events-none"
                               draggable={false}
@@ -313,21 +334,24 @@ const ProjectsScroll = () => {
                         );
                       }
                       // Desktop
+                      const filmImages = (images && images.length > 0) ? [...images, ...images] : [project.image];
+                      const offset = offsets[idx] || 0;
+                      const isPaused = paused[idx] || false;
                       return (
                         <div
                           className="relative w-full h-[600px] overflow-hidden rounded-2xl md:rounded-l-xl rounded-b-2xl"
-                          onMouseEnter={() => setPaused(true)}
-                          onMouseLeave={() => setPaused(false)}
-                          onFocus={() => setPaused(true)}
-                          onBlur={() => setPaused(false)}
+                          onMouseEnter={() => setPaused(prev => ({ ...prev, [idx]: true }))}
+                          onMouseLeave={() => setPaused(prev => ({ ...prev, [idx]: false }))}
+                          onFocus={() => setPaused(prev => ({ ...prev, [idx]: true }))}
+                          onBlur={() => setPaused(prev => ({ ...prev, [idx]: false }))}
                         >
                           <div
-                            ref={containerRef}
+                            ref={el => (containerRefs.current[idx] = el)}
                             className="flex h-full"
                             style={{
                               width: `${(filmImages.length / 2) * 100}%`,
                               transform: `translateX(-${offset}px)`,
-                              transition: paused ? 'none' : 'transform 0.1s linear',
+                              transition: isPaused ? 'none' : 'transform 0.1s linear',
                             }}
                           >
                             {Array.isArray(filmImages) && filmImages.length > 0 && filmImages.map((imgSrc, i) => (
@@ -344,7 +368,7 @@ const ProjectsScroll = () => {
                           {images.length > 1 && (
                             <>
                               <button
-                                onClick={() => handleArrow('left')}
+                                onClick={() => handleArrow(idx, 'left', images.length)}
                                 className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
                                 aria-label="Previous"
@@ -352,7 +376,7 @@ const ProjectsScroll = () => {
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                               </button>
                               <button
-                                onClick={() => handleArrow('right')}
+                                onClick={() => handleArrow(idx, 'right', images.length)}
                                 className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
                                 aria-label="Next"
