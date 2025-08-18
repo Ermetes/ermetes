@@ -92,7 +92,7 @@ const ServicesSection = () => {
           <Button
             className="mt-2 text-white px-6 py-2 rounded-lg shadow"
             style={{ backgroundColor: '#FFAA00' }}
-            onClick={() => window.location.href = 'mailto:management@ermetes.it?subject=Ermetes:lavora con noi'}
+            onClick={() => window.location.href = '/ermetes/candidatura'}
           >
             Contact us
           </Button>

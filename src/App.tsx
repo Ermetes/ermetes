@@ -11,6 +11,8 @@ import Article from "./pages/Article";
 import NotFound from "./pages/NotFound";
 import Articles from "./pages/Articles";
 import About from "./pages/About";
+import CandidaturaPage from "./pages/Candidatura";
+import PrivacyPolicyPage from "./pages/PrivacyPolicy";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +30,8 @@ const App = () => (
               <Route path="magazine" element={<Articles />} />
               <Route path="about" element={<About />} />
               <Route path="" element={<Index />} />
-
+              <Route path="candidatura" element={<CandidaturaPage />} />
+              <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
