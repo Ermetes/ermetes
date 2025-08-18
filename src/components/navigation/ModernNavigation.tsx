@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import articlesData from "@/data/articles.json";
 import { Menu, X } from "lucide-react";
 // Using uploaded image directly
-// import ermetesLogo from "@/assets/ermetes-logo.png";
+// import ermetesLogo from "@assets/ermetes-logo.png";
 
 const ModernNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -82,7 +82,7 @@ const ModernNavigation = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img 
-              src="https://ermetes.github.io/assets/logo.png" 
+              src="https://ermetes.github.ioassets/logo.png" 
               alt="Ermetes Multiservizi" 
               className="h-12 w-auto"
             />

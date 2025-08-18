@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const content = {
   it: {
     title: "Un Tetto di Innovazione: La Nuova Copertura in Legno",
-    image: "/assets/roofing/Rifacimento copertura edificio Trento.jpg",
+    image: "assets/roofing/Rifacimento copertura edificio Trento.jpg",
     sections: [
       {
         heading: "Introduzione",
@@ -42,7 +42,7 @@ const content = {
   },
   en: {
     title: "A Roof of Innovation: Timber Construction Excellence",
-    image: "/assets/roofing/Rifacimento copertura edificio Trento.jpg",
+    image: "assets/roofing/Rifacimento copertura edificio Trento.jpg",
     sections: [
       {
         heading: "Introduction",

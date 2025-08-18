@@ -8,7 +8,7 @@ const ConstructionBackground = () => {
         {/* Main background image */}
         <div className="absolute inset-0 opacity-5">
           <img
-            src='./assets/architectural-planning.jpg'
+            src='.assets/architectural-planning.jpg'
             alt="Construction background"
             className="w-full h-full object-cover"
           />
@@ -17,7 +17,7 @@ const ConstructionBackground = () => {
         {/* Floating construction elements */}
         <div className="absolute top-10 right-10 w-32 h-32 opacity-10 rounded-lg overflow-hidden rotate-12">
           <img
-            src='./assets/residential-project.jpg'
+            src='.assets/residential-project.jpg'
             alt="Residential project"
             className="w-full h-full object-cover"
           />
@@ -25,7 +25,7 @@ const ConstructionBackground = () => {
         
         <div className="absolute bottom-20 left-10 w-40 h-40 opacity-10 rounded-lg overflow-hidden -rotate-6">
           <img
-            src='./assets/historic-renovation.jpg'
+            src='.assets/historic-renovation.jpg'
             alt="Historic renovation"
             className="w-full h-full object-cover"
           />

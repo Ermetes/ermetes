@@ -49,7 +49,7 @@ const ModernProjectsSection = () => {
       location: "Valle dell'Adige",
       date: "2024",
       category: "edilizia",
-      image: "./assets/community-center.jpg",
+      image: ".assets/community-center.jpg",
       impact: "4 rifugiati inseriti",
       teamSize: 9
     },
@@ -60,7 +60,7 @@ const ModernProjectsSection = () => {
       location: "Trentino-Alto Adige",
       date: "2024",
       category: "manutenzione",
-      image: "./assets/a5ef1125-5ab0-4a60-a8ca-fec86e3a73b1.png",
+      image: ".assets/a5ef1125-5ab0-4a60-a8ca-fec86e3a73b1.png",
       impact: "2 giovani NEET formati",
       teamSize: 4
     }

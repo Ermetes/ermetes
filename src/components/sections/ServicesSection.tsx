@@ -10,7 +10,7 @@ const iconMap = {
   'clipboard-check': ClipboardCheck,
 };
 
-const serviceImages = ['./assets/construction-1.jpg', './assets/maintenance/construction-2.jpg', './assets/construction-3.jpeg', './assets/construction-4.jpeg'];
+const serviceImages = ['.assets/construction-1.jpg', '.assets/maintenance/construction-2.jpg', '.assets/construction-3.jpeg', '.assets/construction-4.jpeg'];
 
 const ServicesSection = () => {
   const { content } = useLanguage();
