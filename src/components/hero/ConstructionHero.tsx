@@ -31,16 +31,14 @@ const ConstructionHero = () => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-            className="absolute inset-0 w-full h-full object-cover min-h-screen"
+            className="absolute inset-0 w-full h-full object-cover md:min-h-[125vh]"
             style={{
               pointerEvents: 'none',
               aspectRatio: '16/9',
-              minHeight: '100vh',
               minWidth: '100vw',
               width: '100%',
               // Responsive overrides
-              ...(window.innerWidth <= 768 ? { width: '500%' } : {}),
-              ...(window.innerWidth > 768 && window.innerWidth <= 1024 ? { aspectRatio: '2/5', width: '200%' } : {})
+              ...(window.innerWidth <= 768 ? { width: '400%' } : {}),
             }}
           />
           <div className="absolute inset-0 bg-black/20" />
