@@ -293,13 +293,13 @@
       }
     },
     "footer": {
-      "company": "Ermetes Società Cooperativa Sociale",
+      "company": "Ermetes Multiservizi SCS",
       "address": "Via San Francesco d'Assisi 10 - 38122 - Trento (TN)",
       "fiscalCode": "Codice fiscale e numero di iscrizione al registro imprese: 02755460223",
       "registration": "Iscrizione al Registro degli Enti Cooperativi: Numero C142156",
       "phone": "+39 0461 123456",
       "email": "management@ermetes.it",
-      "description": "Ermetes è una cooperativa a mutualità prevalente che nasce con l'obiettivo di supportare l'inserimento professionale e la continuità lavorativa tramite attività coordinata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi connessi.",
+      "description": "Ermetes è una cooperativa a mutualità prevalente specializzata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi connessi.",
       "contactTitle": "Contattaci",
       "servicesTitle": "Servizi",
       "services": ["Edilizia Residenziale", "Manutenzioni", "Pulizie Professionali", "Consulenza Tecnica"],

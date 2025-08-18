@@ -13,6 +13,7 @@ import Articles from "./pages/Articles";
 import About from "./pages/About";
 import CandidaturaPage from "./pages/Candidatura";
 import PrivacyPolicyPage from "./pages/PrivacyPolicy";
+import Impact from "./pages/Impact";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="" element={<Index />} />
               <Route path="candidatura" element={<CandidaturaPage />} />
               <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
+              <Route path="impact" element={<Impact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

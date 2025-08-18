@@ -237,18 +237,35 @@ const ProjectsScroll = () => {
                     <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl${index === activeIndex ? '' : ' backdrop-blur-sm'}`} />
                     {/* Carousel: show all images in the same folder as project.image */}
                     {(() => {
+                      // All hooks must be at the top level
                       const folder = getFolderFromImagePath(project.image);
-                      const images = folder ? assetImages[folder] || [] : [];
-                      // Infinite film roll: duplicate images for seamless loop
-                      const filmImages = images.length > 0 ? [...images, ...images] : [project.image];
+                      const images = (folder && Array.isArray(assetImages[folder])) ? assetImages[folder] : [];
+                      // Responsive check
+                      const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+                      useEffect(() => {
+                        const check = () => setIsMobile(window.innerWidth < 768);
+                        window.addEventListener('resize', check);
+                        return () => window.removeEventListener('resize', check);
+                      }, []);
+
+                      // Mobile carousel state
+                      const [mobileCurrent, setMobileCurrent] = useState(0);
+                      useEffect(() => {
+                        if (!isMobile || !images || images.length <= 1) return;
+                        const interval = setInterval(() => {
+                          setMobileCurrent(prev => (prev + 1) % images.length);
+                        }, 3500);
+                        return () => clearInterval(interval);
+                      }, [isMobile, images && images.length]);
+
+                      // Desktop film roll state
+                      const filmImages = (images && images.length > 0) ? [...images, ...images] : [project.image];
                       const [offset, setOffset] = useState(0);
                       const speed = 0.5; // px per frame
                       const containerRef = useRef<HTMLDivElement>(null);
                       const [paused, setPaused] = useState(false);
-
-                      // Animate film roll
                       useEffect(() => {
-                        if (filmImages.length <= 1 || paused) return;
+                        if (isMobile || filmImages.length <= 1 || paused) return;
                         let animationFrame: number;
                         let running = true;
                         const animate = () => {
@@ -267,9 +284,8 @@ const ProjectsScroll = () => {
                           running = false;
                           cancelAnimationFrame(animationFrame);
                         };
-                      }, [filmImages.length, paused]);
+                      }, [isMobile, filmImages.length, paused]);
 
-                      // Manual navigation: scroll by one image width
                       const handleArrow = (dir: 'left' | 'right') => {
                         const container = containerRef.current;
                         if (!container) return;
@@ -283,15 +299,28 @@ const ProjectsScroll = () => {
                         });
                       };
 
+                      // Render mobile or desktop carousel
+                      if (isMobile) {
+                        return (
+                          <div className="relative w-full h-[300px] overflow-hidden rounded-2xl">
+                            <img
+                              src={images && images.length > 0 ? images[mobileCurrent % images.length] : project.image}
+                              alt={project.title}
+                              className="h-full w-full object-cover select-none pointer-events-none"
+                              draggable={false}
+                            />
+                          </div>
+                        );
+                      }
+                      // Desktop
                       return (
                         <div
-                          className="relative w-full h-[300px] md:h-[600px] overflow-hidden rounded-2xl md:rounded-l-xl rounded-b-2xl"
+                          className="relative w-full h-[600px] overflow-hidden rounded-2xl md:rounded-l-xl rounded-b-2xl"
                           onMouseEnter={() => setPaused(true)}
                           onMouseLeave={() => setPaused(false)}
                           onFocus={() => setPaused(true)}
                           onBlur={() => setPaused(false)}
                         >
-                          {/* Film roll */}
                           <div
                             ref={containerRef}
                             className="flex h-full"
@@ -301,7 +330,7 @@ const ProjectsScroll = () => {
                               transition: paused ? 'none' : 'transform 0.1s linear',
                             }}
                           >
-                            {filmImages.map((imgSrc, i) => (
+                            {Array.isArray(filmImages) && filmImages.length > 0 && filmImages.map((imgSrc, i) => (
                               <img
                                 key={i}
                                 src={imgSrc}
@@ -312,7 +341,6 @@ const ProjectsScroll = () => {
                               />
                             ))}
                           </div>
-                          {/* Arrow buttons */}
                           {images.length > 1 && (
                             <>
                               <button
