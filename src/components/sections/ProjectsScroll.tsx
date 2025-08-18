@@ -6,41 +6,41 @@ import { useRef, useEffect, useState } from "react";
 const assetFolders = ["builders", "commercial", "maintenance", "roofing", "underfloor"];
 const assetImages: Record<string, string[]> = {
   builders: [
-    "ermetes/assets/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
-    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM.jpeg",
-    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM (1).jpeg",
-    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.43 PM.jpeg",
-    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.15 PM (4).jpeg",
-    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.16 PM.jpeg",
-    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.36 PM (3).jpeg"
+    "assets/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
+    "assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM.jpeg",
+    "assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM (1).jpeg",
+    "assets/builders/WhatsApp Image 2025-08-17 at 10.11.43 PM.jpeg",
+    "assets/builders/WhatsApp Image 2025-08-17 at 10.12.15 PM (4).jpeg",
+    "assets/builders/WhatsApp Image 2025-08-17 at 10.12.16 PM.jpeg",
+    "assets/builders/WhatsApp Image 2025-08-17 at 10.12.36 PM (3).jpeg"
   ],
   commercial: [
-    "ermetes/assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
-    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM.jpeg",
-    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM (1).jpeg",
-    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.03 PM.jpeg"
+    "assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
+    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM.jpeg",
+    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM (1).jpeg",
+    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.03 PM.jpeg"
   ],
   maintenance: [
-    "ermetes/assets/maintenance/construction-2.jpg",
-    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.05 PM.jpeg",
-    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
-    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg",
-    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.36 PM.jpeg"
+    "assets/maintenance/construction-2.jpg",
+    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.05 PM.jpeg",
+    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
+    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg",
+    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.36 PM.jpeg"
   ],
   roofing: [
-    "ermetes/assets/roofing/IMG-20240831-WA0034.jpg",
-    "ermetes/assets/roofing/Rifacimento copertura edificio Trento.jpg",
-        "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
-    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg"
+    "assets/roofing/IMG-20240831-WA0034.jpg",
+    "assets/roofing/Rifacimento copertura edificio Trento.jpg",
+        "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
+    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg"
   ],
   underfloor: [
-    "ermetes/assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
-    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.11.54 PM.jpeg",
-    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (1).jpeg",
-    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (2).jpeg",
-    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg",
-    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (1).jpeg",
-    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (2).jpeg"
+    "assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.11.54 PM.jpeg",
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (1).jpeg",
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (2).jpeg",
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg",
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (1).jpeg",
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (2).jpeg"
   ]
 };
 
