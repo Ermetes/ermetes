@@ -6,39 +6,41 @@ import { useRef, useEffect, useState } from "react";
 const assetFolders = ["builders", "commercial", "maintenance", "roofing", "underfloor"];
 const assetImages: Record<string, string[]> = {
   builders: [
-    "assets/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
-    "assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM.jpeg",
-    "assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM (1).jpeg",
-    "assets/builders/WhatsApp Image 2025-08-17 at 10.11.43 PM.jpeg",
-    "assets/builders/WhatsApp Image 2025-08-17 at 10.12.15 PM (4).jpeg",
-    "assets/builders/WhatsApp Image 2025-08-17 at 10.12.16 PM.jpeg",
-    "assets/builders/WhatsApp Image 2025-08-17 at 10.12.36 PM (3).jpeg"
+    "ermetes/assets/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM.jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM (1).jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.43 PM.jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.15 PM (4).jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.16 PM.jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.36 PM (3).jpeg"
   ],
   commercial: [
-    "assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
-    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM.jpeg",
-    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM (1).jpeg",
-    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.03 PM.jpeg"
+    "ermetes/assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
+    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM.jpeg",
+    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM (1).jpeg",
+    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.03 PM.jpeg"
   ],
   maintenance: [
-    "assets/maintenance/construction-2.jpg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.05 PM.jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.36 PM.jpeg"
+    "ermetes/assets/maintenance/construction-2.jpg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.05 PM.jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.36 PM.jpeg"
   ],
   roofing: [
-    "assets/roofing/IMG-20240831-WA0034.jpg",
-    "assets/roofing/Rifacimento copertura edificio Trento.jpg"
+    "ermetes/assets/roofing/IMG-20240831-WA0034.jpg",
+    "ermetes/assets/roofing/Rifacimento copertura edificio Trento.jpg",
+        "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg"
   ],
   underfloor: [
-    "assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.11.54 PM.jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (1).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (2).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (1).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (2).jpeg"
+    "ermetes/assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.11.54 PM.jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (1).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (2).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (1).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (2).jpeg"
   ]
 };
 
@@ -48,6 +50,8 @@ function getFolderFromImagePath(imagePath: string) {
 }
 
 const ProjectsScroll = () => {
+  
+  // ...existing code...
   const { content } = useLanguage();
   const projectsScroll = content.projectsScroll;
   const projects = projectsScroll?.projects || [];
@@ -70,6 +74,39 @@ const ProjectsScroll = () => {
   // Carousel state for each project
   const [carouselIndexes, setCarouselIndexes] = useState<{ [projectIdx: number]: number }>({});
 
+  // Preload next two images for the active carousel to avoid loading delay
+  useEffect(() => {
+    if (!filteredProjects[activeIndex]) return;
+    const project = filteredProjects[activeIndex];
+    const folder = getFolderFromImagePath(project.image);
+    const images = folder ? assetImages[folder] || [] : [];
+    const currentIdx = carouselIndexes[activeIndex] || 0;
+    [1, 2].forEach(offset => {
+      const preloadIdx = (currentIdx + offset) % images.length;
+      const src = images[preloadIdx];
+      if (src) {
+        const img = new window.Image();
+        img.src = src;
+      }
+    });
+  }, [activeIndex, carouselIndexes, filteredProjects]);
+
+    // Preload next two images for the active carousel to avoid loading delay
+  useEffect(() => {
+    if (!filteredProjects[activeIndex]) return;
+    const project = filteredProjects[activeIndex];
+    const folder = getFolderFromImagePath(project.image);
+    const images = folder ? assetImages[folder] || [] : [];
+    const currentIdx = carouselIndexes[activeIndex] || 0;
+    [1, 2].forEach(offset => {
+      const preloadIdx = (currentIdx + offset) % images.length;
+      const src = images[preloadIdx];
+      if (src) {
+        const img = new window.Image();
+        img.src = src;
+      }
+    });
+  }, [activeIndex, carouselIndexes, filteredProjects]);
   // Autoplay effect for active project
   useEffect(() => {
     const interval = setInterval(() => {
@@ -202,39 +239,101 @@ const ProjectsScroll = () => {
                     {(() => {
                       const folder = getFolderFromImagePath(project.image);
                       const images = folder ? assetImages[folder] || [] : [];
-                      const currentImgIdx = carouselIndexes[index] || 0;
-                      const showImage = images.length > 0 ? images[currentImgIdx] : project.image;
+                      // Infinite film roll: duplicate images for seamless loop
+                      const filmImages = images.length > 0 ? [...images, ...images] : [project.image];
+                      const [offset, setOffset] = useState(0);
+                      const speed = 0.5; // px per frame
+                      const containerRef = useRef<HTMLDivElement>(null);
+                      const [paused, setPaused] = useState(false);
+
+                      // Animate film roll
+                      useEffect(() => {
+                        if (filmImages.length <= 1 || paused) return;
+                        let animationFrame: number;
+                        let running = true;
+                        const animate = () => {
+                          setOffset(prev => {
+                            const container = containerRef.current;
+                            if (!container) return prev;
+                            const totalWidth = container.scrollWidth / 2;
+                            let next = prev + speed;
+                            if (next >= totalWidth) next = 0;
+                            return next;
+                          });
+                          if (running) animationFrame = requestAnimationFrame(animate);
+                        };
+                        animationFrame = requestAnimationFrame(animate);
+                        return () => {
+                          running = false;
+                          cancelAnimationFrame(animationFrame);
+                        };
+                      }, [filmImages.length, paused]);
+
+                      // Manual navigation: scroll by one image width
+                      const handleArrow = (dir: 'left' | 'right') => {
+                        const container = containerRef.current;
+                        if (!container) return;
+                        const totalWidth = container.scrollWidth / 2;
+                        const imgWidth = totalWidth / images.length;
+                        setOffset(prev => {
+                          let next = dir === 'left' ? prev - imgWidth : prev + imgWidth;
+                          if (next < 0) next = totalWidth + next;
+                          if (next >= totalWidth) next = next - totalWidth;
+                          return next;
+                        });
+                      };
+
                       return (
-                        <>
-                          {showImage && (
-                            <img
-                              src={showImage}
-                              alt={project.title}
-                              className="w-full h-[300px] md:h-[600px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-2xl md:rounded-l-xl rounded-b-2xl"
-                            />
-                          )}
-                          {/* Carousel arrows for active project */}
-                          {images.length > 1 && index === activeIndex && (
+                        <div
+                          className="relative w-full h-[300px] md:h-[600px] overflow-hidden rounded-2xl md:rounded-l-xl rounded-b-2xl"
+                          onMouseEnter={() => setPaused(true)}
+                          onMouseLeave={() => setPaused(false)}
+                          onFocus={() => setPaused(true)}
+                          onBlur={() => setPaused(false)}
+                        >
+                          {/* Film roll */}
+                          <div
+                            ref={containerRef}
+                            className="flex h-full"
+                            style={{
+                              width: `${(filmImages.length / 2) * 100}%`,
+                              transform: `translateX(-${offset}px)`,
+                              transition: paused ? 'none' : 'transform 0.1s linear',
+                            }}
+                          >
+                            {filmImages.map((imgSrc, i) => (
+                              <img
+                                key={i}
+                                src={imgSrc}
+                                alt={project.title}
+                                className="h-full object-cover select-none pointer-events-none"
+                                style={{ width: `calc(100% / ${filmImages.length / 2})`, minWidth: 0 }}
+                                draggable={false}
+                              />
+                            ))}
+                          </div>
+                          {/* Arrow buttons */}
+                          {images.length > 1 && (
                             <>
                               <button
-                                onClick={() => handlePrev(index, images.length)}
-                                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200"
-                                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
+                                onClick={() => handleArrow('left')}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
+                                aria-label="Previous"
                               >
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                               </button>
                               <button
-                                onClick={() => handleNext(index, images.length)}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200"
-                                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
+                                onClick={() => handleArrow('right')}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
+                                aria-label="Next"
                               >
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                               </button>
                             </>
                           )}
-                        </>
+                        </div>
                       );
                     })()}
                     <div className="absolute inset-0 p-4 md:p-8 md:flex flex-col justify-end block md:flex max-w-2xl">
