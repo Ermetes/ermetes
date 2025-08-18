@@ -380,21 +380,15 @@ const InlineQuoteForm = () => {
   return (
     <Card className="bg-white border border-primary/20 shadow-lg">
       <CardHeader className="pb-4">
-        <div className="flex items-center mb-4">
+        <div className="flex items-center">
           <CardTitle className="text-lg font-medium text-primary">{content.quote.title}</CardTitle>
         </div>
         
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm text-primary/70">
-            <span>{content.quote.form[`step${currentStep}`]}</span>
-            <span>{content.quote.form[`progress${Math.round(progress)}`] || `${Math.round(progress)}%`}</span>
+            <span className="ml-auto text-right">{content.quote.form[`step${currentStep}`]}</span>
           </div>
           <Progress value={progress} className="h-2 bg-primary/20" />
-        </div>
-        
-        <div className="flex items-center mt-4">
-          <StepIcon className="h-5 w-5 text-primary mr-2" />
-          <h3 className="text-base font-medium text-primary">{stepTitles[currentStep - 1]}</h3>
         </div>
       </CardHeader>
       

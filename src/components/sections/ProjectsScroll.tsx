@@ -1,8 +1,51 @@
-import { useRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useRef, useEffect, useState } from "react";
+// Helper to get all images in a folder (publicermetes/assets/*)
+const assetFolders = ["builders", "commercial", "maintenance", "roofing", "underfloor"];
+const assetImages: Record<string, string[]> = {
+  builders: [
+    "ermetes/assets/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM.jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.38 PM (1).jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.11.43 PM.jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.15 PM (4).jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.16 PM.jpeg",
+    "ermetes/assets/builders/WhatsApp Image 2025-08-17 at 10.12.36 PM (3).jpeg"
+  ],
+  commercial: [
+    "ermetes/assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
+    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM.jpeg",
+    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM (1).jpeg",
+    "ermetes/assets/commercial/WhatsApp Image 2025-08-17 at 10.12.03 PM.jpeg"
+  ],
+  maintenance: [
+    "ermetes/assets/maintenance/construction-2.jpg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.05 PM.jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg",
+    "ermetes/assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.36 PM.jpeg"
+  ],
+  roofing: [
+    "ermetes/assets/roofing/IMG-20240831-WA0034.jpg",
+    "ermetes/assets/roofing/Rifacimento copertura edificio Trento.jpg"
+  ],
+  underfloor: [
+    "ermetes/assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.11.54 PM.jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (1).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (2).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (1).jpeg",
+    "ermetes/assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (2).jpeg"
+  ]
+};
 
+function getFolderFromImagePath(imagePath: string) {
+  const match = imagePath.match(/assets\/([^/]+)\//);
+  return match ? match[1] : null;
+}
 
 const ProjectsScroll = () => {
   const { content } = useLanguage();
@@ -17,24 +60,48 @@ const ProjectsScroll = () => {
   const defaultCategory = categories.find(cat => cat.toLowerCase().includes("edilizia residenziale")) || categories[0];
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
 
-  // Redirect to About page if About category is selected
-  useEffect(() => {
-    if (normalize(selectedCategory) === "articles") {
-      window.location.href = "/ermetes/magazine";
-    }
-  }, [selectedCategory]);
-
-  // Reset selectedCategory to 'All' when categories change (i.e., language switch)
-  useEffect(() => {
-    setSelectedCategory(defaultCategory);
-  }, [categories]);
-  console.log(selectedCategory)
-
   // Normalize category names for filtering (handle translation/case)
   const normalize = (str: string) => str.trim().toLowerCase().replace(/\s+/g, " ");
   let filteredProjects = projects;
   if (categories.length > 0 && selectedCategory && normalize(selectedCategory) !== normalize(categories[0])) {
     filteredProjects = filteredProjects.filter(project => normalize(project.category) === normalize(selectedCategory));
+  }
+
+  // Carousel state for each project
+  const [carouselIndexes, setCarouselIndexes] = useState<{ [projectIdx: number]: number }>({});
+
+  // Autoplay effect for active project
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCarouselIndexes(prev => {
+        const next = { ...prev };
+        filteredProjects.forEach((project, idx) => {
+          if (idx === activeIndex) {
+            const folder = getFolderFromImagePath(project.image);
+            const images = folder ? assetImages[folder] || [] : [];
+            if (images.length > 1) {
+              next[idx] = ((prev[idx] || 0) + 1) % images.length;
+            }
+          }
+        });
+        return next;
+      });
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [activeIndex, filteredProjects]);
+
+  // Carousel navigation handlers
+  const handlePrev = (projectIdx: number, imagesLen: number) => {
+    setCarouselIndexes(prev => ({
+      ...prev,
+      [projectIdx]: ((prev[projectIdx] || 0) - 1 + imagesLen) % imagesLen,
+    }));
+  };
+  const handleNext = (projectIdx: number, imagesLen: number) => {
+    setCarouselIndexes(prev => ({
+      ...prev,
+      [projectIdx]: ((prev[projectIdx] || 0) + 1) % imagesLen,
+    }));
   }
 
   useEffect(() => {
@@ -68,16 +135,13 @@ const ProjectsScroll = () => {
       {/* Category Filter */}
       <div className="bg-background sm:py-2 lg:sticky top-16 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center sm:mb-4 md:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-4 mt-4">
+          <div className="text-center sm:mb-4 md:mb-6">
+            <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-2 mt-4">
               {projectsScroll?.title || 'Our Projects'}
             </h2>
-            <p className="md:text-xl sm:text-md text-muted-foreground max-w-3xl mx-auto font-light">
-              {projectsScroll?.subtitle || 'Explore our work and its social impact in the community'}
-            </p>
           </div>
 
-          <div className="flex flex-nowrap overflow-x-auto gap-1 pb-2 md:flex-wrap md:overflow-x-visible md:pb-0 justify-center w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div className="flex flex-nowrap overflow-x-auto gap-2 pb-2 md:flex-wrap md:overflow-x-visible md:pb-0 justify-center w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
             {categories.map((category) => (
               <Button
                 key={category}
@@ -95,7 +159,7 @@ const ProjectsScroll = () => {
           </div>
 
           {/* Category Description */}
-          <div className="text-center mt-2 mb-4">
+          <div className="text-center mt-2 mb-2">
             {normalize(selectedCategory) === "edilizia residenziale" && (
               <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
                 Ristrutturazione completa di edifici residenziali e interventi manutentivi di strutture appartamenti dalla struttura grezza fino alle finiture
@@ -127,19 +191,53 @@ const ProjectsScroll = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={project.title}
-              className="flex flex-col md:flex-row items-center min-h-[10vh] md:min-h-[60vh] pb-4 md:pb-6"
-            >
-              <div className="w-full max-w-5xl mx-auto flex flex-row items-stretch">
-                <div className="w-full max-w-xl flex flex-col justify-between">
+              className="flex flex-col md:flex-row items-center min-h-[10vh] md:min-h-[80vh] pb-4 md:pb-6"
+              >
+              <div className="w-full max-w-5xl ml-0 md:ml-8 flex flex-row items-stretch">
+                <div className="w-full max-w-6xl flex flex-col justify-between">
                   {/* Left: Image and summary */}
-                  <div className="relative rounded-t-2xl md:rounded-l-xl rounded-r-xl md:rounded-r-none md:rounded-t-none overflow-visible md:overflow-hidden mx-1 lg:mx-0">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-sm transition-all duration-300 group-hover:from-black/70 rounded-b-2xl md:rounded-b-none rounded-t-2xl md:rounded-l-xl md:rounded-t-none" />
-                    {project.image && <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-[250px] md:h-[450px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-2xl md:rounded-l-xl md:rounded-t-none rounded-b-2xl"
-                    />}
-                    <div className="absolute inset-0 p-4 md:p-8 md:flex flex-col justify-end block md:flex">
+                  <div className="relative rounded-t-2xl md:rounded-l-xl rounded-r-xl overflow-visible md:overflow-hidden mx-1 lg:mx-0 group focus-within:z-10" tabIndex={0}>
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl${index === activeIndex ? '' : ' backdrop-blur-sm'}`} />
+                    {/* Carousel: show all images in the same folder as project.image */}
+                    {(() => {
+                      const folder = getFolderFromImagePath(project.image);
+                      const images = folder ? assetImages[folder] || [] : [];
+                      const currentImgIdx = carouselIndexes[index] || 0;
+                      const showImage = images.length > 0 ? images[currentImgIdx] : project.image;
+                      return (
+                        <>
+                          {showImage && (
+                            <img
+                              src={showImage}
+                              alt={project.title}
+                              className="w-full h-[300px] md:h-[600px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-2xl md:rounded-l-xl rounded-b-2xl"
+                            />
+                          )}
+                          {/* Carousel arrows for active project */}
+                          {images.length > 1 && index === activeIndex && (
+                            <>
+                              <button
+                                onClick={() => handlePrev(index, images.length)}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200"
+                                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
+                                tabIndex={0}
+                              >
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+                              </button>
+                              <button
+                                onClick={() => handleNext(index, images.length)}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200"
+                                style={{ background: 'none', boxShadow: 'none', border: 'none' }}
+                                tabIndex={0}
+                              >
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                              </button>
+                            </>
+                          )}
+                        </>
+                      );
+                    })()}
+                    <div className="absolute inset-0 p-4 md:p-8 md:flex flex-col justify-end block md:flex max-w-2xl">
                       <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
                         {project.category}
                       </Badge>
@@ -164,43 +262,6 @@ const ProjectsScroll = () => {
                     </div>
                   </div>
                 </div>
-                {activeIndex === index && (
-                  <div 
-                    className="hidden md:flex bg-[#00338D]/95 backdrop-blur-md p-8 pb-12 animate-fade-in flex-1 min-h-0 rounded-r-xl"
-                    style={{ flexBasis: 0 }}
-                  >
-                    <div className="flex flex-col justify-between w-full h-full">
-                      <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="text-3xl">{project.icon}</div>
-                        </div>
-                        <p className="text-white/90 mb-6 leading-relaxed">
-                          {project.extendedInfo}
-                        </p>
-                        
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                          <div>
-                            <p className="text-white/70 text-sm">Durata</p>
-                            <p className="text-white font-semibold">{project.duration}</p>
-                          </div>
-                          <div>
-                            <p className="text-white/70 text-sm">Budget</p>
-                            <p className="text-white font-semibold">{project.budget}</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.features.map((feature, i) => (
-                            <Badge key={i} variant="outline" className="text-white border-white/30">
-                              {feature}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           ))}

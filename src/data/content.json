@@ -4,34 +4,27 @@
       "quoteButton": "Richiedi Preventivo Simile",
       "detailsButton": "Maggiori Dettagli",
     "summaryTitle": "Riepilogo Richiesta",
-      "title": "I Nostri Lavori",
-      "subtitle": "Esplora i nostri lavori e il loro impatto sociale nella comunità",
-      "categories": ["Tutti", "Edilizia Residenziale",  "Manutenzione", "Articles"],
+      "title": "Lavori recenti",
+      "categories": ["Edilizia Residenziale",  "Manutenzione"],
       "projects": [
         {
           "title": "Coperture in Legno: La Soluzione Definitiva per la Casa Moderna",
           "category": "Edilizia Residenziale",
           "description": "Scopri come Ermetes trasforma la copertura in legno in una soluzione definitiva per comfort, efficienza e valorizzazione immobiliare, grazie a innovazione digitale e materiali naturali.",
-          "image": "./assets/Rifacimento copertura edificio Trento.jpg",
+          "image": "./ermetes/assets/roofing/Rifacimento copertura edificio Trento.jpg",
           "icon": "🪵",
           "extendedInfo": "Soluzioni innovative per coperture in legno, comfort abitativo, efficienza energetica e valorizzazione immobiliare.",
           "status": "Completato",
-          "duration": "3 mesi",
-          "budget": "€ 120K",
-          "features": ["Legno Lamellare", "Efficienza Energetica", "Isolamento", "Durabilità"],
           "link": "/ermetes/magazine/it/tetto-legno"
         },
         {
           "title": "Manutenzioni",
           "category": "Manutenzione",
           "description": "Servizi di manutenzione ordinaria e straordinaria per edifici pubblici e privati",
-          "image": "./assets/construction-2.jpg",
+          "image": "./ermetes/assets/maintenance/construction-2.jpg",
           "icon": "🔧",
           "extendedInfo": "Supporto organizzativo con calendario cronoprogramma dei lavori e pianificazione di cantiere già costruita a monte tramite l'ufficio amministrativo della Cooperativa. Supporto formativo continuo per i soci e lavoratori con formazione continua e aggiornamento delle competenze dei lavoratori sia organizzative che operative.",
           "status": "Completato",
-          "duration": "Settimanale",
-          "budget": "Variabile",
-          "features": ["Manutenzione Ordinaria", "Manutenzione Straordinaria", "Edifici Pubblici", "Edifici Privati"],
           "link": "",
           "details": {
             "organization": "Supporto organizzativo con calendario cronoprogramma dei lavori e pianificazione di cantiere già costruita a monte tramite l'ufficio amministrativo della Cooperativa.",
@@ -42,46 +35,37 @@
           "title": "Riscaldamento a Pavimento: Comfort Intelligente per Ogni Casa",
           "category": "Edilizia Residenziale",
           "description": "Scopri come il riscaldamento a pavimento migliora comfort ed efficienza energetica nelle ristrutturazioni moderne, offrendo benefici finanziari e ambientali ai clienti.",
-          "image": "./assets/Ristrutturazione abitazione privata, Trento.jpg",
+          "image": "./ermetes/assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
           "icon": "🔥",
           "extendedInfo": "Comfort intelligente, risparmio energetico e sostenibilità con impianti radianti a pavimento.",
           "status": "Completato",
-          "duration": "1 mese",
-          "budget": "€ 45K",
-          "features": ["Riscaldamento Radiante", "Isolamento", "Comfort", "Efficienza Energetica"],
           "link": "/ermetes/magazine/it/riscaldamento-pavimento"
         },
         {
           "title": "Spazi Commerciali: Design, Efficienza e Identità con Ermetes",
           "category": "Edilizia Residenziale",
           "description": "Scopri come Ermetes trasforma spazi commerciali in ambienti di successo, integrando design, efficienza gestionale e tecnologie avanzate per risultati concreti e duraturi.",
-          "image": "./assets/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
+          "image": "./ermetes/assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
           "icon": "🏢",
           "extendedInfo": "Design, efficienza gestionale e tecnologie avanzate per spazi commerciali di successo.",
           "status": "Completato",
-          "duration": "2 mesi",
-          "budget": "€ 80K",
-          "features": ["Design Moderno", "Accessibilità", "Materiali di Pregio"],
           "link": "/ermetes/magazine/it/spazio-commerciale"
         },
         {
           "title": "Costruttori di Successo: Come i General Contractor Gestiscono Rischi e Valore",
           "category": "Edilizia Residenziale",
           "description": "Scopri come i migliori general contractor EMEA trasformano rischi e complessità in valore reale, grazie a strategie innovative di gestione e tecnologie digitali avanzate.",
-          "image": "./assets/construction-1.jpg",
+          "image": "./ermetes/assets/builders/construction-1.jpg",
           "icon": "🏗️",
           "extendedInfo": "Strategie innovative e tecnologie digitali per la gestione di rischi e valore in edilizia.",
           "status": "Completato",
-          "duration": "4 mesi",
-          "budget": "€ 200K",
-          "features": ["Gestione Rischi", "Tecnologie Digitali", "Valore Reale"],
           "link": "/ermetes/magazine/it/redditivita-rischio"
         },
         {
           "title": "Dati e Decisioni: La Nuova Frontiera del Cost Management in Edilizia",
           "category": "Edilizia Residenziale",
           "description": "Scopri come la digitalizzazione e l’uso dei dati stanno rivoluzionando la gestione dei costi in edilizia, offrendo trasparenza, efficienza e valore aggiunto ai clienti.",
-          "image": "./assets/construction-2.jpg",
+          "image": "./ermetes/assets/maintenance/construction-2.jpg",
           "icon": "📊",
           "extendedInfo": "Digitalizzazione e dati per la nuova frontiera del cost management in edilizia.",
           "status": "Completato",
@@ -124,7 +108,7 @@
       "quoteButton": "Richiedi Preventivo"
     },
     "constructionShowcase": {
-      "title": "I Nostri Lavori",
+      "title": "Lavori recenti",
       "subtitle": "Esempi della nostra esperienza in edilizia e costruzioni moderne",
       "projects": [
         {
@@ -136,7 +120,7 @@
         },
         {
           "type": "image",
-          "src": "./assets/construction-2.jpg",
+          "src": "./assets/maintenance/construction-2.jpg",
           "title": "Ristrutturazione Urbana",
           "description": "Riqualificazione di edifici esistenti con impatto sociale",
           "alt": "Cantiere moderno con tecnologie avanzate"
@@ -240,7 +224,7 @@
       ]
     },
     "quote": {
-      "title": "Richiedi un preventivo o fissa un sopralluogo gratuito",
+      "title": "Richiedi preventivo rapido",
       "subtitle": "Compila il modulo e riceverai una valutazione gratuita entro 24 ore",
       "form": {
         "summary": {
@@ -257,9 +241,9 @@
           "successTitle": "Richiesta inviata!",
           "successDescription": "Ti contatteremo entro 24 ore per il preventivo gratuito."
         },
-        "step1": "Passo 1 di 3",
-        "step2": "Passo 2 di 3",
-        "step3": "Passo 3 di 3",
+        "step1": "Passo 1 / 3",
+        "step2": "Passo 2 / 3",
+        "step3": "Passo 3 / 3",
         "progress25": "33% completato",
         "progress50": "66% completato",
         "progress75": "100% completato"
@@ -342,7 +326,7 @@
           "title": "Timber Roof Renovation, Trento",
           "category": "Residential construction",
           "description": "Construction of a laminated timber roof for a residential building.",
-          "image": "./assets/Rifacimento copertura edificio Trento.jpg",
+          "image": "./assets/roofing/Rifacimento copertura edificio Trento.jpg",
           "icon": "🪵",
           "extendedInfo": "Roof structure made with laminated timber beams, insulation and vapor barrier for energy efficiency and durability. Work carried out with attention to detail and high-quality materials.",
           "status": "In progress",
@@ -354,7 +338,7 @@
           "title": "Private Home Renovation, Trento",
           "category": "Renovation",
           "description": "Installation of underfloor heating and screed in an existing building.",
-          "image": "./assets/Ristrutturazione abitazione privata, Trento.jpg",
+          "image": "./assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
           "icon": "🏡",
           "extendedInfo": "Renovation work with installation of underfloor heating, perimeter insulation and screed laying. Improved living comfort and energy savings.",
           "status": "Completed",
@@ -366,7 +350,7 @@
           "title": "Bar Renovation, S.Maurizio Hospital Bolzano",
           "category": "Social impact",
           "description": "Creation of modern interiors for a commercial activity with quality materials.",
-          "image": "./assets/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
+          "image": "./assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
           "icon": "🏢",
           "extendedInfo": "Turnkey project for the creation of a commercial space: wood flooring, LED lighting, custom furnishings and display windows. Focus on design, functionality and accessibility.",
           "status": "Completed",
@@ -427,7 +411,7 @@
         },
         {
           "type": "image",
-          "src": "./assets/construction-2.jpg",
+          "src": "./assets/maintenance/construction-2.jpg",
           "title": "Urban Renovation",
           "description": "Redevelopment of existing buildings with social impact",
           "alt": "Modern construction site with advanced technologies"

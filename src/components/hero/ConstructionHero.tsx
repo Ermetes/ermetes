@@ -25,7 +25,7 @@ const ConstructionHero = () => {
         {/* YouTube Video Background */}
         <div className="absolute inset-0 z-0">
           <iframe
-            src="https://www.youtube.com/embed/potTv0gTCrg?si=0PvGJ4Opc_WdjYMd&autoplay=1&mute=1&loop=1&playlist=potTv0gTCrg&controls=0&showinfo=0&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/IdrX7yGC0bI?autoplay=1&mute=1&loop=1&playlist=IdrX7yGC0bI&controls=0&showinfo=0&rel=0&modestbranding=1"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

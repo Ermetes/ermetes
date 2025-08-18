@@ -17,7 +17,7 @@ interface Project {
 }
 
 const ModernProjectsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("tutti");
+  const [activeCategory, setActiveCategory] = useState("edilizia");
 
   const projects: Project[] = [
     {
@@ -27,7 +27,7 @@ const ModernProjectsSection = () => {
       location: "Centro Storico, Trento",
       date: "2024-2025",
       category: "restauro",
-      image: "/lovable-uploads/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
+      image: "/lovable-uploads/builders/2ff42d78-4162-4525-bbd3-005d00407fc8.png",
       impact: "3 persone svantaggiate integrate",
       teamSize: 6
     },
@@ -67,24 +67,22 @@ const ModernProjectsSection = () => {
   ];
 
   const categories = [
-    { key: "tutti", label: "Tutti i Progetti" },
     { key: "restauro", label: "Restauro" },
     { key: "infrastrutture", label: "Infrastrutture" },
     { key: "edilizia", label: "Edilizia" },
     { key: "manutenzione", label: "Manutenzione" }
   ];
 
-  const filteredProjects = activeCategory === "tutti" 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  const filteredProjects = projects.filter(project => project.category === activeCategory);
+
 
   return (
     <section id="projects" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-editorial text-foreground mb-6 mt-6">
-            I Nostri Lavori
+          <h2 className="textostri Lavori-4xl md:text-5xl font-editorial text-foreground mb-6 mt-6">
+            Lavori recenti
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light">
             Ogni progetto è un'opportunità di crescita e integrazione sociale. 
