@@ -10,14 +10,13 @@ import { useEffect } from "react";
 
 const Index = () => {
   useEffect(() => {
-    // Wait 7 seconds, then check for Elfsight attribution link and remove it if present
     const timeout = setTimeout(() => {
       const selector = 'a[href^="https://elfsight.com/social-feed-widget/?utm_source=websites&utm_medium=clients&utm_content=social-feed&utm_term=ermetes.github.io&utm_campaign=free-widget"]';
       const el = document.querySelector(selector);
       if (el && el.parentNode) {
         el.parentNode.removeChild(el);
       }
-    }, 10000);
+    }, 5000);
     return () => clearTimeout(timeout);
   }, []);
   return (
