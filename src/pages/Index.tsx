@@ -10,23 +10,15 @@ import { useEffect } from "react";
 
 const Index = () => {
   useEffect(() => {
-    // Track and remove Elfsight attribution link whenever it appears
-    const selector = 'a[href^="https://elfsight.com/social-feed-widget/?utm_source=websites&utm_medium=clients&utm_content=social-feed&utm_term=ermetes.github.io&utm_campaign=free-widget"]';
-    const removeElfsightLink = () => {
+    // Wait 7 seconds, then check for Elfsight attribution link and remove it if present
+    const timeout = setTimeout(() => {
+      const selector = 'a[href^="https://elfsight.com/social-feed-widget/?utm_source=websites&utm_medium=clients&utm_content=social-feed&utm_term=ermetes.github.io&utm_campaign=free-widget"]';
       const el = document.querySelector(selector);
       if (el && el.parentNode) {
         el.parentNode.removeChild(el);
       }
-    };
-    // Initial check
-    removeElfsightLink();
-    // Observe DOM changes
-    const observer = new MutationObserver(() => {
-      removeElfsightLink();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    // Cleanup
-    return () => observer.disconnect();
+    }, 10000);
+    return () => clearTimeout(timeout);
   }, []);
   return (
     <div className="relative min-h-screen">
