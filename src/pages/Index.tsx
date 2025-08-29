@@ -11,7 +11,7 @@ import { useEffect } from "react";
 const Index = () => {
   useEffect(() => {
     // Remove Elfsight attribution link if present
-    const selector = 'a[href^="https://elfsight.com/social-feed-widget/?utm_source=websites&utm_medium=clients&utm_content=social-feed&utm_term=localhost&utm_campaign=free-widget"]';
+    const selector = 'a[href^="https://elfsight.com/social-feed-widget/?utm_source=websites&utm_medium=clients&utm_content=social-feed&utm_term=ermetes.github.io&utm_campaign=free-widget"]';
     const el = document.querySelector(selector);
     if (el && el.parentNode) {
       el.parentNode.removeChild(el);
