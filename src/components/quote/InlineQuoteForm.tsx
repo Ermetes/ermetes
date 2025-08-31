@@ -22,7 +22,7 @@ const InlineQuoteForm = () => {
     phone: string;
     email: string;
     message: string;
-    images: FileList | null;
+    images: File[];
     projectFile: File | null;
     metricFile: File | null;
   }>({
@@ -33,7 +33,7 @@ const InlineQuoteForm = () => {
     phone: '',
     email: '',
     message: '',
-    images: null,
+    images: [],
     projectFile: null,
     metricFile: null
   });
@@ -41,7 +41,12 @@ const InlineQuoteForm = () => {
   const [showFileInputs, setShowFileInputs] = useState(false);
 
   const handleInputChange = (field: string, value: string | File | FileList | null) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    if (field === 'images') {
+      // Convert FileList to array for persistence
+      setFormData(prev => ({ ...prev, images: value instanceof FileList ? Array.from(value) : [] }));
+    } else {
+      setFormData(prev => ({ ...prev, [field]: value }));
+    }
   };
 
   const handleNext = () => {
@@ -95,7 +100,7 @@ const InlineQuoteForm = () => {
     };
 
     // Encode files (send raw base64)
-    if (formData.images instanceof FileList) {
+    if (Array.isArray(formData.images)) {
       for (let i = 0; i < formData.images.length; i++) {
         data.images.push({
           name: formData.images[i].name,
@@ -253,6 +258,14 @@ const InlineQuoteForm = () => {
                       onChange={(e) => handleInputChange('images', e.target.files)}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
+                    {/* Show selected images */}
+                    {formData.images && formData.images.length > 0 && (
+                      <ul className="mt-2 text-xs text-neutral-700">
+                        {formData.images.map((file, idx) => (
+                          <li key={idx}>{file.name}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
@@ -262,6 +275,9 @@ const InlineQuoteForm = () => {
                       onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
+                    {formData.projectFile && (
+                      <div className="mt-2 text-xs text-neutral-700">{formData.projectFile.name}</div>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo</label>
@@ -271,6 +287,9 @@ const InlineQuoteForm = () => {
                       onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
+                    {formData.metricFile && (
+                      <div className="mt-2 text-xs text-neutral-700">{formData.metricFile.name}</div>
+                    )}
                   </div>
                 </div>
               )}
@@ -286,6 +305,13 @@ const InlineQuoteForm = () => {
                   onChange={(e) => handleInputChange('images', e.target.files)}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
+                {formData.images && formData.images.length > 0 && (
+                  <ul className="mt-2 text-xs text-neutral-700">
+                    {formData.images.map((file, idx) => (
+                      <li key={idx}>{file.name}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
@@ -295,6 +321,9 @@ const InlineQuoteForm = () => {
                   onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
+                {formData.projectFile && (
+                  <div className="mt-2 text-xs text-neutral-700">{formData.projectFile.name}</div>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo</label>
@@ -304,6 +333,9 @@ const InlineQuoteForm = () => {
                   onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
+                {formData.metricFile && (
+                  <div className="mt-2 text-xs text-neutral-700">{formData.metricFile.name}</div>
+                )}
               </div>
             </div>
           </div>
@@ -383,7 +415,6 @@ const InlineQuoteForm = () => {
         <div className="flex items-center">
           <CardTitle className="text-lg font-medium text-primary">{content.quote.title}</CardTitle>
         </div>
-        
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm text-primary/70">
             <span className="ml-auto text-right">{content.quote.form[`step${currentStep}`]}</span>
@@ -391,25 +422,23 @@ const InlineQuoteForm = () => {
           <Progress value={progress} className="h-2 bg-primary/20" />
         </div>
       </CardHeader>
-      
       <CardContent>
         <div className="text-neutral-900">{renderStep()}</div>
-        
         <div className="flex justify-between mt-6">
+          {/* Back button, only show if not on first step */}
           {currentStep > 1 && (
-            <Button 
+            <Button
               onClick={handlePrevious}
               variant="outline"
-              className="bg-transparent border-white/30 text-white hover:bg-white/10"
+              className="bg-transparent border-primary/30 text-primary hover:bg-primary/10"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Indietro
             </Button>
           )}
-          
           <div className="ml-auto">
-            {currentStep < 3? (
-              <Button 
+            {currentStep < 3 ? (
+              <Button
                 onClick={handleNext}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
               >
@@ -417,7 +446,7 @@ const InlineQuoteForm = () => {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             ) : (
-              <Button 
+              <Button
                 onClick={handleSubmit}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
                 disabled={isSubmitting}

@@ -241,9 +241,9 @@
           "successTitle": "Richiesta inviata!",
           "successDescription": "Ti contatteremo entro 24 ore per il preventivo gratuito."
         },
-        "step1": "Passo 1 / 3",
-        "step2": "Passo 2 / 3",
-        "step3": "Passo 3 / 3",
+        "step1": "1 / 3 Passo",
+        "step2": "2 / 3 Passo",
+        "step3": "3 / 3 Passo",
         "progress25": "33% completato",
         "progress50": "66% completato",
         "progress75": "100% completato"
@@ -259,11 +259,9 @@
           "maxLength": "Il valore inserito è troppo lungo."
         },
         "projectTypeOptions": [
-          "Nuova Costruzione",
           "Ristrutturazione",
           "Manutenzione",
-          "Lavori Stradali",
-          "Altro"
+          "Pulizia"
         ],
         "description": "Descrivi il progetto",
         "description_placeholder": "Descrizione del Progetto",
