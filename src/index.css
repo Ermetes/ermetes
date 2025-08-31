@@ -150,6 +150,9 @@
 body {
   @apply bg-background text-foreground font-light;
 }
+html {
+  overflow-x: hidden;
+}
 
 /* Modern typography classes */
 .font-light { font-weight: var(--font-light); }
