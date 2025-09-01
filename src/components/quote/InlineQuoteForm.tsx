@@ -15,6 +15,7 @@ const InlineQuoteForm = () => {
   // Helper to send POST to Google Script (non-blocking)
   const sendStepData = async (step: number, data: any) => {
     setPendingUploads(prev => prev + 1);
+    // Helper to convert file to raw base64 (no data URL)
     function fileToBase64(file: File): Promise<string> {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -428,12 +429,10 @@ const InlineQuoteForm = () => {
                   onChange={(e) => {
                     const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
                     if (file) {
-                      setFormData(prev => {
-                        sendStepData(2, {
-                          ...prev,
-                          projectFile: file,
-                        });
-                        return { ...prev, projectFile: file };
+                      setFormData(prev => ({ ...prev, projectFile: file }));
+                      sendStepData(2, {
+                        ...formData,
+                        projectFile: file,
                       });
                     }
                   }}
@@ -451,12 +450,10 @@ const InlineQuoteForm = () => {
                   onChange={(e) => {
                     const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
                     if (file) {
-                      setFormData(prev => {
-                        sendStepData(2, {
-                          ...prev,
-                          metricFile: file,
-                        });
-                        return { ...prev, metricFile: file };
+                      setFormData(prev => ({ ...prev, metricFile: file }));
+                      sendStepData(2, {
+                        ...formData,
+                        metricFile: file,
                       });
                     }
                   }}
