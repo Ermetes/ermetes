@@ -18,7 +18,7 @@ export default function ImpactPage() {
               Impatto sociale
             </h1>
             <p className="mb-4 text-lg text-muted-foreground text-justify">
-              Ermetes Società Cooperativa Sociale è una cooperativa a mutualità prevalente che nasce con l’obiettivo di supportare l’inserimento professionale e la continuità lavorativa di personale svantaggiato in particolare disoccupati in difficoltà che faticano a rientrare nel mondo del lavoro, rifugiati politici, cittadini stranieri, giovani NEET.. tramite attività coordinata nell’ambito delle manutenzioni, pulizie, edilizia residenziale e altri servizi connessi.
+              Ermetes Società Cooperativa Sociale è una cooperativa a mutualità prevalente che nasce con l’obiettivo di supportare l’inserimento professionale e la continuità lavorativa di personale svantaggiato in particolare disoccupati in difficoltà che faticano a rientrare nel mondo del lavoro, rifugiati politici, cittadini stranieri, giovani NEET.. tramite attività coordinata nell’ambito delle manutenzioni, pulizie, ristrutturazioni e altri servizi connessi.
             </p>
             <h3 className="text-xl font-semibold mb-4 text-lg text-muted-foreground text-justify">Come lo facciamo</h3>
             <p className="mb-4 text-lg text-muted-foreground text-justify">

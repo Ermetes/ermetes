@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const InlineQuoteForm = () => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const { closeModal } = useModal();
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
@@ -141,25 +142,25 @@ const InlineQuoteForm = () => {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 3) {
-        toast({
-          title: content.quote.form.toast.successTitle,
-          description: content.quote.form.toast.successDescription,
-        });
-        closeModal();
-        setFormData({
-          projectType: '',
-          projectDetails: '',
-          address: '',
-          name: '',
-          phone: '',
-          email: '',
-          message: '',
-          images: null,
-          projectFile: null,
-          metricFile: null
-        });
-        setCurrentStep(1);
-        setIsSubmitting(false);
+        setShowConfirmation(true);
+        setTimeout(() => {
+          setShowConfirmation(false);
+          closeModal();
+          setFormData({
+            projectType: '',
+            projectDetails: '',
+            address: '',
+            name: '',
+            phone: '',
+            email: '',
+            message: '',
+            images: null,
+            projectFile: null,
+            metricFile: null
+          });
+          setCurrentStep(1);
+          setIsSubmitting(false);
+        }, 2500);
       }
     };
     xhr.send(params);
@@ -387,12 +388,36 @@ const InlineQuoteForm = () => {
       case 3:
         return (
           <div className="space-y-4 text-center">
-            <CheckCircle className="h-16 w-16 text-green-400 mx-auto" />
-            <h3 className="text-xl font-medium text-blue-900">{content.quote.form.summary.title}</h3>
+            <div className="flex items-center justify-center gap-3">
+              <FileText className="h-7 w-7 text-primary drop-shadow-lg" />
+              <h3 className="text-xl font-medium text-blue-900 m-0">{content.quote.form.summary.title}</h3>
+            </div>
             <div className="bg-white/10 rounded-lg p-4 text-left text-blue-900 space-y-2">
               <p className="text-blue-900"><strong>{content.quote.form.summary.project}:</strong> {formData.projectType}</p>
               <p className="text-blue-900"><strong>{content.quote.form.summary.address}:</strong> {formData.address}</p>
               <p className="text-blue-900"><strong>{content.quote.form.summary.contact}:</strong> {formData.name} - {formData.phone}</p>
+              {(formData.images && formData.images.length > 0) && (
+                <div className="mt-2">
+                  <span className="font-semibold">Immagini allegate:</span>
+                  <ul className="list-disc list-inside text-sm mt-1">
+                    {formData.images.map((file, idx) => (
+                      <li key={idx}>{file.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {formData.projectFile && (
+                <div className="mt-2">
+                  <span className="font-semibold">Progetto allegato:</span>
+                  <span className="ml-2 text-sm">{formData.projectFile.name}</span>
+                </div>
+              )}
+              {formData.metricFile && (
+                <div className="mt-2">
+                  <span className="font-semibold">Computo allegato:</span>
+                  <span className="ml-2 text-sm">{formData.metricFile.name}</span>
+                </div>
+              )}
             </div>
           </div>
         );
@@ -411,65 +436,74 @@ const InlineQuoteForm = () => {
 
   return (
     <Card className="bg-white border border-primary/20 shadow-lg">
-      <CardHeader className="pb-4">
-        <div className="flex items-center">
-          <CardTitle className="text-lg font-medium text-primary">{content.quote.title}</CardTitle>
+      {showConfirmation ? (
+        <div className="flex flex-col items-center justify-center py-16">
+          <CheckCircle className="h-20 w-20 text-green-500 mb-4" />
+          <h3 className="text-2xl font-semibold text-primary mb-2">{content.quote.form.toast.successTitle}</h3>
+          <p className="text-lg text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
         </div>
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-sm text-primary/70">
-            <span className="ml-auto text-right">{content.quote.form[`step${currentStep}`]}</span>
-          </div>
-          <Progress value={progress} className="h-2 bg-primary/20" />
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="text-neutral-900">{renderStep()}</div>
-        <div className="flex justify-between mt-6">
-          {/* Back button, only show if not on first step */}
-          {currentStep > 1 && (
-            <Button
-              onClick={handlePrevious}
-              variant="outline"
-              className="bg-transparent border-primary/30 text-primary hover:bg-primary/10"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Indietro
-            </Button>
-          )}
-          <div className="ml-auto">
-            {currentStep < 3 ? (
-              <Button
-                onClick={handleNext}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
-              >
-                {content.quote.form.next || 'Avanti'}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            ) : (
-              <Button
-                onClick={handleSubmit}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center">
-                    <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                    </svg>
-                    {content.quote.form.submit}
-                  </span>
+      ) : (
+        <>
+          <CardHeader className="pb-4">
+            <div className="flex items-center">
+              <CardTitle className="text-lg font-medium text-primary">{content.quote.title}</CardTitle>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm text-primary/70">
+                <span className="ml-auto text-right">{content.quote.form[`step${currentStep}`]}</span>
+              </div>
+              <Progress value={progress} className="h-2 bg-primary/20" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-neutral-900">{renderStep()}</div>
+            <div className="flex justify-between mt-6">
+              {/* Back button, only show if not on first step */}
+              {currentStep > 1 && (
+                <Button
+                  onClick={handlePrevious}
+                  variant="outline"
+                  className="bg-transparent border-primary/30 text-primary hover:bg-primary/10"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Indietro
+                </Button>
+              )}
+              <div className="ml-auto">
+                {currentStep < 3 ? (
+                  <Button
+                    onClick={handleNext}
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                  >
+                    {content.quote.form.next || 'Avanti'}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
                 ) : (
-                  <>
-                    {content.quote.form.submit}
-                    <CheckCircle className="ml-2 h-4 w-4" />
-                  </>
+                  <Button
+                    onClick={handleSubmit}
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center">
+                        <span className="inline-block mr-2 align-middle">
+                          <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin block"></span>
+                        </span>
+                        {content.quote.form.submit}
+                      </span>
+                    ) : (
+                      <>
+                        {content.quote.form.submit}
+                        <CheckCircle className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
                 )}
-              </Button>
-            )}
-          </div>
-        </div>
-      </CardContent>
+              </div>
+            </div>
+          </CardContent>
+        </>
+      )}
     </Card>
   );
 };
