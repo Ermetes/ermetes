@@ -591,6 +591,7 @@ const InlineQuoteForm = () => {
           <CheckCircle className="h-20 w-20 text-green-500 mb-4" />
           <h3 className="text-2xl font-semibold text-primary mb-2">{content.quote.form.toast.successTitle}</h3>
           <p className="text-lg text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
+          <p className="text-base text-primary/70 mt-4">Attendere prego, verrai reindirizzato...</p>
         </div>
       ) : (
         <>
