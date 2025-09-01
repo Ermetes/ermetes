@@ -31,7 +31,7 @@ const InlineQuoteForm = () => {
       });
     }
 
-    let payload = { ...data };
+    let payload = { ...data, sessionId };
     // Encode images
     if (Array.isArray(data.images)) {
       payload.images = [];
@@ -71,7 +71,7 @@ const InlineQuoteForm = () => {
       .join('&');
     // Send via XMLHttpRequest
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxuIdhQca3lvPGEc6iImcMizhuIMxjwywE7BhnTaiRij3HTw-CYF75THhtfmUcHyOL-qw/exec');
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbwGTW4VBnk11wLMxuVgDKJvc1iQNQuTqDk3cVsg8_OaogQKYLodxYjbTEeEXW1N62BOTg/exec');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(params);
   };
