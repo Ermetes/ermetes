@@ -52,6 +52,7 @@ function getFolderFromImagePath(imagePath: string) {
 const ProjectsScroll = () => {
   
   // ...existing code...
+  const [showAll, setShowAll] = useState(false);
   const { content } = useLanguage();
   const projectsScroll = content.projectsScroll;
   const projects = projectsScroll?.projects || [];
@@ -60,8 +61,8 @@ const ProjectsScroll = () => {
     : ["All"];
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  // Preselect 'Edilizia Residenziale' if present, else fallback to first
-  const defaultCategory = categories.find(cat => cat.toLowerCase().includes("edilizia residenziale")) || categories[0];
+  // Preselect 'Ristrutturazioni' if present, else fallback to first
+  const defaultCategory = categories.find(cat => cat.toLowerCase().includes("ristrutturazioni")) || categories[0];
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
 
   // Normalize category names for filtering (handle translation/case)
@@ -247,7 +248,7 @@ const ProjectsScroll = () => {
   }, [filteredProjects.length]);
 
   return (
-    <section id="projects">
+  <section id="projects">
       {/* Category Filter */}
       <div className="bg-background sm:py-2 lg:sticky top-16 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -276,14 +277,14 @@ const ProjectsScroll = () => {
 
           {/* Category Description */}
           <div className="text-center mt-2 mb-2">
-            {normalize(selectedCategory) === "edilizia residenziale" && (
+            {normalize(selectedCategory) === "ristrutturazioni" && (
               <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
-                Ristrutturazione completa di edifici residenziali e interventi manutentivi di strutture appartamenti dalla struttura grezza fino alle finiture
+                Abitazioni, appartamenti e strutture industriali. Diamo nuova vita ai tuoi spazi dallo studio di progetto alla realizzazione.
               </p>
             )}
-            {normalize(selectedCategory) === "manutenzione" && (
+            {normalize(selectedCategory) === "manutenzioni" && (
               <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
-                Pianifichiamo ogni settimana interventi manutentori distruttore private e pubbliche su tutto il territorio trentino
+                Ospedali, comuni, condomini, aziende e privati ci contattano direttamente ogni settimana per manutenzioni programmate o interventi a chiamata.
               </p>
             )}
           </div>
@@ -304,18 +305,16 @@ const ProjectsScroll = () => {
 
         {/* Project Panels: vertical stack on mobile, row on desktop */}
         <div className="flex-1 flex flex-col">
-          {filteredProjects.map((project, index) => (
+          {(showAll ? filteredProjects : filteredProjects.slice(0, 3)).map((project, index) => (
             <div
               key={project.title}
               className="flex flex-col md:flex-row items-center min-h-[10vh] md:min-h-[80vh] pb-4 md:pb-6"
-              >
+            >
               <div className="w-full max-w-5xl ml-0 md:ml-8 flex flex-row items-stretch">
                 <div className="w-full max-w-6xl flex flex-col justify-between">
                   {/* Left: Image and summary */}
                   <div className="relative rounded-t-2xl md:rounded-l-xl rounded-r-xl overflow-visible md:overflow-hidden mx-1 lg:mx-0 group focus-within:z-10" tabIndex={0}>
                     <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl${index === activeIndex ? '' : ' backdrop-blur-sm'}`} />
-                    {/* Carousel: show all images in the same folder as project.image */}
-                    {/* Refactored: All hooks at top level, render logic below */}
                     {(() => {
                       const folder = getFolderFromImagePath(project.image);
                       const images = (folder && Array.isArray(assetImages[folder])) ? assetImages[folder] : [];
@@ -416,6 +415,13 @@ const ProjectsScroll = () => {
               </div>
             </div>
           ))}
+          {filteredProjects.length > 3 && !showAll && (
+            <div className="flex justify-center mt-8">
+              <Button onClick={() => setShowAll(true)} className="px-8 py-3 rounded-lg font-medium bg-primary text-white shadow-lg hover:bg-primary/80 transition-all duration-200">
+                Carica altri progetti
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>

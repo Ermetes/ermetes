@@ -25,7 +25,7 @@ export default function AboutPage() {
                 in particolare disoccupati che faticano a rientrare nel mondo del
                 lavoro, rifugiati politici, cittadini stranieri, giovani NEET…
                 tramite attività coordinata nell’ambito delle manutenzioni,
-                edilizia residenziale e altri servizi connessi.
+                ristrutturazioni e altri servizi connessi.
               </p>
               <p className="mb-4 text-lg text-muted-foreground text-justify">
                 Per portare a buon fine i lavori Ermetes si organizza tramite

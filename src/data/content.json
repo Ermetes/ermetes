@@ -5,11 +5,11 @@
       "detailsButton": "Maggiori Dettagli",
     "summaryTitle": "Riepilogo Richiesta",
       "title": "Lavori recenti",
-      "categories": ["Edilizia Residenziale",  "Manutenzione"],
+      "categories": ["Ristrutturazioni",  "Manutenzioni"],
       "projects": [
         {
           "title": "Coperture in Legno: La Soluzione Definitiva per la Casa Moderna",
-          "category": "Edilizia Residenziale",
+          "category": "Ristrutturazioni",
           "description": "Scopri come Ermetes trasforma la copertura in legno in una soluzione definitiva per comfort, efficienza e valorizzazione immobiliare, grazie a innovazione digitale e materiali naturali.",
           "image": ".assets/roofing/Rifacimento copertura edificio Trento.jpg",
           "icon": "🪵",
@@ -19,7 +19,7 @@
         },
         {
           "title": "Manutenzioni",
-          "category": "Manutenzione",
+          "category": "Manutenzioni",
           "description": "Servizi di manutenzione ordinaria e straordinaria per edifici pubblici e privati",
           "image": ".assets/maintenance/construction-2.jpg",
           "icon": "🔧",
@@ -33,7 +33,7 @@
         },
         {
           "title": "Riscaldamento a Pavimento: Comfort Intelligente per Ogni Casa",
-          "category": "Edilizia Residenziale",
+          "category": "Ristrutturazioni",
           "description": "Scopri come il riscaldamento a pavimento migliora comfort ed efficienza energetica nelle ristrutturazioni moderne, offrendo benefici finanziari e ambientali ai clienti.",
           "image": ".assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
           "icon": "🔥",
@@ -43,7 +43,7 @@
         },
         {
           "title": "Spazi Commerciali: Design, Efficienza e Identità con Ermetes",
-          "category": "Edilizia Residenziale",
+          "category": "Ristrutturazioni",
           "description": "Scopri come Ermetes trasforma spazi commerciali in ambienti di successo, integrando design, efficienza gestionale e tecnologie avanzate per risultati concreti e duraturi.",
           "image": ".assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
           "icon": "🏢",
@@ -53,7 +53,7 @@
         },
         {
           "title": "Costruttori di Successo: Come i General Contractor Gestiscono Rischi e Valore",
-          "category": "Edilizia Residenziale",
+          "category": "Ristrutturazioni",
           "description": "Scopri come i migliori general contractor EMEA trasformano rischi e complessità in valore reale, grazie a strategie innovative di gestione e tecnologie digitali avanzate.",
           "image": ".assets/builders/construction-1.jpg",
           "icon": "🏗️",
@@ -63,7 +63,7 @@
         },
         {
           "title": "Dati e Decisioni: La Nuova Frontiera del Cost Management in Edilizia",
-          "category": "Edilizia Residenziale",
+          "category": "Ristrutturazioni",
           "description": "Scopri come la digitalizzazione e l’uso dei dati stanno rivoluzionando la gestione dei costi in edilizia, offrendo trasparenza, efficienza e valore aggiunto ai clienti.",
           "image": ".assets/maintenance/construction-2.jpg",
           "icon": "📊",
@@ -167,7 +167,7 @@
       "ctaButton": "Richiedi un Preventivo Gratuito",
       "items": [
         {
-          "title": "Edilizia Residenziale",
+          "title": "Ristrutturazioni",
           "description": "Costruzioni e ristrutturazioni di qualità per abitazioni private, con focus su sostenibilità e inserimento lavorativo",
           "icon": "building",
           "details": {
@@ -207,7 +207,7 @@
     "about": {
       "title": "Chi Siamo",
       "subtitle": "Ermetes Società Cooperativa Sociale",
-      "description": "Ermetes è una cooperativa a mutualità prevalente specializzata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi connessi.",
+      "description": "Ermetes è una cooperativa a mutualità prevalente specializzata nell'ambito delle manutenzioni, ristrutturazioni e altri servizi connessi.",
       "sustainability": {
         "title": "Un occhio di riguardo all'organizzatione dei lavori, trasparenza e sostenibilità",
         "description": "Ermetes ci tiene davvero all'ambiente. Grazie a un apposito gestionale oltre a pianificare nel dettaglio le commesse e a condividere anche a distanza gli avanzamenti quotidiani con il committente tramite cloud tiene traccia sia a preventivo che a consuntivo dell'impatto ambientale dei lavori e delle commesse. Utilizza se richiesto dal cliente materiali sostenibili e sa gestire la tracciabilità di filiera e la contabilità emissiva LCA delle commesse."
@@ -260,7 +260,7 @@
         },
         "projectTypeOptions": [
           "Ristrutturazione",
-          "Manutenzione",
+          "Manutenzioni",
           "Pulizia"
         ],
         "description": "Descrivi il progetto",
@@ -297,10 +297,10 @@
       "registration": "Iscrizione al Registro degli Enti Cooperativi: Numero C142156",
       "phone": "+39 0461 123456",
       "email": "management@ermetes.it",
-      "description": "Ermetes è una cooperativa a mutualità prevalente specializzata nell'ambito delle manutenzioni, edilizia residenziale e altri servizi connessi.",
+      "description": "Ermetes è una cooperativa a mutualità prevalente specializzata nell'ambito delle manutenzioni, ristrutturazioni e altri servizi connessi.",
       "contactTitle": "Contattaci",
       "servicesTitle": "Servizi",
-      "services": ["Edilizia Residenziale", "Manutenzioni", "Pulizie Professionali", "Consulenza Tecnica"],
+      "services": ["Ristrutturazioni", "Manutenzioni", "Pulizie Professionali", "Consulenza Tecnica"],
       "linksTitle": "Link Utili",
       "links": {
         "privacy": "Privacy Policy",

@@ -63,8 +63,8 @@ const ConstructionHero = () => {
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-0 pt-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             
-            {/* Left Column - Text Content */}
-            <div className="space-y-8 text-white">
+            {/* Left Column - Text Content (wider on large screens) */}
+            <div className="space-y-8 text-white lg:col-span-1 lg:w-[125%]">
               <h1 
                 className={`text-5xl sm:text-6xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 ${
                   loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -102,7 +102,7 @@ const ConstructionHero = () => {
             {/* Right Column - Empty space for better focus on form */}
             <div className={`hidden lg:block transform transition-all duration-700 delay-400 ${
               loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            }`}>
+            } lg:col-span-1 lg:w-[30%]`}>
               {/* Empty space or could add additional visual elements */}
             </div>
           </div>
