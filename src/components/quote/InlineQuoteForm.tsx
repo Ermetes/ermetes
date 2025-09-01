@@ -429,12 +429,10 @@ const InlineQuoteForm = () => {
                   onChange={(e) => {
                     const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
                     if (file) {
-                      setFormData(prev => {
-                        sendStepData(2, {
-                          ...prev,
-                          projectFile: file,
-                        });
-                        return { ...prev, projectFile: file };
+                      setFormData(prev => ({ ...prev, projectFile: file }));
+                      sendStepData(2, {
+                        ...formData,
+                        projectFile: file,
                       });
                     }
                   }}
@@ -452,12 +450,10 @@ const InlineQuoteForm = () => {
                   onChange={(e) => {
                     const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
                     if (file) {
-                      setFormData(prev => {
-                        sendStepData(2, {
-                          ...prev,
-                          metricFile: file,
-                        });
-                        return { ...prev, metricFile: file };
+                      setFormData(prev => ({ ...prev, metricFile: file }));
+                      sendStepData(2, {
+                        ...formData,
+                        metricFile: file,
                       });
                     }
                   }}
