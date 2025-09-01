@@ -391,7 +391,21 @@ const InlineQuoteForm = () => {
                   type="file"
                   multiple
                   accept="image/*"
-                  onChange={(e) => handleInputChange('images', e.target.files)}
+                  onChange={(e) => {
+                    const files = e.target.files ? Array.from(e.target.files) : [];
+                    if (files.length > 0) {
+                      setFormData(prev => {
+                        const newImages = [...files, ...prev.images];
+                        sendStepData(1, {
+                          projectType: prev.projectType,
+                          projectDetails: prev.projectDetails,
+                          address: prev.address,
+                          images: newImages,
+                        });
+                        return { ...prev, images: newImages };
+                      });
+                    }
+                  }}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
                 {formData.images && formData.images.length > 0 && (
@@ -412,7 +426,18 @@ const InlineQuoteForm = () => {
                 <Input
                   type="file"
                   accept=".pdf,.doc,.docx,.zip,.rar"
-                  onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
+                  onChange={(e) => {
+                    const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                    if (file) {
+                      setFormData(prev => {
+                        sendStepData(2, {
+                          ...prev,
+                          projectFile: file,
+                        });
+                        return { ...prev, projectFile: file };
+                      });
+                    }
+                  }}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
                 {formData.projectFile && (
@@ -424,7 +449,18 @@ const InlineQuoteForm = () => {
                 <Input
                   type="file"
                   accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
-                  onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
+                  onChange={(e) => {
+                    const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                    if (file) {
+                      setFormData(prev => {
+                        sendStepData(2, {
+                          ...prev,
+                          metricFile: file,
+                        });
+                        return { ...prev, metricFile: file };
+                      });
+                    }
+                  }}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
                 {formData.metricFile && (
