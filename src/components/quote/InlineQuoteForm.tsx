@@ -14,7 +14,6 @@ import { v4 as uuidv4 } from 'uuid';
 const InlineQuoteForm = () => {
   // Helper to send POST to Google Script (non-blocking)
   const sendStepData = async (step: number, data: any) => {
-    setPendingUploads(prev => prev + 1);
     // Helper to convert file to raw base64 (no data URL)
     function fileToBase64(file: File): Promise<string> {
       return new Promise((resolve, reject) => {
@@ -32,9 +31,9 @@ const InlineQuoteForm = () => {
       });
     }
 
-    let payload = { ...data, sessionId };
-    // Only encode files if present
-    if (step === 1 && Array.isArray(data.images)) {
+    let payload = { ...data };
+    // Encode images
+    if (Array.isArray(data.images)) {
       payload.images = [];
       for (let i = 0; i < data.images.length; i++) {
         payload.images.push({
@@ -44,32 +43,21 @@ const InlineQuoteForm = () => {
         });
       }
     }
-    if (step === 2) {
-      // Encode files for step 2 if present
-      if (Array.isArray(data.images)) {
-        payload.images = [];
-        for (let i = 0; i < data.images.length; i++) {
-          payload.images.push({
-            name: data.images[i].name,
-            type: data.images[i].type,
-            content: await fileToBase64(data.images[i])
-          });
-        }
-      }
-      if (data.projectFile instanceof File) {
-        payload.projectFile = JSON.stringify({
-          name: data.projectFile.name,
-          type: data.projectFile.type,
-          content: await fileToBase64(data.projectFile)
-        });
-      }
-      if (data.metricFile instanceof File) {
-        payload.metricFile = JSON.stringify({
-          name: data.metricFile.name,
-          type: data.metricFile.type,
-          content: await fileToBase64(data.metricFile)
-        });
-      }
+    // Encode projectFile
+    if (data.projectFile instanceof File) {
+      payload.projectFile = JSON.stringify({
+        name: data.projectFile.name,
+        type: data.projectFile.type,
+        content: await fileToBase64(data.projectFile)
+      });
+    }
+    // Encode metricFile
+    if (data.metricFile instanceof File) {
+      payload.metricFile = JSON.stringify({
+        name: data.metricFile.name,
+        type: data.metricFile.type,
+        content: await fileToBase64(data.metricFile)
+      });
     }
     // Serialize as x-www-form-urlencoded
     const params = Object.keys(payload)
@@ -81,20 +69,11 @@ const InlineQuoteForm = () => {
         }
       })
       .join('&');
-    // Send via XMLHttpRequest (non-blocking)
-    try {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxzzU2gnypJ0U5WtDAqsGpa8mwP4LdxlfjvGkVOilhOwitfc-E9FlSDMxf-Yr7pbMKBzQ/exec');
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          setPendingUploads(prev => Math.max(prev - 1, 0));
-        }
-      };
-      xhr.send(params);
-    } catch (e) {
-      setPendingUploads(prev => Math.max(prev - 1, 0));
-    }
+    // Send via XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyUuM-eX-XfBckXyWm1k6K8LCl3HX_AAWa7xE_Icg-rsUXqKyeE1rqu7djxPMVV7Nkbvw/exec');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(params);
   };
   const [showConfirmation, setShowConfirmation] = useState(false);
   const { closeModal } = useModal();
@@ -131,31 +110,7 @@ const InlineQuoteForm = () => {
   const handleInputChange = (field: string, value: string | File | FileList | null) => {
     if (field === 'images') {
       const files = value instanceof FileList ? Array.from(value) : [];
-      if (files.length > 0) {
-        setFormData(prev => ({ ...prev, images: files }));
-        // Immediately upload images when selected
-        sendStepData(1, {
-          projectType: formData.projectType,
-          projectDetails: formData.projectDetails,
-          address: formData.address,
-          images: files,
-        });
-      }
-      // If no files selected, do not update state (preserve previous images)
-    } else if (field === 'projectFile') {
-      const file = value instanceof File ? value : null;
-      if (file) {
-        setFormData(prev => ({ ...prev, projectFile: file }));
-        // Do NOT call sendStepData here
-      }
-      // If no file selected, do not update state (preserve previous projectFile)
-    } else if (field === 'metricFile') {
-      const file = value instanceof File ? value : null;
-      if (file) {
-        setFormData(prev => ({ ...prev, metricFile: file }));
-        // Do NOT call sendStepData here
-      }
-      // If no file selected, do not update state (preserve previous metricFile)
+      setFormData(prev => ({ ...prev, images: files }));
     } else {
       setFormData(prev => ({ ...prev, [field]: value }));
     }
@@ -177,21 +132,8 @@ const InlineQuoteForm = () => {
 
   const handleNext = () => {
     if (isStepValid()) {
-      // On step 1, send all step 1 data (projectType, projectDetails, address, images, projectFile, metricFile)
-      if (currentStep === 1) {
-        sendStepData(1, {
-          projectType: formData.projectType,
-          projectDetails: formData.projectDetails,
-          address: formData.address,
-          images: formData.images || [],
-          projectFile: formData.projectFile,
-          metricFile: formData.metricFile,
-        });
-      }
-      // On step 2, send all data
-      if (currentStep === 2) {
-        sendStepData(2, formData);
-      }
+      // Always send all fields at each step
+      sendStepData(currentStep, formData);
       setCurrentStep(prev => Math.min(prev + 1, 3));
     } else {
       toast({
@@ -208,6 +150,7 @@ const InlineQuoteForm = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    await sendStepData(currentStep, formData);
     setShowConfirmation(true);
     // Wait until all uploads are finished before closing confirmation
     const waitForUploads = async () => {
