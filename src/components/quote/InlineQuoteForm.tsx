@@ -146,20 +146,14 @@ const InlineQuoteForm = () => {
       const file = value instanceof File ? value : null;
       if (file) {
         setFormData(prev => ({ ...prev, projectFile: file }));
-        sendStepData(2, {
-          ...formData,
-          projectFile: file,
-        });
+        // Do NOT call sendStepData here
       }
       // If no file selected, do not update state (preserve previous projectFile)
     } else if (field === 'metricFile') {
       const file = value instanceof File ? value : null;
       if (file) {
         setFormData(prev => ({ ...prev, metricFile: file }));
-        sendStepData(2, {
-          ...formData,
-          metricFile: file,
-        });
+        // Do NOT call sendStepData here
       }
       // If no file selected, do not update state (preserve previous metricFile)
     } else {
@@ -183,13 +177,15 @@ const InlineQuoteForm = () => {
 
   const handleNext = () => {
     if (isStepValid()) {
-      // On step 1, send step 1 data (projectType, projectDetails, address, images)
+      // On step 1, send all step 1 data (projectType, projectDetails, address, images, projectFile, metricFile)
       if (currentStep === 1) {
         sendStepData(1, {
           projectType: formData.projectType,
           projectDetails: formData.projectDetails,
           address: formData.address,
           images: formData.images || [],
+          projectFile: formData.projectFile,
+          metricFile: formData.metricFile,
         });
       }
       // On step 2, send all data
@@ -370,13 +366,8 @@ const InlineQuoteForm = () => {
                       accept=".pdf,.doc,.docx,.zip,.rar"
                       onChange={(e) => {
                         const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-                        if (file) {
-                          setFormData(prev => ({ ...prev, projectFile: file }));
-                          sendStepData(2, {
-                            ...formData,
-                            projectFile: file,
-                          });
-                        }
+                        setFormData(prev => ({ ...prev, projectFile: file }));
+                        // Do NOT call sendStepData here
                       }}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
@@ -391,13 +382,8 @@ const InlineQuoteForm = () => {
                       accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
                       onChange={(e) => {
                         const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-                        if (file) {
-                          setFormData(prev => ({ ...prev, metricFile: file }));
-                          sendStepData(2, {
-                            ...formData,
-                            metricFile: file,
-                          });
-                        }
+                        setFormData(prev => ({ ...prev, metricFile: file }));
+                        // Do NOT call sendStepData here
                       }}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
@@ -453,13 +439,8 @@ const InlineQuoteForm = () => {
                   accept=".pdf,.doc,.docx,.zip,.rar"
                   onChange={(e) => {
                     const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-                    if (file) {
-                      setFormData(prev => ({ ...prev, projectFile: file }));
-                      sendStepData(2, {
-                        ...formData,
-                        projectFile: file,
-                      });
-                    }
+                    setFormData(prev => ({ ...prev, projectFile: file }));
+                    // Do NOT call sendStepData here
                   }}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
@@ -474,13 +455,8 @@ const InlineQuoteForm = () => {
                   accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
                   onChange={(e) => {
                     const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-                    if (file) {
-                      setFormData(prev => ({ ...prev, metricFile: file }));
-                      sendStepData(2, {
-                        ...formData,
-                        metricFile: file,
-                      });
-                    }
+                    setFormData(prev => ({ ...prev, metricFile: file }));
+                    // Do NOT call sendStepData here
                   }}
                   className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                 />
