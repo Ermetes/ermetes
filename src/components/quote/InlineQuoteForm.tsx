@@ -84,7 +84,7 @@ const InlineQuoteForm = () => {
     // Send via XMLHttpRequest (non-blocking)
     try {
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxVPy7ErGi_kTQA8pbO_YxWZwnjPIzJ_LRFEnc4XuHM1xbeFw2EQx1ax9Q9zKYCxPsk/exec');
+      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbz8y1o1WKo1c08XS0qT6VcqK_aIZ_laPr0jV8MzYEF1rLxCyN95y6S7tD-ogc4BAtSxHw/exec');
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
