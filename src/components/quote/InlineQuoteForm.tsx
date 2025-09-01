@@ -84,7 +84,7 @@ const InlineQuoteForm = () => {
     // Send via XMLHttpRequest (non-blocking)
     try {
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbzdLiwwZiJnxVpfsNJs7nXwwUOUoBolB5U6FNvdIfFg6E4Y0S6fMjT6hbP3nC-2-sUjtQ/exec');
+      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbzS-ayhvxayOgGjCPws_5Ekltwc0ociFF10v3vqwDvN7rWpKyIkeCrWYW851M_RuyLeYA/exec');
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -591,6 +591,7 @@ const InlineQuoteForm = () => {
           <CheckCircle className="h-20 w-20 text-green-500 mb-4" />
           <h3 className="text-2xl font-semibold text-primary mb-2">{content.quote.form.toast.successTitle}</h3>
           <p className="text-lg text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
+          <p className="text-base text-primary/70 mt-4">Attendere prego, verrai reindirizzato...</p>
         </div>
       ) : (
         <>
