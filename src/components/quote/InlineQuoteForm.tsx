@@ -6,11 +6,96 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { ArrowRight, ArrowLeft, Calculator, Building, User, FileText, CheckCircle, Image } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Calculator, Building, User, FileText, CheckCircle, Image, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { v4 as uuidv4 } from 'uuid';
 
 const InlineQuoteForm = () => {
+  // Helper to send POST to Google Script (non-blocking)
+  const sendStepData = async (step: number, data: any) => {
+    setPendingUploads(prev => prev + 1);
+    // Helper to convert file to raw base64 (no data URL)
+    function fileToBase64(file: File): Promise<string> {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (typeof reader.result === 'string') {
+            const base64 = reader.result.split(',')[1];
+            resolve(base64);
+          } else {
+            reject(new Error('FileReader result is not a string'));
+          }
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    let payload = { ...data, sessionId };
+    // Only encode files if present
+    if (step === 1 && Array.isArray(data.images)) {
+      payload.images = [];
+      for (let i = 0; i < data.images.length; i++) {
+        payload.images.push({
+          name: data.images[i].name,
+          type: data.images[i].type,
+          content: await fileToBase64(data.images[i])
+        });
+      }
+    }
+    if (step === 2) {
+      // Encode files for step 2 if present
+      if (Array.isArray(data.images)) {
+        payload.images = [];
+        for (let i = 0; i < data.images.length; i++) {
+          payload.images.push({
+            name: data.images[i].name,
+            type: data.images[i].type,
+            content: await fileToBase64(data.images[i])
+          });
+        }
+      }
+      if (data.projectFile instanceof File) {
+        payload.projectFile = JSON.stringify({
+          name: data.projectFile.name,
+          type: data.projectFile.type,
+          content: await fileToBase64(data.projectFile)
+        });
+      }
+      if (data.metricFile instanceof File) {
+        payload.metricFile = JSON.stringify({
+          name: data.metricFile.name,
+          type: data.metricFile.type,
+          content: await fileToBase64(data.metricFile)
+        });
+      }
+    }
+    // Serialize as x-www-form-urlencoded
+    const params = Object.keys(payload)
+      .map(key => {
+        if (Array.isArray(payload[key])) {
+          return payload[key].map((v, i) => `${encodeURIComponent(key + '_' + i)}=${encodeURIComponent(JSON.stringify(v))}`).join('&');
+        } else {
+          return `${encodeURIComponent(key)}=${encodeURIComponent(payload[key])}`;
+        }
+      })
+      .join('&');
+    // Send via XMLHttpRequest (non-blocking)
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://script.google.com/macros/s/AKfycbzdLiwwZiJnxVpfsNJs7nXwwUOUoBolB5U6FNvdIfFg6E4Y0S6fMjT6hbP3nC-2-sUjtQ/exec');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          setPendingUploads(prev => Math.max(prev - 1, 0));
+        }
+      };
+      xhr.send(params);
+    } catch (e) {
+      setPendingUploads(prev => Math.max(prev - 1, 0));
+    }
+  };
   const [showConfirmation, setShowConfirmation] = useState(false);
   const { closeModal } = useModal();
   const { toast } = useToast();
@@ -39,19 +124,78 @@ const InlineQuoteForm = () => {
     metricFile: null
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [pendingUploads, setPendingUploads] = useState(0);
   const [showFileInputs, setShowFileInputs] = useState(false);
+  const [sessionId, setSessionId] = useState(uuidv4());
 
   const handleInputChange = (field: string, value: string | File | FileList | null) => {
     if (field === 'images') {
-      // Convert FileList to array for persistence
-      setFormData(prev => ({ ...prev, images: value instanceof FileList ? Array.from(value) : [] }));
+      const files = value instanceof FileList ? Array.from(value) : [];
+      if (files.length > 0) {
+        setFormData(prev => ({ ...prev, images: files }));
+        // Immediately upload images when selected
+        sendStepData(1, {
+          projectType: formData.projectType,
+          projectDetails: formData.projectDetails,
+          address: formData.address,
+          images: files,
+        });
+      }
+      // If no files selected, do not update state (preserve previous images)
+    } else if (field === 'projectFile') {
+      const file = value instanceof File ? value : null;
+      if (file) {
+        setFormData(prev => ({ ...prev, projectFile: file }));
+        sendStepData(2, {
+          ...formData,
+          projectFile: file,
+        });
+      }
+      // If no file selected, do not update state (preserve previous projectFile)
+    } else if (field === 'metricFile') {
+      const file = value instanceof File ? value : null;
+      if (file) {
+        setFormData(prev => ({ ...prev, metricFile: file }));
+        sendStepData(2, {
+          ...formData,
+          metricFile: file,
+        });
+      }
+      // If no file selected, do not update state (preserve previous metricFile)
     } else {
       setFormData(prev => ({ ...prev, [field]: value }));
     }
   };
 
+  const handleRemoveImage = (idx) => {
+    setFormData(prev => {
+      const newImages = prev.images.filter((_, i) => i !== idx);
+      // Immediately update backend after removal
+      sendStepData(1, {
+        projectType: prev.projectType,
+        projectDetails: prev.projectDetails,
+        address: prev.address,
+        images: newImages,
+      });
+      return { ...prev, images: newImages };
+    });
+  };
+
   const handleNext = () => {
     if (isStepValid()) {
+      // On step 1, send step 1 data (projectType, projectDetails, address, images)
+      if (currentStep === 1) {
+        sendStepData(1, {
+          projectType: formData.projectType,
+          projectDetails: formData.projectDetails,
+          address: formData.address,
+          images: formData.images || [],
+        });
+      }
+      // On step 2, send all data
+      if (currentStep === 2) {
+        sendStepData(2, formData);
+      }
       setCurrentStep(prev => Math.min(prev + 1, 3));
     } else {
       toast({
@@ -68,102 +212,26 @@ const InlineQuoteForm = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // Helper to convert file to raw base64 (no data URL)
-    function fileToBase64(file: File): Promise<string> {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          if (typeof reader.result === 'string') {
-            // Extract only the base64 part
-            const base64 = reader.result.split(',')[1];
-            resolve(base64);
-          } else {
-            reject(new Error('FileReader result is not a string'));
-          }
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
+    setShowConfirmation(true);
+    setTimeout(() => {
+      setShowConfirmation(false);
+      closeModal();
+      setFormData({
+        projectType: '',
+        projectDetails: '',
+        address: '',
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+        images: [],
+        projectFile: null,
+        metricFile: null
       });
-    }
-
-    // Prepare data
-    let data = {
-      projectType: formData.projectType,
-      projectDetails: formData.projectDetails,
-      address: formData.address,
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      message: formData.message,
-      images: [],
-      projectFile: '',
-      metricFile: ''
-    };
-
-    // Encode files (send raw base64)
-    if (Array.isArray(formData.images)) {
-      for (let i = 0; i < formData.images.length; i++) {
-        data.images.push({
-          name: formData.images[i].name,
-          type: formData.images[i].type,
-          content: await fileToBase64(formData.images[i]) // raw base64
-        });
-      }
-    }
-    if (formData.projectFile instanceof File) {
-      data.projectFile = JSON.stringify({
-        name: formData.projectFile.name,
-        type: formData.projectFile.type,
-        content: await fileToBase64(formData.projectFile) // raw base64
-      });
-    }
-    if (formData.metricFile instanceof File) {
-      data.metricFile = JSON.stringify({
-        name: formData.metricFile.name,
-        type: formData.metricFile.type,
-        content: await fileToBase64(formData.metricFile) // raw base64
-      });
-    }
-
-    // Serialize as x-www-form-urlencoded
-    const params = Object.keys(data)
-      .map(key => {
-        if (Array.isArray(data[key])) {
-          return data[key].map((v, i) => `${encodeURIComponent(key + '_' + i)}=${encodeURIComponent(JSON.stringify(v))}`).join('&');
-        } else {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`;
-        }
-      })
-      .join('&');
-
-    // Send via XMLHttpRequest
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyUuM-eX-XfBckXyWm1k6K8LCl3HX_AAWa7xE_Icg-rsUXqKyeE1rqu7djxPMVV7Nkbvw/exec');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 3) {
-        setShowConfirmation(true);
-        setTimeout(() => {
-          setShowConfirmation(false);
-          closeModal();
-          setFormData({
-            projectType: '',
-            projectDetails: '',
-            address: '',
-            name: '',
-            phone: '',
-            email: '',
-            message: '',
-            images: null,
-            projectFile: null,
-            metricFile: null
-          });
-          setCurrentStep(1);
-          setIsSubmitting(false);
-        }, 2500);
-      }
-    };
-    xhr.send(params);
+      setCurrentStep(1);
+      setIsSubmitting(false);
+      setSessionId(uuidv4()); // Reset sessionId for new form
+    }, 2500);
   };
 
   const isStepValid = () => {
@@ -256,14 +324,34 @@ const InlineQuoteForm = () => {
                       type="file"
                       multiple
                       accept="image/*"
-                      onChange={(e) => handleInputChange('images', e.target.files)}
+                      onChange={(e) => {
+                        const files = e.target.files ? Array.from(e.target.files) : [];
+                        if (files.length > 0) {
+                          setFormData(prev => {
+                            const newImages = [...files, ...prev.images];
+                            // Immediately upload new images (all, with new ones on top)
+                            sendStepData(1, {
+                              projectType: prev.projectType,
+                              projectDetails: prev.projectDetails,
+                              address: prev.address,
+                              images: newImages,
+                            });
+                            return { ...prev, images: newImages };
+                          });
+                        }
+                      }}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
                     {/* Show selected images */}
                     {formData.images && formData.images.length > 0 && (
                       <ul className="mt-2 text-xs text-neutral-700">
                         {formData.images.map((file, idx) => (
-                          <li key={idx}>{file.name}</li>
+                          <li key={idx} className="flex items-center justify-between gap-2">
+                            <span>{file.name}</span>
+                            <button type="button" onClick={() => handleRemoveImage(idx)} className="ml-2 p-1 text-red-500 hover:text-red-700">
+                              <X className="h-3 w-3" />
+                            </button>
+                          </li>
                         ))}
                       </ul>
                     )}
@@ -309,7 +397,12 @@ const InlineQuoteForm = () => {
                 {formData.images && formData.images.length > 0 && (
                   <ul className="mt-2 text-xs text-neutral-700">
                     {formData.images.map((file, idx) => (
-                      <li key={idx}>{file.name}</li>
+                      <li key={idx} className="flex items-center justify-between gap-2">
+                        <span>{file.name}</span>
+                        <button type="button" onClick={() => handleRemoveImage(idx)} className="ml-2 p-1 text-red-500 hover:text-red-700">
+                          <X className="h-3 w-3" />
+                        </button>
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -482,9 +575,9 @@ const InlineQuoteForm = () => {
                   <Button
                     onClick={handleSubmit}
                     className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || pendingUploads > 0}
                   >
-                    {isSubmitting ? (
+                    {(isSubmitting || pendingUploads > 0) ? (
                       <span className="flex items-center">
                         <span className="inline-block mr-2 align-middle">
                           <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin block"></span>
