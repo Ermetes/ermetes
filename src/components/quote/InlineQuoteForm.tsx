@@ -213,6 +213,13 @@ const InlineQuoteForm = () => {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setShowConfirmation(true);
+    // Wait until all uploads are finished before closing confirmation
+    const waitForUploads = async () => {
+      while (pendingUploads > 0) {
+        await new Promise(res => setTimeout(res, 200));
+      }
+    };
+    await waitForUploads();
     setTimeout(() => {
       setShowConfirmation(false);
       closeModal();
@@ -231,7 +238,7 @@ const InlineQuoteForm = () => {
       setCurrentStep(1);
       setIsSubmitting(false);
       setSessionId(uuidv4()); // Reset sessionId for new form
-    }, 2500);
+    }, 1200); // Show confirmation for at least 1.2s after uploads
   };
 
   const isStepValid = () => {
@@ -361,7 +368,16 @@ const InlineQuoteForm = () => {
                     <Input
                       type="file"
                       accept=".pdf,.doc,.docx,.zip,.rar"
-                      onChange={(e) => handleInputChange('projectFile', e.target.files ? e.target.files[0] : null)}
+                      onChange={(e) => {
+                        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                        if (file) {
+                          setFormData(prev => ({ ...prev, projectFile: file }));
+                          sendStepData(2, {
+                            ...formData,
+                            projectFile: file,
+                          });
+                        }
+                      }}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
                     {formData.projectFile && (
@@ -373,7 +389,16 @@ const InlineQuoteForm = () => {
                     <Input
                       type="file"
                       accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
-                      onChange={(e) => handleInputChange('metricFile', e.target.files ? e.target.files[0] : null)}
+                      onChange={(e) => {
+                        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                        if (file) {
+                          setFormData(prev => ({ ...prev, metricFile: file }));
+                          sendStepData(2, {
+                            ...formData,
+                            metricFile: file,
+                          });
+                        }
+                      }}
                       className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
                     />
                     {formData.metricFile && (
@@ -607,9 +632,9 @@ const InlineQuoteForm = () => {
                   <Button
                     onClick={handleSubmit}
                     className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
-                    disabled={isSubmitting || pendingUploads > 0}
+                    disabled={isSubmitting}
                   >
-                    {(isSubmitting || pendingUploads > 0) ? (
+                    {isSubmitting ? (
                       <span className="flex items-center">
                         <span className="inline-block mr-2 align-middle">
                           <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin block"></span>
