@@ -71,7 +71,7 @@ const InlineQuoteForm = () => {
       .join('&');
     // Send via XMLHttpRequest
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbwGTW4VBnk11wLMxuVgDKJvc1iQNQuTqDk3cVsg8_OaogQKYLodxYjbTEeEXW1N62BOTg/exec');
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbzQ-RzNXJn5xrmAW1dyrE9vIjAyQ4LRox6d5rZexSL9-e978yizsUdyAf8k1zYtGBOZUQ/exec');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send(params);
   };
