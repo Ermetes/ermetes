@@ -100,14 +100,15 @@ const ServicesSection = () => {
             <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">La cooperativa ERMETES nasce proprio da questa visione: un percorso di trasformazione del “piombo” delle difficoltà quotidiane, all’“oro” di un gruppo coeso che condivide valori comuni generano benessere per gli individui e per la comunità.</p>
             <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Come l’alchimia ermetica trasmuta l’essere umano, così la nostra cooperativa aspira a trasformare le difficoltà quotidiane in opportunità di sviluppo e benessere collettivo.</p>
             <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Come ci insegna la storia di Ermete dunque se le opportunità vengono colte dai soci con etica e spirito costruttivo, si genera valore, soddisfazione e crescita per tutti. Se invece prevale lo spirito speculativo egoistico di pochi non ci potranno essere buoni frutti.</p>
+            <div  onClick={() => window.location.href = '/ermetes/impact'}>
             <div className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Per saperne di più sulla nostra organizzazione</div>
             <Button
               className="text-white px-8 py-3 rounded-xl shadow-lg font-regular tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors"
               style={{ backgroundColor: '#FFAA00' }}
-              onClick={() => window.location.href = '/ermetes/impact'}
             >
               Clicca qui
             </Button>
+            </div>
           </div>
         </div>
       </div>

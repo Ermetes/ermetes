@@ -14,7 +14,7 @@ export default function ImpactPage() {
               <ArrowLeft className="h-5 w-5 mr-2" />
               Torna alla home
             </a>
-            <h1 className="text-4xl md:text-5xl font-editorial text-foreground text-center text-center mb-4 md:mb-16 text-lg text-muted-foreground">
+            <h1 className="text-3xl md:text-5xl font-editorial text-foreground text-center text-center mb-4 md:mb-16 text-muted-foreground">
               Impatto sociale
             </h1>
             <p className="mb-4 text-lg text-muted-foreground text-justify">

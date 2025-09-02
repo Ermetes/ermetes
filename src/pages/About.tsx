@@ -8,7 +8,7 @@ export default function AboutPage() {
       <ModernNavigation />
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid gap-12 max-w-3xl mx-auto">
+          <div className="grid md:gap-12 gap-2 max-w-3xl mx-auto">
             {/* Back to home link */}
             <a href="/ermetes" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
               <ArrowLeft className="h-5 w-5 mr-2" />

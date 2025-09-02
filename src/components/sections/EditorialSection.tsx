@@ -46,7 +46,7 @@ const EditorialSection = () => {
         </a>
 
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-4 lg:mb-16">
           <h2 className="text-4xl md:text-5xl font-editorial text-foreground mb-6">
             {content.articlesSection?.title || 'Magazine'}
           </h2>
