@@ -405,7 +405,7 @@ const ProjectsScroll = () => {
                           filteredProjects[activeIndex].title
                         )}
                       </h3>
-                      <p className="text-white/90 leading-relaxed text-sm text-justify [word-spacing:-2px] md:text-base backdrop-blur-md bg-black/40 rounded-xl px-4 py-3 shadow-lg">
+                      <p className="text-white leading-relaxed text-sm text-justify [word-spacing:-2px] md:text-base backdrop-blur-md bg-black/20 rounded-xl px-4 py-3 shadow-lg">
                         {filteredProjects[activeIndex].description}
                       </p>
                     </div>
