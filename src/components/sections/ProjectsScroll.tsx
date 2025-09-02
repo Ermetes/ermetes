@@ -386,28 +386,26 @@ const ProjectsScroll = () => {
                         </div>
                       );
                     })()}
-                    <div className="absolute inset-0 py-4 px-6 md:p-8 md:flex flex-col justify-end block md:flex max-w-2xl">
-                      <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
-                        {filteredProjects[activeIndex].category}
-                      </Badge>
-                      <Badge 
-                        variant={filteredProjects[activeIndex].status === "Completato" ? "default" : "secondary"} 
-                        className="mb-4 w-fit"
-                      >
-                        {filteredProjects[activeIndex].status}
-                      </Badge>
-                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                        {filteredProjects[activeIndex].link ? (
-                          <a href={filteredProjects[activeIndex].link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                            {filteredProjects[activeIndex].title}
-                          </a>
-                        ) : (
-                          filteredProjects[activeIndex].title
-                        )}
-                      </h3>
-                      <p className="text-white leading-relaxed text-sm text-justify [word-spacing:-2px] md:text-base backdrop-blur-md bg-black/20 rounded-xl px-4 py-3 shadow-lg">
-                        {filteredProjects[activeIndex].description}
-                      </p>
+                    <div className="absolute inset-0 py-4 px-6 md:p-8 flex flex-col justify-between max-w-2xl h-full">
+                      <div>
+                        <Badge 
+                          variant={filteredProjects[activeIndex].status === "Completato" ? "default" : "secondary"} 
+                          className="mb-4 w-fit"
+                        >
+                          {filteredProjects[activeIndex].status}
+                        </Badge>
+                      </div>
+                      <div className="flex items-end">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 backdrop-blur-md bg-black/20 rounded-xl px-4 py-3 shadow-lg">
+                          {filteredProjects[activeIndex].link ? (
+                            <a href={filteredProjects[activeIndex].link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                              {filteredProjects[activeIndex].title}
+                            </a>
+                          ) : (
+                            filteredProjects[activeIndex].title || filteredProjects[activeIndex].description
+                          )}
+                        </h3>
+                      </div>
                     </div>
                   </div>
                 </div>
