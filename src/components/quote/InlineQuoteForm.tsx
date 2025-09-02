@@ -278,9 +278,9 @@ const InlineQuoteForm = () => {
               <div className="flex-1">
                 <label className="block text-sm font-medium text-white mb-2">{content.quote.form.projectType} *</label>
                 <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
-                  <SelectTrigger className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-neutral-500 focus:ring-2 focus:ring-[#ffaa00]">
+                  <SelectTrigger className="bg-[rgba(255,255,255,0.9)] backdrop-blur-md border-2 border-[#ffaa00] text-black placeholder:text-neutral-500 placeholder:text-sm placeholder:font-medium focus:ring-2 focus:ring-[#ffaa00]">
                   {/* @ts-ignore */}
-                    <SelectValue placeholder={content.quote.form.projectType_placeholder} />
+                    <SelectValue placeholder={content.quote.form.projectType_placeholder} className="placeholder:font-medium" />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border border-border">
                     {projectTypes.map((type, index) => (
@@ -297,18 +297,17 @@ const InlineQuoteForm = () => {
                   placeholder={content.quote.form.address_placeholder}
                   value={formData.address}
                   onChange={(e) => handleInputChange('address', e.target.value)}
-                  className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-neutral-500 focus:ring-2 focus:ring-[#ffaa00]"
+                  className="bg-[rgba(255, 255, 255, 0.9)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-sm placeholder:text-black focus:ring-2 focus:ring-[#ffaa00]"
                 />
               </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-white mb-2">{content.quote.form.description} *</label>
+            <div className="relative mt-2">
+              <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10">{content.quote.form.description} *</span>
               <Textarea
-              // @ts-ignore
-                placeholder={content.quote.form.description_placeholder}
+                // @ts-ignore
                 value={formData.projectDetails}
                 onChange={(e) => handleInputChange('projectDetails', e.target.value)}
-                className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-neutral-500 min-h-[60px] focus:ring-2 focus:ring-[#ffaa00]"
+                className="bg-[rgba(255, 255, 255, 0.9)] backdrop-blur-md border-2 border-[#ffaa00] text-black placeholder:text-neutral-700 placeholder:text-xs placeholder:font-medium min-h-[60px] focus:ring-2 focus:ring-[#ffaa00] pt-7"
               />
             </div>
             {/* Improved file upload UX for mobile */}
@@ -585,11 +584,11 @@ const InlineQuoteForm = () => {
         <>
           <CardHeader className="pb-2 pt-3 px-4">
             <div className="flex items-center">
-              <CardTitle className="text-base font-medium" style={{ color: '#ffaa00' }}>{content.quote.title}</CardTitle>
+              <CardTitle className="text-base font-medium font-bold text-xl text-left w-full" style={{ color: '#ffaa00' }}>{content.quote.title}</CardTitle>
             </div>
             <div className="space-y-1">
-              <div className="flex items-center justify-between text-xs text-primary/70">
-                <span className="ml-auto text-right">{content.quote.form[`step${currentStep}`]}</span>
+              <div className="flex items-center justify-between text-xs text-white text-medium">
+                <span className="ml-auto text-right font-bold text-md text-left w-full">{content.quote.form[`step${currentStep}`]}</span>
               </div>
               <Progress value={progress} className="h-1.5 bg-[#ffaa00]/30" />
             </div>
