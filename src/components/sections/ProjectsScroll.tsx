@@ -64,6 +64,11 @@ const ProjectsScroll = () => {
   // Preselect 'Ristrutturazioni' if present, else fallback to first
   const defaultCategory = categories.find(cat => cat.toLowerCase().includes("ristrutturazioni")) || categories[0];
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
+  // Reset activeIndex and carouselIndexes when category changes to avoid out-of-bounds errors
+  useEffect(() => {
+    setActiveIndex(0);
+    setCarouselIndexes({});
+  }, [selectedCategory]);
 
   // Normalize category names for filtering (handle translation/case)
   const normalize = (str: string) => str.trim().toLowerCase().replace(/\s+/g, " ");
@@ -223,16 +228,13 @@ const ProjectsScroll = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return;
-
+      if (!containerRef.current || !containerRef.current.children[1] || !containerRef.current.children[1].children) return;
       const sections = containerRef.current.children[1].children;
       const scrollPosition = window.scrollY - containerRef.current.offsetTop;
-
       for (let i = 0; i < sections.length; i++) {
         const section = sections[i] as HTMLElement;
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
-
         if (
           scrollPosition >= sectionTop - sectionHeight / 2 &&
           scrollPosition < sectionTop + sectionHeight / 2
@@ -242,7 +244,6 @@ const ProjectsScroll = () => {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [filteredProjects.length]);
@@ -293,7 +294,7 @@ const ProjectsScroll = () => {
       <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex flex-col items-center justify-center" ref={containerRef}>
         <div className="flex flex-col items-center w-full max-w-4xl mx-auto py-8 relative">
           {/* Project Panel (only active) */}
-          {filteredProjects.length > 0 && (
+          {filteredProjects.length > 0 && filteredProjects[activeIndex] && (
             <div
               key={filteredProjects[activeIndex].title}
               className="flex flex-col md:flex-row items-center min-h-[60vh] w-full transition-all duration-500"
@@ -305,6 +306,7 @@ const ProjectsScroll = () => {
                     <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl`} />
                     {(() => {
                       const project = filteredProjects[activeIndex];
+                      if (!project) return null;
                       const folder = getFolderFromImagePath(project.image);
                       const images = (folder && Array.isArray(assetImages[folder])) ? assetImages[folder] : [];
                       if (isMobile) {
@@ -317,26 +319,28 @@ const ProjectsScroll = () => {
                               className="h-full w-full object-cover select-none pointer-events-none"
                               draggable={false}
                             />
-                            {images.length > 1 && (
+                            {images.length > 1 ? (
                               <>
                                 <button
                                   onClick={() => setActiveIndex(i => (i - 1 + filteredProjects.length) % filteredProjects.length)}
-                                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden"
+                                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-1 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden disabled:opacity-40 disabled:cursor-not-allowed"
                                   tabIndex={0}
                                   aria-label="Previous Project"
+                                  disabled={filteredProjects.length === 1}
                                 >
-                                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+                                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                                 </button>
                                 <button
                                   onClick={() => setActiveIndex(i => (i + 1) % filteredProjects.length)}
-                                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden"
+                                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden disabled:opacity-40 disabled:cursor-not-allowed"
                                   tabIndex={0}
                                   aria-label="Next Project"
+                                  disabled={filteredProjects.length === 1}
                                 >
-                                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                                 </button>
                               </>
-                            )}
+                            ) : null}
                           </div>
                         );
                       }
