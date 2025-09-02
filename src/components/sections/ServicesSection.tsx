@@ -66,7 +66,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="relative w-full min-h-screen flex items-stretch overflow-hidden">
-      <div className="relative w-full flex flex-col lg:flex-row items-stretch justify-center min-h-screen px-0 lg:py-16 gap-0">
+      <div className="relative w-full flex flex-col lg:flex-row items-stretch justify-center min-h-screen px-0 gap-0">
         {/* Conditionally show background image only when block is in viewport */}
         {showBg && (
           <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
@@ -80,10 +80,10 @@ const ServicesSection = () => {
           </div>
         )}
         {/* Left: Text */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center items-start px-6 md:px-16 lg:pt-24 lg:pr-0 bg-transparent text-justify">
+        <div className="relative z-10 flex-1 flex flex-col justify-center items-start px-6 md:px-16 lg:pt-0 lg:pr-0 bg-transparent text-justify">
           <div className="mb-8 w-full flex flex-col items-center justify-center" ref={blockRef}>
             <div className="max-w-2xl w-full">
-              <h3 className="text-4xl md:text-5xl font-light mb-4 text-[#00338D] drop-shadow-lg w-full">Il nome e la storia</h3>
+              <h3 className="text-4xl md:text-5xl font-light mb-8 text-[#00338D] drop-shadow-lg w-full">Il nome e la storia</h3>
               <p className="font-bold text-xl mb-4 text-[#00338D] w-full">Ermetes è una cooperativa sociale a mutualità prevalente, specializzata in manutenzioni, edilizia residenziale e servizi connessi.</p>
             </div>
             <div className="text-gray-800 text-justify text-lg leading-relaxed text-left w-full max-w-2xl">
@@ -94,7 +94,7 @@ const ServicesSection = () => {
           </div>
         </div>
         {/* Right: Second column with text block */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center items-center px-6 md:px-16 py-12 lg:pt-24 bg-transparent text-justify">
+        <div className="relative z-10 flex-1 flex flex-col justify-center items-center px-6 md:px-16 py-12 bg-transparent text-justify">
           <div className="w-full max-w-3xl mx-auto text-justify">
             <h2 className="text-3xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg">La missione di Ermetes</h2>
             <p className="text-gray-800 text-lg md:text-xl font-extralight leading-relaxed mb-4">La cooperativa ERMETES nasce proprio da questa visione: un percorso di trasformazione del “piombo” delle difficoltà quotidiane, all’“oro” di un gruppo coeso che condivide valori comuni generano benessere per gli individui e per la comunità.</p>

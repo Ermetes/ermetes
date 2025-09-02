@@ -78,9 +78,9 @@ const ConstructionHero = () => {
                     loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                 >
-                  <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ')[0]}</span>
-                  <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(1, 2).join(' ')}</span>
-                  <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(2).join(' ')}</span>
+                  <span className="block text-white drop-shadow-lg lg:py-1">{content.hero.title.split(' ')[0]}</span>
+                  <span className="block text-white drop-shadow-lg lg:py-1">{content.hero.title.split(' ').slice(1, 2).join(' ')}</span>
+                  <span className="block text-white drop-shadow-lg lg:py-1">{content.hero.title.split(' ').slice(2).join(' ')}</span>
                 </h1>
                 {/* Subtitle */}
                 <p 

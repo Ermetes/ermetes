@@ -52,6 +52,7 @@ const Index = () => {
             </p>
           </div>
         </section>
+        
         <ServicesSection />
         <section className="w-full flex justify-center items-center relative overflow-hidden">
           {/* Banner background image, only for this section, hidden if hero is visible */}
@@ -66,6 +67,18 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/60" />
             </div>
           )}
+        </section>
+                {/* Team Photo Section */}
+        <section className="w-full relative flex justify-center items-center py-0" style={{ minHeight: '320px' }}>
+          {/* Main team photo */}
+          <div className="relative z-10 w-full flex justify-center items-center">
+            <img
+              src="./ermetes/assets/team.jpg"
+              alt="Team Ermetes"
+              className="w-full max-w-3xl h-[320px] md:h-[420px] object-cover object-center rounded-2xl shadow-xl"
+              style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)' }}
+            />
+          </div>
         </section>
         <ProjectsScroll />
         <div className="elfsight-app-7c2e78f2-c2bc-46da-9ac9-34aed222a164 md:mt-5 mb-2 md:mb-10" data-elfsight-app-lazy></div>
