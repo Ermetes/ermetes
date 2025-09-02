@@ -10,7 +10,7 @@ const iconMap = {
   'clipboard-check': ClipboardCheck,
 };
 
-const serviceImages = ['./ermetes/assets/construction-1.jpg', './ermetes/assets/maintenance/construction-2.jpg', './ermetes/assets/construction-3.jpeg', './ermetes/assets/construction-4.jpeg'];
+const serviceImages = ['./assets/construction-1.jpg', './assets/maintenance/construction-2.jpg', './assets/construction-3.jpeg', './assets/construction-4.jpeg'];
 
 const SustainabilitySection = () => {
   const { content } = useLanguage();
@@ -73,7 +73,7 @@ const SustainabilitySection = () => {
         </div>
         <div className="flex-1 flex justify-center items-center">
           <img
-            src="./ermetes/assets/sito-ermetes.jpg"
+            src="./assets/sito-ermetes.jpg"
             alt="Sustainability"
             className="rounded-3xl shadow-lg object-cover w-full max-w-md h-[320px] lg:h-[340px]"
             style={{ borderRadius: '24px', boxShadow: '0 8px 32px rgba(0,0,0,0.10)' }}

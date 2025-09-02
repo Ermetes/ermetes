@@ -10,7 +10,7 @@ const iconMap = {
   'clipboard-check': ClipboardCheck,
 };
 
-const serviceImages = ['./ermetes/assets/construction-1.jpg', './ermetes/assets/maintenance/construction-2.jpg', './ermetes/assets/construction-3.jpeg', './ermetes/assets/construction-4.jpeg'];
+const serviceImages = ['./assets/construction-1.jpg', './assets/maintenance/construction-2.jpg', './assets/construction-3.jpeg', './assets/construction-4.jpeg'];
 
 const ServicesSection = () => {
   const { content } = useLanguage();
@@ -71,7 +71,7 @@ const ServicesSection = () => {
         {showBg && (
           <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
             <img
-              src="./ermetes/assets/Hermes_Trismegistus.jpg"
+              src="./assets/Hermes_Trismegistus.jpg"
               alt="Mercurius Trismegistus engraving"
               className="w-full h-full object-cover opacity-30"
               style={{ filter: 'grayscale(0.2) blur(0.5px)', objectPosition: 'top' }}

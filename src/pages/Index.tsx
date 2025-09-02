@@ -68,12 +68,12 @@ const Index = () => {
             </div>
           )}
         </section>
-                {/* Team Photo Section */}
+        {/* Team Photo Section */}
         <section className="w-full relative flex justify-center items-center py-0" style={{ minHeight: '320px' }}>
           {/* Main team photo */}
           <div className="relative z-10 w-full flex justify-center items-center">
             <img
-              src="./ermetes/assets/team.jpg"
+              src="./assets/team.jpg"
               alt="Team Ermetes"
               className="w-full max-w-3xl h-[320px] md:h-[420px] object-cover object-center rounded-2xl shadow-xl"
               style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)' }}
