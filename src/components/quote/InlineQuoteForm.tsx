@@ -297,7 +297,7 @@ const InlineQuoteForm = () => {
                   placeholder={content.quote.form.address_placeholder}
                   value={formData.address}
                   onChange={(e) => handleInputChange('address', e.target.value)}
-                  className="bg-[rgba(255, 255, 255, 0.9)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-sm placeholder:text-black focus:ring-2 focus:ring-[#ffaa00]"
+                  className="bg-[rgba(255, 255, 255, 0.9)] backdrop-blur-md border-2 border-[#ffaa00] text-black placeholder:text-sm placeholder:text-black focus:ring-2 focus:ring-[#ffaa00]"
                 />
               </div>
             </div>
@@ -428,7 +428,7 @@ const InlineQuoteForm = () => {
                       });
                     }
                   }}
-                  className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                  className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
                 />
                 {formData.images && formData.images.length > 0 && (
                   <ul className="mt-2 text-xs text-neutral-700">
@@ -453,7 +453,7 @@ const InlineQuoteForm = () => {
                     setFormData(prev => ({ ...prev, projectFile: file }));
                     // Do NOT call sendStepData here
                   }}
-                  className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                  className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
                 />
                 {formData.projectFile && (
                   <div className="mt-2 text-xs text-neutral-700">{formData.projectFile.name}</div>
@@ -469,7 +469,7 @@ const InlineQuoteForm = () => {
                     setFormData(prev => ({ ...prev, metricFile: file }));
                     // Do NOT call sendStepData here
                   }}
-                  className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                  className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
                 />
                 {formData.metricFile && (
                   <div className="mt-2 text-xs text-neutral-700">{formData.metricFile.name}</div>
@@ -488,7 +488,7 @@ const InlineQuoteForm = () => {
                 placeholder={content.quote.form.name}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
-                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
               />
             </div>
             <div>
@@ -498,7 +498,7 @@ const InlineQuoteForm = () => {
                 placeholder={content.quote.form.phone}
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
-                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
               />
             </div>
             <div>
@@ -508,7 +508,7 @@ const InlineQuoteForm = () => {
                 placeholder={content.quote.form.email}
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
               />
             </div>
             <div>
@@ -517,7 +517,7 @@ const InlineQuoteForm = () => {
                 placeholder={content.quote.form.message || 'Messaggio (Opzionale)'}
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
-                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
               />
             </div>
           </div>
@@ -526,10 +526,10 @@ const InlineQuoteForm = () => {
         return (
           <div className="space-y-4 text-center">
             <div className="flex items-center justify-center gap-3">
-              <FileText className="h-7 w-7 text-primary drop-shadow-lg" />
-              <h3 className="text-xl font-medium text-blue-900 m-0">{content.quote.form.summary.title}</h3>
+              <FileText className="h-7 w-7 text-primary text-white drop-shadow-lg" />
+              <h3 className="text-xl font-medium text-white m-0">{content.quote.form.summary.title}</h3>
             </div>
-            <div className="bg-white/10 rounded-lg p-4 text-left text-blue-900 space-y-2">
+            <div className="bg-white rounded-lg p-4 text-left text-blue-900 space-y-2">
               <p className="text-blue-900"><strong>{content.quote.form.summary.project}:</strong> {formData.projectType}</p>
               <p className="text-blue-900"><strong>{content.quote.form.summary.address}:</strong> {formData.address}</p>
               <p className="text-blue-900"><strong>{content.quote.form.summary.contact}:</strong> {formData.name} - {formData.phone}</p>
@@ -601,7 +601,7 @@ const InlineQuoteForm = () => {
                 <Button
                   onClick={handlePrevious}
                   variant="outline"
-                  className="bg-transparent border-primary/30 text-primary hover:bg-primary/10 px-3 py-1.5 text-sm"
+                  className="bg-transparent border-white text-white hover:bg-primary/10 px-3 py-1.5 text-sm"
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Indietro
