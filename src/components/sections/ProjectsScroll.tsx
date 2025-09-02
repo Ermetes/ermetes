@@ -275,19 +275,6 @@ const ProjectsScroll = () => {
               </Button>
             ))}
           </div>
-          {/* Category Description (unchanged) */}
-          <div className="text-center mt-2 mb-2">
-            {normalize(selectedCategory) === "ristrutturazioni" && (
-              <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
-                Abitazioni, appartamenti e strutture industriali. Diamo nuova vita ai tuoi spazi dallo studio di progetto alla realizzazione.
-              </p>
-            )}
-            {normalize(selectedCategory) === "manutenzioni" && (
-              <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
-                Ospedali, comuni, condomini, aziende e privati ci contattano direttamente ogni settimana per manutenzioni programmate o interventi a chiamata.
-              </p>
-            )}
-          </div>
         </div>
       </div>
       {/* Vertical Carousel */}
@@ -323,21 +310,21 @@ const ProjectsScroll = () => {
                               <>
                                 <button
                                   onClick={() => setActiveIndex(i => (i - 1 + filteredProjects.length) % filteredProjects.length)}
-                                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-1 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden disabled:opacity-40 disabled:cursor-not-allowed"
+                                  className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full p-1 flex items-center justify-center md:bg-black/20 hover:bg-black/40 transition-opacity duration-200 z-10 sm:hidden disabled:opacity-40 disabled:cursor-not-allowed"
                                   tabIndex={0}
                                   aria-label="Previous Project"
                                   disabled={filteredProjects.length === 1}
                                 >
-                                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+                                  <svg width="30" height="30" viewBox="6 0 20 20" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                                 </button>
                                 <button
                                   onClick={() => setActiveIndex(i => (i + 1) % filteredProjects.length)}
-                                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden disabled:opacity-40 disabled:cursor-not-allowed"
+                                  className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full p-1 flex items-center justify-center md:bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden disabled:opacity-40 disabled:cursor-not-allowed"
                                   tabIndex={0}
                                   aria-label="Next Project"
                                   disabled={filteredProjects.length === 1}
                                 >
-                                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                                  <svg width="30" height="30" viewBox="-2 0 20 20" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                                 </button>
                               </>
                             ) : null}
@@ -399,7 +386,7 @@ const ProjectsScroll = () => {
                         </div>
                       );
                     })()}
-                    <div className="absolute inset-0 p-4 md:p-8 md:flex flex-col justify-end block md:flex max-w-2xl">
+                    <div className="absolute inset-0 py-4 px-6 md:p-8 md:flex flex-col justify-end block md:flex max-w-2xl">
                       <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
                         {filteredProjects[activeIndex].category}
                       </Badge>
@@ -418,7 +405,7 @@ const ProjectsScroll = () => {
                           filteredProjects[activeIndex].title
                         )}
                       </h3>
-                      <p className="text-white/90 leading-relaxed text-sm md:text-base">
+                      <p className="text-white/90 leading-relaxed text-sm text-justify [word-spacing:-2px] md:text-base">
                         {filteredProjects[activeIndex].description}
                       </p>
                     </div>
