@@ -44,14 +44,14 @@ const ConstructionHero = () => {
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-10 pointer-events-none">
           {/* Curved geometric shapes */}
           <div className="absolute top-0 right-0 w-1/3 h-full">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
             <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-accent/5 rounded-full blur-2xl" />
           </div>
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 opacity-5">
+          {/* Subtle grid pattern - pointer-events-none so it doesn't block interaction */}
+          <div className="absolute inset-0 opacity-5 pointer-events-none">
             <div className="grid grid-cols-12 gap-4 h-full">
               {[...Array(12)].map((_, i) => (
                 <div key={i} className="border-r border-white/20 h-full" />

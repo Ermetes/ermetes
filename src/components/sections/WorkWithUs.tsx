@@ -23,8 +23,8 @@ const WorkWithUs = () => {
             {content.services.ctaTitle}
           </h3>
           <Button
-            className="mt-2 text-white px-6 py-2 rounded-lg shadow"
-            style={{ backgroundColor: '#fdac08ff' }}
+            className="text-white px-8 mt-5 py-3 rounded-xl shadow-lg font-regular tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors px-8 py-6"
+            style={{ backgroundColor: '#FFAA00' }}
             onClick={() => window.location.href = '/ermetes/candidatura'}
           >
             Contattaci

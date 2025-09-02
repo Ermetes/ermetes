@@ -64,10 +64,10 @@ const SustainabilitySection = () => {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row items-center gap-12 relative z-10">
         <div className="flex-1 flex flex-col justify-center">
           {/* Heading moved above in curved SVG */}
-          <p className="text-gray-700 font-light mb-6 leading-relaxed text-lg">
+          <p className="text-gray-700 text-justify font-light mb-6 leading-relaxed text-lg">
             Ermetes ci tiene davvero all’ambiente. Grazie a un apposito gestionale che tiene traccia sia a preventivo che a consuntivo dell’impatto ambientale dei lavori e delle commesse.
           </p>
-          <p className="text-gray-700 font-light leading-relaxed text-lg">
+          <p className="text-gray-700 text-justify font-light leading-relaxed text-lg">
             Grazie alla partnership con l’organizzazione no profit “Sustainable Economy Association” le emissioni misurate possono essere compensate tramite progetti di piantumazione e riforestazione.
           </p>
         </div>

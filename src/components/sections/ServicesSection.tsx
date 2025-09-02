@@ -103,11 +103,11 @@ const ServicesSection = () => {
             <div className="mt-8 flex">
               <div className=" text-[#00338D] text-left pr-5 text-lg md:text-xl font-light mb-4">Per saperne di più sulla nostra organizzazione</div>
               <Button
-                className="text-white px-8 py-3 rounded-xl shadow-lg font-semibold tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors"
+                className="text-white px-8 py-3 rounded-xl shadow-lg font-regular tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors"
                 style={{ backgroundColor: '#FFAA00' }}
                 onClick={() => window.location.href = '/ermetes/impact'}
               >
-                CLICCA QUI
+                Clicca qui
               </Button>
             </div>
           </div>
