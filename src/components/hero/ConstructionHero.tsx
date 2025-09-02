@@ -21,7 +21,7 @@ const ConstructionHero = () => {
 
   return (
     <>
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <section id="hero" className="mt-10 py-12 md:py-0 bg-background relative md:min-h-screen md:mt-0 flex items-center justify-center overflow-hidden bg-background">
         {/* YouTube Video Background */}
         <div className="absolute inset-0 z-0">
           <iframe
@@ -38,7 +38,7 @@ const ConstructionHero = () => {
               minWidth: '100vw',
               width: '100%',
               // Responsive overrides
-              ...(window.innerWidth <= 768 ? { width: '400%', marginLeft: '-60px' } : {}),
+              ...(window.innerWidth <= 768 ? { width: '310%', marginLeft: '-60px' } : {}),
             }}
           />
           <div className="absolute inset-0 bg-black/20" />
@@ -60,8 +60,8 @@ const ConstructionHero = () => {
           </div>
         </div>
 
-        <div className="relative max-w-7xl md:px-4 lg:px-8 lg:pr-0 pt-40 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-12 items-center min-h-[80vh]">
+        <div className="relative max-w-7xl md:px-4 lg:px-8 lg:pr-0 lg:pt-40 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-12 items-center">
             {/* Left Column - InlineQuoteForm (order first on mobile, second on desktop) */}
             <div className="order-2 lg:order-1 w-full">
               <div className={`transform transition-all duration-700 delay-300 ${
@@ -74,7 +74,7 @@ const ConstructionHero = () => {
             <div className="order-3 lg:order-2 w-full flex flex-col items-start">
               <div className="w-full lg:w-[90%] px-4 flex flex-col items-start">
                 <h1 
-                  className={`text-4xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 text-left mb-2 lg:mb-4 ${
+                  className={`text-4xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 mt-4 md:mt-0 text-left mb-2 lg:mb-4 ${
                     loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                 >

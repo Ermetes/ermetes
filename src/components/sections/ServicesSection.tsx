@@ -80,36 +80,34 @@ const ServicesSection = () => {
           </div>
         )}
         {/* Left: Text */}
-        <div className="relative z-10 flex-1 flex flex-col justify-start items-start px-6 md:px-16 lg:pt-0 lg:pr-0 bg-transparent text-justify">
+        <div className="relative z-10 flex-1 flex flex-col justify-start items-start px-4 md:px-16 lg:pt-0 lg:pr-0 bg-transparent text-justify">
           <div className="md:mb-8 w-full flex flex-col items-center justify-start font-extralight" ref={blockRef}>
             <div className="max-w-2xl w-full">
-              <h3 className="text-4xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg">Il nome e la storia</h3>
-              <p className="font-medium text-xl mb-4 text-[#00338D] w-full">Ermetes è una cooperativa sociale a mutualità prevalente, specializzata in manutenzioni, edilizia residenziale e servizi connessi.</p>
+              <h3 className="text-4xl md:text-4xl font-light mb-4 mt-2 text-[#00338D] drop-shadow-lg">Il nome e la storia</h3>
+              <p className="font-normal text-left text-xl mb-2 text-[#00338D] w-full">Ermetes è una cooperativa sociale a mutualità prevalente, specializzata in manutenzioni, edilizia residenziale e servizi connessi.</p>
             </div>
-            <div className="text-gray-800 text-justify text-lg leading-relaxed text-left w-full max-w-2xl">
-              <p className="mb-4 text-justify">Il nome si ispira ad Ermete Trismegisto, leggendario alchimista antico che, secondo la tradizione, aveva scoperto e trascritto la formula per la trasformazione del piombo in oro.</p>
-              <p className="mb-4 text-justify">I numerosi discepoli alchimisti che nel corso del medioevo interpretarono la formula in senso letterale ed eseguirono gli esperimenti di trasformazione con fine speculativo alla ricerca di oro e facile ricchezza andarono incontro a reazioni chimiche ed esplosioni trovando morte certa.</p>
-              <p className="mb-4 text-justify" ref={endRef}>I discepoli che invece la leggevano le formule con la giusta chiave di lettura spirituale, con etica e buon animo, scoprivano insegnamenti molto più profondi. La vera trasformazione non era quella dei metalli, ma quella dell’essere umano: il passaggio dal “piombo” della pesante vita quotidiana lontana dalla conoscenza all’“oro” della crescita spirituale, della saggezza e del bene comune.</p>
+            <div className="text-gray-800 text-justify [word-spacing:-1.5px] text-lg leading-relaxed text-left w-full max-w-2xl">
+              <p className="mb-2 text-justify">Il nome si ispira ad Ermete Trismegisto, leggendario alchimista antico che, secondo la tradizione, aveva scoperto e trascritto la formula per la trasformazione del piombo in oro.</p>
+              <p className="mb-2 text-justify">I numerosi discepoli alchimisti che nel corso del medioevo interpretarono la formula in senso letterale ed eseguirono gli esperimenti di trasformazione con fine speculativo alla ricerca di oro e facile ricchezza andarono incontro a reazioni chimiche ed esplosioni trovando morte certa.</p>
+              <p className="mb-2 text-justify" ref={endRef}>I discepoli che invece la leggevano le formule con la giusta chiave di lettura spirituale, con etica e buon animo, scoprivano insegnamenti molto più profondi. La vera trasformazione non era quella dei metalli, ma quella dell’essere umano: il passaggio dal “piombo” della pesante vita quotidiana lontana dalla conoscenza all’“oro” della crescita spirituale, della saggezza e del bene comune.</p>
             </div>
           </div>
         </div>
         {/* Right: Second column with text block */}
-        <div className="relative z-10 flex-1 flex flex-col justify-start items-center px-6 md:px-16 md:pl-8 py-12 pt-0 bg-transparent text-justify">
+        <div className="relative z-10 flex-1 flex flex-col justify-start items-center px-4 md:px-16 md:pl-8 py-12 pt-0 bg-transparent text-justify">
           <div className="w-full max-w-3xl mx-auto text-justify">
-            <h2 className="mt-1 text-4xl md:text-4xl text-left font-light mb-6 text-[#00338D] drop-shadow-lg">La missione di Ermetes</h2>
-            <p className="text-gray-800 text-lg leading-relaxed text-justify w-full font-extralight mb-4">La cooperativa ERMETES nasce proprio da questa visione: un percorso di trasformazione del “piombo” delle difficoltà quotidiane, all’“oro” di un gruppo coeso che condivide valori comuni generano benessere per gli individui e per la comunità.</p>
-            <p className="text-gray-800 text-lg leading-relaxed text-justify w-full font-extralight mb-4">Come l’alchimia ermetica trasmuta l’essere umano, così la nostra cooperativa aspira a trasformare le difficoltà quotidiane in opportunità di sviluppo e benessere collettivo.</p>
-            <p className="text-gray-800 text-lg leading-relaxed text-justify w-full font-extralight mb-4">Come ci insegna la storia di Ermete dunque se le opportunità vengono colte dai soci con etica e spirito costruttivo, si genera valore, soddisfazione e crescita per tutti. Se invece prevale lo spirito speculativo egoistico di pochi non ci potranno essere buoni frutti.</p>
-            <div className="mt-8 flex">
-              <div className="text-gray-800 text-lg leading-relaxed text-justify w-full font-extralight mb-4">Per saperne di più sulla nostra organizzazione</div>
-              <Button
-                className="text-white px-8 py-3 rounded-xl shadow-lg font-regular tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors"
-                style={{ backgroundColor: '#FFAA00' }}
-                onClick={() => window.location.href = '/ermetes/impact'}
-              >
-                Clicca qui
-              </Button>
-            </div>
+            <h2 className="mt-2 text-4xl md:text-4xl text-left font-light mb-2 text-[#00338D] drop-shadow-lg">La missione di Ermetes</h2>
+            <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">La cooperativa ERMETES nasce proprio da questa visione: un percorso di trasformazione del “piombo” delle difficoltà quotidiane, all’“oro” di un gruppo coeso che condivide valori comuni generano benessere per gli individui e per la comunità.</p>
+            <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Come l’alchimia ermetica trasmuta l’essere umano, così la nostra cooperativa aspira a trasformare le difficoltà quotidiane in opportunità di sviluppo e benessere collettivo.</p>
+            <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Come ci insegna la storia di Ermete dunque se le opportunità vengono colte dai soci con etica e spirito costruttivo, si genera valore, soddisfazione e crescita per tutti. Se invece prevale lo spirito speculativo egoistico di pochi non ci potranno essere buoni frutti.</p>
+            <div className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Per saperne di più sulla nostra organizzazione</div>
+            <Button
+              className="text-white px-8 py-3 rounded-xl shadow-lg font-regular tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors"
+              style={{ backgroundColor: '#FFAA00' }}
+              onClick={() => window.location.href = '/ermetes/impact'}
+            >
+              Clicca qui
+            </Button>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
             <h1 className="text-4xl md:text-5xl font-editorial text-foreground text-center mb-8">
               Privacy Policy
             </h1>
-            <div className="bg-card rounded-3xl shadow-lg p-4 md:p-8 text-justify text-base text-muted-foreground overflow-x-auto" style={{whiteSpace: 'pre-line'}}>
+            <div className="bg-card rounded-3xl shadow-lg p-4 md:p-8 text-justify [word-spacing:-1.5px] text-base text-muted-foreground overflow-x-auto" style={{whiteSpace: 'pre-line'}}>
               {`
 1. Premessa
 In ottemperanza degli obblighi derivanti dal Regolamento (UE) n. 2016/679 del Parlamento Europeo e della legislazione nazionale vigente, ERMETES SOCIETA’ COOPERATIVA SOCIALE rispetta e tutela i dati personali dei visitatori e degli utenti del sito internet www.ermetes.it.

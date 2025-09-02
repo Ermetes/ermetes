@@ -18,8 +18,8 @@ const WorkWithUs = () => {
     <section>
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-[#117eac] to-[#73c2e3] py-8 md:py-16">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h3 className="text-3xl font-light text-white mb-6">
+        <div className="max-w-4xl mx-auto text-left px-4 lg:px-8 text-center">
+          <h3 className="text-3xl font-light text-white mb-4">
             {content.services.ctaTitle}
           </h3>
           <Button
