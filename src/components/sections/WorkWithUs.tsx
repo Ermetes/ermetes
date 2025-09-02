@@ -17,17 +17,17 @@ const WorkWithUs = () => {
   return (
     <section>
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-[#00338D] to-[#0066CC] py-16">
+      <div className="bg-gradient-to-r from-[#117eac] to-[#73c2e3] py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h3 className="text-3xl font-light text-white mb-6">
             {content.services.ctaTitle}
           </h3>
           <Button
             className="mt-2 text-white px-6 py-2 rounded-lg shadow"
-            style={{ backgroundColor: '#FFAA00' }}
+            style={{ backgroundColor: '#fdac08ff' }}
             onClick={() => window.location.href = '/ermetes/candidatura'}
           >
-            Contact us
+            Contattaci
           </Button>
           {/* Removed modal trigger button for quote request */}
         </div>

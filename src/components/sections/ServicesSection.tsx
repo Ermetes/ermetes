@@ -101,7 +101,7 @@ const ServicesSection = () => {
             <p className="text-gray-800 text-lg md:text-xl font-extralight leading-relaxed mb-4">Come l’alchimia ermetica trasmuta l’essere umano, così la nostra cooperativa aspira a trasformare le difficoltà quotidiane in opportunità di sviluppo e benessere collettivo.</p>
             <p className="text-gray-800 text-lg md:text-xl font-extralight leading-relaxed mb-4">Come ci insegna la storia di Ermete dunque se le opportunità vengono colte dai soci con etica e spirito costruttivo, si genera valore, soddisfazione e crescita per tutti. Se invece prevale lo spirito speculativo egoistico di pochi non ci potranno essere buoni frutti.</p>
             <div className="mt-8 flex">
-              <div className=" text-[#00338D] pr-5 text-lg md:text-xl font-light mb-4">Per saperne di più sulla nostra organizzazione</div>
+              <div className=" text-[#00338D] text-left pr-5 text-lg md:text-xl font-light mb-4">Per saperne di più sulla nostra organizzazione</div>
               <Button
                 className="text-white px-8 py-3 rounded-xl shadow-lg font-semibold tracking-wide text-lg hover:bg-[#FFAA00]/80 transition-colors"
                 style={{ backgroundColor: '#FFAA00' }}

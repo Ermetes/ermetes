@@ -6,7 +6,7 @@ const Footer = () => {
   const { content } = useLanguage();
 
   return (
-    <footer className="bg-[#00338D] text-background py-16" id="contact">
+    <footer className="bg-[#03325a] text-background py-16" id="contact">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Company Info */}
