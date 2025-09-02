@@ -38,7 +38,7 @@ const ConstructionHero = () => {
               minWidth: '100vw',
               width: '100%',
               // Responsive overrides
-              ...(window.innerWidth <= 768 ? { width: '370%', marginLeft: '-60px' } : {}),
+              ...(window.innerWidth <= 768 ? { width: '370%', height: '110%', marginLeft: '-190px', marginTop: '-10px' } : {}),
             }}
           />
           <div className="absolute inset-0 bg-black/20" />
