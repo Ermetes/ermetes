@@ -72,7 +72,7 @@ const ConstructionHero = () => {
             </div>
             {/* Right Column - Hero Title and Subtitle (order second on mobile, first on desktop) */}
             <div className="order-3 lg:order-2 w-full flex flex-col items-start">
-              <div className="w-full lg:w-[90%] flex flex-col items-start">
+              <div className="w-full lg:w-[90%] px-4 flex flex-col items-start">
                 <h1 
                   className={`text-4xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 text-left mb-2 lg:mb-4 ${
                     loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
