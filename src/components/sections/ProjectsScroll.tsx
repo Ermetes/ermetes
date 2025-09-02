@@ -317,6 +317,26 @@ const ProjectsScroll = () => {
                               className="h-full w-full object-cover select-none pointer-events-none"
                               draggable={false}
                             />
+                            {images.length > 1 && (
+                              <>
+                                <button
+                                  onClick={() => setActiveIndex(i => (i - 1 + filteredProjects.length) % filteredProjects.length)}
+                                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden"
+                                  tabIndex={0}
+                                  aria-label="Previous Project"
+                                >
+                                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+                                </button>
+                                <button
+                                  onClick={() => setActiveIndex(i => (i + 1) % filteredProjects.length)}
+                                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10 sm:hidden"
+                                  tabIndex={0}
+                                  aria-label="Next Project"
+                                >
+                                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                                </button>
+                              </>
+                            )}
                           </div>
                         );
                       }
