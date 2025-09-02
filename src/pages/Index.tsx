@@ -43,11 +43,11 @@ const Index = () => {
         <div ref={heroRef}>
           <ConstructionHero />
         </div>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="w-full px-0 py-12 md:py-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-8 text-[#00338D] text-left drop-shadow-lg w-full">Perchè affidarci un nuovo lavoro?</h2>
-            <p className="font-bold text-xl mb-4 text-[#00338D] text-left w-full">In un settore ricco di insidie il team ERMETES ci tiene a distinguersi per correttezza e rapidità.</p>
-            <p className="text-gray-800 text-lg leading-relaxed text-justify w-full">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+          <div className="w-full px-0 md:py-16">
+            <h2 className="text-4xl md:text-5xl font-light mb-4 md:mb-8 text-[#00338D] text-left drop-shadow-lg w-full">Perchè affidarci un nuovo lavoro?</h2>
+            <p className="font-bold text-xl font-medium mb-4 text-[#00338D] text-left w-full">In un settore ricco di insidie il team ERMETES ci tiene a distinguersi per correttezza e rapidità.</p>
+            <p className="text-gray-800 text-lg leading-relaxed text-justify w-full font-extralight">
               Garantisce sopralluoghi e preventivi in tempi certi, propone prezzi chiari senza sorprese, pianifica con precisione i tempi d'intervento e condivide anche quotidianamente gli avanzamenti lavori in cloud con i committenti più ansiosi. Instauraf in da subito un rapporto di dialogo e fiducia. Se richiesto da clienti industriali o enti pubblici ERMETES sa rispettare specifici standard ambientali, gestire la tracciabilità di filiera con materiali sostenibili e condividere la contabilità emissiva misurata in "Co2eq" di commessa.
             </p>
           </div>

@@ -255,7 +255,7 @@ const ProjectsScroll = () => {
       <div className="bg-background sm:py-2 lg:sticky top-16 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center sm:mb-4 md:mb-6">
-            <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-2 mt-4">
+            <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-4 mt-8">
               {projectsScroll?.title || 'Our Projects'}
             </h2>
           </div>
@@ -291,7 +291,7 @@ const ProjectsScroll = () => {
         </div>
       </div>
       {/* Vertical Carousel */}
-      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex flex-col items-center justify-center" ref={containerRef}>
+      <div className="relative bg-gradient-to-b from-background/90 to-muted/50 flex flex-col items-center justify-center" ref={containerRef}>
         <div className="flex flex-col items-center w-full max-w-4xl mx-auto py-8 relative">
           {/* Project Panel (only active) */}
           {filteredProjects.length > 0 && filteredProjects[activeIndex] && (

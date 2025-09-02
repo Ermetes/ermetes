@@ -57,11 +57,11 @@ const SustainabilitySection = () => {
       </div>
       {/* Mobile heading only */}
       <div className="sm:hidden w-full flex justify-center items-center" style={{ height: '80px' }}>
-        <h3 className="text-2xl font-light text-[#3a4a5a] leading-tight z-10 text-center px-4" style={{marginTop: '24px'}}>
+        <h3 className="text-3xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg px-4 pt-8" style={{marginTop: '24px'}}>
           Un occhio di riguardo all'ambiente e alla sostenibilità
         </h3>
       </div>
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row items-center gap-12 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 lg:px-8 md:py-16 flex flex-col lg:flex-row items-center gap-12 relative z-10">
         <div className="flex-1 flex flex-col justify-center">
           {/* Heading moved above in curved SVG */}
           <p className="text-gray-700 text-justify font-light mb-6 leading-relaxed text-lg">
