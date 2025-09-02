@@ -83,7 +83,7 @@ const ServicesSection = () => {
         <div className="relative z-10 flex-1 flex flex-col justify-start items-start px-6 md:px-16 lg:pt-0 lg:pr-0 bg-transparent text-justify">
           <div className="md:mb-8 w-full flex flex-col items-center justify-start font-extralight" ref={blockRef}>
             <div className="max-w-2xl w-full">
-              <h3 className="text-4xl md:text-5xl font-light mb-4 lg:mb-8 text-[#00338D] drop-shadow-lg w-full">Il nome e la storia</h3>
+              <h3 className="text-4xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg">Il nome e la storia</h3>
               <p className="font-medium text-xl mb-4 text-[#00338D] w-full">Ermetes è una cooperativa sociale a mutualità prevalente, specializzata in manutenzioni, edilizia residenziale e servizi connessi.</p>
             </div>
             <div className="text-gray-800 text-justify text-lg leading-relaxed text-left w-full max-w-2xl">
@@ -96,7 +96,7 @@ const ServicesSection = () => {
         {/* Right: Second column with text block */}
         <div className="relative z-10 flex-1 flex flex-col justify-start items-center px-6 md:px-16 md:pl-8 py-12 pt-0 bg-transparent text-justify">
           <div className="w-full max-w-3xl mx-auto text-justify">
-            <h2 className="text-3xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg">La missione di Ermetes</h2>
+            <h2 className="mt-1text-4xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg">La missione di Ermetes</h2>
             <p className="text-gray-800 text-lg md:text-xl font-extralight leading-relaxed mb-4">La cooperativa ERMETES nasce proprio da questa visione: un percorso di trasformazione del “piombo” delle difficoltà quotidiane, all’“oro” di un gruppo coeso che condivide valori comuni generano benessere per gli individui e per la comunità.</p>
             <p className="text-gray-800 text-lg md:text-xl font-extralight leading-relaxed mb-4">Come l’alchimia ermetica trasmuta l’essere umano, così la nostra cooperativa aspira a trasformare le difficoltà quotidiane in opportunità di sviluppo e benessere collettivo.</p>
             <p className="text-gray-800 text-lg md:text-xl font-extralight leading-relaxed mb-4">Come ci insegna la storia di Ermete dunque se le opportunità vengono colte dai soci con etica e spirito costruttivo, si genera valore, soddisfazione e crescita per tutti. Se invece prevale lo spirito speculativo egoistico di pochi non ci potranno essere buoni frutti.</p>

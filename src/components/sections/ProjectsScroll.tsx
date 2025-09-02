@@ -255,7 +255,7 @@ const ProjectsScroll = () => {
       <div className="bg-background sm:py-2 lg:sticky top-16 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center sm:mb-4 md:mb-6">
-            <h2 className="text-2xl sm:text-3xl font-light text-foreground mb-4 mt-8">
+            <h2 className="text-4xl md:text-4xl font-light mb-6 mt-8 text-[#00338D] drop-shadow-lg ">
               {projectsScroll?.title || 'Our Projects'}
             </h2>
           </div>
