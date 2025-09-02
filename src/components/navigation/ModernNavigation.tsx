@@ -77,14 +77,15 @@ const ModernNavigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 dm-sans-light bg-white/95 backdrop-blur-md shadow-sm border-b border-border/10`}
     >
-      <div className="container mx-auto px-4">
+      <div className="md:container mx-auto md:px-4 mt-2">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img 
               src="https://ermetes.github.io/ermetes/assets/logo.png" 
               alt="Ermetes Multiservizi" 
-              className="h-12 w-auto"
+              className="w-auto"
+              style={{ height: '56px', paddingLeft: '0px'}}
             />
           </div>
 
