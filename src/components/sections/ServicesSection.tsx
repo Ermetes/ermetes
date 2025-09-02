@@ -51,7 +51,7 @@ const ServicesSection = () => {
       if (!blockRef.current || !endRef.current) return;
       const blockRect = blockRef.current.getBoundingClientRect();
       const endRect = endRef.current.getBoundingClientRect();
-      const topTrigger = window.innerHeight * 0.1 + 200;
+      const topTrigger = window.innerHeight * 0.1 + 100;
       // Show bg if block is above 10% from top and endRef is still visible
       if (blockRect.top < topTrigger && endRect.bottom > topTrigger) {
         setShowBg(true);
@@ -71,12 +71,12 @@ const ServicesSection = () => {
         {showBg && (
           <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
             <img
-              src="./assets/Hermes_Trismegistus.jpg"
+              src="./ermetes/assets/Hermes_Trismegistus.jpg"
               alt="Mercurius Trismegistus engraving"
-              className="w-full h-full object-cover opacity-30"
+              className="w-full h-full object-cover opacity-40"
               style={{ filter: 'grayscale(0.2) blur(0.5px)', objectPosition: 'top' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/40 to-white/40" />
           </div>
         )}
         {/* Left: Text */}
