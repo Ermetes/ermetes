@@ -60,50 +60,37 @@ const ConstructionHero = () => {
           </div>
         </div>
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-0 pt-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-            
-            {/* Left Column - Text Content (wider on large screens) */}
-            <div className="space-y-8 text-white lg:col-span-1 lg:w-[125%]">
-              <h1 
-                className={`text-5xl sm:text-6xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 ${
-                  loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ')[0]}</span>
-                <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(1, 2).join(' ')}</span>
-                <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(2).join(' ')}</span>
-              </h1>
-
-              {/* Subtitle */}
-              <p 
-                className={`text-xl sm:text-2xl text-white/90 max-w-2xl leading-relaxed drop-shadow font-light transform transition-all duration-700 delay-200 ${
-                  loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              >
-                {content.hero.subtitle}
-              </p>
-
-              {/* Inline Quote Form */}
+        <div className="relative max-w-7xl md:px-4 lg:px-8 lg:pr-0 pt-40 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-12 items-center min-h-[80vh]">
+            {/* Left Column - InlineQuoteForm (order first on mobile, second on desktop) */}
+            <div className="order-2 lg:order-1 w-full">
               <div className={`transform transition-all duration-700 delay-300 ${
                 loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
                 <InlineQuoteForm />
               </div>
-
-              {/* CTA Button */}
-              {/* Project CTA Button */}
-              <div className={`flex items-start transform transition-all duration-700 delay-400 ${
-                loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}>
-              </div>
             </div>
-
-            {/* Right Column - Empty space for better focus on form */}
-            <div className={`hidden lg:block transform transition-all duration-700 delay-400 ${
-              loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-            } lg:col-span-1 lg:w-[30%]`}>
-              {/* Empty space or could add additional visual elements */}
+            {/* Right Column - Hero Title and Subtitle (order second on mobile, first on desktop) */}
+            <div className="order-3 lg:order-2 w-full flex flex-col items-start">
+              <div className="w-full lg:w-[90%] flex flex-col items-start">
+                <h1 
+                  className={`text-4xl md:text-6xl font-light leading-tight transform transition-all duration-700 delay-100 text-left mb-2 lg:mb-4 ${
+                    loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
+                >
+                  <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ')[0]}</span>
+                  <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(1, 2).join(' ')}</span>
+                  <span className="block text-white drop-shadow-lg">{content.hero.title.split(' ').slice(2).join(' ')}</span>
+                </h1>
+                {/* Subtitle */}
+                <p 
+                  className={`text-xl sm:text-2xl text-white/90 max-w-2xl leading-relaxed drop-shadow font-light transform transition-all duration-700 delay-200 text-left ${
+                    loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
+                >
+                  {content.hero.subtitle}
+                </p>
+              </div>
             </div>
           </div>
         </div>

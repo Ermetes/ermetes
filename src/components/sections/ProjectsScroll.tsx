@@ -365,18 +365,18 @@ const ProjectsScroll = () => {
                           {images.length > 1 && (
                             <>
                               <button
-                                onClick={() => handleArrow(activeIndex, 'left', images.length)}
+                                onClick={() => setActiveIndex(i => (i - 1 + filteredProjects.length) % filteredProjects.length)}
                                 className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
-                                aria-label="Previous"
+                                aria-label="Previous Project"
                               >
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                               </button>
                               <button
-                                onClick={() => handleArrow(activeIndex, 'right', images.length)}
+                                onClick={() => setActiveIndex(i => (i + 1) % filteredProjects.length)}
                                 className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
-                                aria-label="Next"
+                                aria-label="Next Project"
                               >
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                               </button>
@@ -413,16 +413,7 @@ const ProjectsScroll = () => {
               </div>
             </div>
           )}
-          {/* Down Arrow */}
-          <button
-            onClick={() => setActiveIndex(i => (i + 1) % filteredProjects.length)}
-            className="absolute left-1/2 -translate-x-1/2 -bottom-2 z-10 bg-white/80 hover:bg-primary/80 text-primary rounded-full p-2 shadow-lg border border-primary/30 transition disabled:opacity-40"
-            disabled={filteredProjects.length <= 1}
-            aria-label="Next project"
-            style={{bottom: 0}}
-          >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
-          </button>
+          {/* Removed Down Arrow, navigation is now handled by left/right arrows above */}
         </div>
       </div>
     </section>
