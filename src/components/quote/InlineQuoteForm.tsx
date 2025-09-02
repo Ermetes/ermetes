@@ -522,7 +522,7 @@ const InlineQuoteForm = () => {
           </CardHeader>
           <CardContent className="px-4 pb-3 pt-1">
             <div className="text-white">{renderStep(true)}</div>
-            <div className="flex flex-row justify-between items-center mt-4 gap-2">
+            <div className="flex flex-row justify-center items-center justify-center mt-4 gap-2">
               {/* Back button, only show if not on first step */}
               {currentStep > 1 && (
                 <Button
@@ -534,7 +534,7 @@ const InlineQuoteForm = () => {
                   Indietro
                 </Button>
               )}
-              <div className="ml-auto">
+              <div>
                 {currentStep < 3 ? (
                   <Button
                     onClick={handleNext}
