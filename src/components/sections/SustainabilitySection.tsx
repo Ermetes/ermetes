@@ -71,7 +71,7 @@ const SustainabilitySection = () => {
             Grazie alla partnership con l’organizzazione no profit “Sustainable Economy Association” le emissioni misurate possono essere compensate tramite progetti di piantumazione e riforestazione.
           </p>
         </div>
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex-1 flex justify-center items-center w-full">
           <img
             src="./assets/sito-ermetes.jpg"
             alt="Sustainability"
