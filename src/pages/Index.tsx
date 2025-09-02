@@ -54,20 +54,6 @@ const Index = () => {
         </section>
         
         <ServicesSection />
-        <section className="w-full flex justify-center items-center relative overflow-hidden">
-          {/* Banner background image, only for this section, hidden if hero is visible */}
-          {showBannerBg && (
-            <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-              <img
-                src="./assets/Hermes_Trismegistus.jpg"
-                alt="Mercurius Trismegistus engraving"
-                className="fixed top-0 left-0 w-full h-full object-cover opacity-20 pointer-events-none"
-                style={{ filter: 'grayscale(0.2) blur(0.5px)', objectPosition: 'top', zIndex: 0 }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/60" />
-            </div>
-          )}
-        </section>
         {/* Team Photo Section */}
         <section className="w-full relative flex justify-center items-center py-0" style={{ minHeight: '320px' }}>
           {/* Main team photo */}
