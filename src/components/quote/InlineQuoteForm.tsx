@@ -319,7 +319,7 @@ const InlineQuoteForm = () => {
                 onClick={() => setShowFileInputs((v) => !v)}
               >
                 <Image className="h-5 w-5" />
-                Allega documenti
+                Allega documenti (Opzionale)
               </Button>
 
                 {/* Show file inputs: visible on desktop, toggled on mobile */}
