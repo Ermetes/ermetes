@@ -56,8 +56,8 @@ const SustainabilitySection = () => {
         </div>
       </div>
       {/* Mobile heading only */}
-      <div className="sm:hidden w-full flex justify-center items-center" style={{ height: '80px' }}>
-        <h3 className="text-3xl md:text-4xl font-light mb-6 text-[#00338D] drop-shadow-lg px-4 pt-8" style={{marginTop: '24px'}}>
+      <div className="sm:hidden w-full flex justify-center items-center">
+        <h3 className="text-3xl md:text-4xl font-light md:mb-6 text-[#00338D] drop-shadow-lg px-4 pt-8" style={{marginTop: '24px'}}>
           Un occhio di riguardo all'ambiente e alla sostenibilità
         </h3>
       </div>

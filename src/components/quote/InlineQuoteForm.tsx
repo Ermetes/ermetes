@@ -572,7 +572,7 @@ const InlineQuoteForm = () => {
   const progress = (currentStep / 3) * 100;
 
   return (
-  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg bg-white">
+  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg">
       {showConfirmation ? (
         <div className="flex flex-col items-center justify-center py-8 bg-white">
           <CheckCircle className="h-16 w-16 text-green-500 mb-2" />

@@ -297,7 +297,7 @@ const ProjectsScroll = () => {
           {filteredProjects.length > 0 && filteredProjects[activeIndex] && (
             <div
               key={filteredProjects[activeIndex].title}
-              className="flex flex-col md:flex-row items-center min-h-[60vh] w-full transition-all duration-500"
+              className="flex flex-col md:flex-row items-center min-h-[20vh] w-full transition-all duration-500"
             >
               <div className="w-full max-w-5xl ml-0 md:ml-8 flex flex-row items-stretch">
                 <div className="w-full max-w-6xl flex flex-col justify-between">
