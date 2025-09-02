@@ -269,16 +269,16 @@ const InlineQuoteForm = () => {
     }
   };
 
-  const renderStep = () => {
+  const renderStep = (compact?: boolean) => {
     switch (currentStep) {
       case 1:
         return (
           <div className="space-y-4">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1">
-                <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.projectType} *</label>
+                <label className="block text-sm font-medium text-white mb-2">{content.quote.form.projectType} *</label>
                 <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
-                  <SelectTrigger className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500">
+                  <SelectTrigger className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-neutral-500 focus:ring-2 focus:ring-[#ffaa00]">
                   {/* @ts-ignore */}
                     <SelectValue placeholder={content.quote.form.projectType_placeholder} />
                   </SelectTrigger>
@@ -290,25 +290,25 @@ const InlineQuoteForm = () => {
                 </Select>
               </div>
               <div className="flex-1">
-                <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.address} *</label>
+                <label className="block text-sm font-medium text-white mb-2">{content.quote.form.address} *</label>
                 <Input
                   type="text"
                    // @ts-ignore
                   placeholder={content.quote.form.address_placeholder}
                   value={formData.address}
                   onChange={(e) => handleInputChange('address', e.target.value)}
-                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                  className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-neutral-500 focus:ring-2 focus:ring-[#ffaa00]"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.description} *</label>
+              <label className="block text-sm font-medium text-white mb-2">{content.quote.form.description} *</label>
               <Textarea
               // @ts-ignore
                 placeholder={content.quote.form.description_placeholder}
                 value={formData.projectDetails}
                 onChange={(e) => handleInputChange('projectDetails', e.target.value)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500 min-h-[100px]"
+                className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md border-2 border-[#ffaa00] text-white placeholder:text-neutral-500 min-h-[60px] focus:ring-2 focus:ring-[#ffaa00]"
               />
             </div>
             {/* Improved file upload UX for mobile */}
@@ -325,22 +325,28 @@ const InlineQuoteForm = () => {
               {showFileInputs && (
                 <div className="grid grid-cols-1 gap-4 mt-2">
                   <div>
-                    <label className="block text-sm font-medium text-neutral-900 mb-2">Carica immagini</label>
-                    <Input
-                      type="file"
-                      multiple
-                      accept="image/*"
-                      onChange={(e) => {
-                        const files = e.target.files ? Array.from(e.target.files) : [];
-                        if (files.length > 0) {
-                          setFormData(prev => {
-                            const newImages = [...files, ...prev.images];
-                            return { ...prev, images: newImages };
-                          });
-                        }
-                      }}
-                      className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-                    />
+                    <label className="block text-sm font-medium text-white mb-2">Carica immagini</label>
+                    <label className="flex items-center gap-2 cursor-pointer group">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#ffaa00]/20 group-hover:bg-[#ffaa00]/40 transition">
+                        <Image className="h-6 w-6 text-[#ffaa00]" />
+                      </span>
+                      <span className="text-xs text-[#ffaa00] group-hover:underline">Carica immagini</span>
+                      <Input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={(e) => {
+                          const files = e.target.files ? Array.from(e.target.files) : [];
+                          if (files.length > 0) {
+                            setFormData(prev => {
+                              const newImages = [...files, ...prev.images];
+                              return { ...prev, images: newImages };
+                            });
+                          }
+                        }}
+                        className="hidden"
+                      />
+                    </label>
                     {/* Show selected images */}
                     {formData.images && formData.images.length > 0 && (
                       <ul className="mt-2 text-xs text-neutral-700">
@@ -356,33 +362,43 @@ const InlineQuoteForm = () => {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
-                    <Input
-                      type="file"
-                      accept=".pdf,.doc,.docx,.zip,.rar"
-                      onChange={(e) => {
-                        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-                        setFormData(prev => ({ ...prev, projectFile: file }));
-                        // Do NOT call sendStepData here
-                      }}
-                      className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-                    />
+                    <label className="block text-sm font-medium text-white mb-2">Carica il progetto</label>
+                    <label className="flex items-center gap-2 cursor-pointer group">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#ffaa00]/20 group-hover:bg-[#ffaa00]/40 transition">
+                        <FileText className="h-6 w-6 text-[#ffaa00]" />
+                      </span>
+                      <span className="text-xs text-[#ffaa00] group-hover:underline">Carica il progetto</span>
+                      <Input
+                        type="file"
+                        accept=".pdf,.doc,.docx,.zip,.rar"
+                        onChange={(e) => {
+                          const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                          setFormData(prev => ({ ...prev, projectFile: file }));
+                        }}
+                        className="hidden"
+                      />
+                    </label>
                     {formData.projectFile && (
                       <div className="mt-2 text-xs text-neutral-700">{formData.projectFile.name}</div>
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo</label>
-                    <Input
-                      type="file"
-                      accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
-                      onChange={(e) => {
-                        const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-                        setFormData(prev => ({ ...prev, metricFile: file }));
-                        // Do NOT call sendStepData here
-                      }}
-                      className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
-                    />
+                    <label className="block text-sm font-medium text-white mb-2">Carica il computo</label>
+                    <label className="flex items-center gap-2 cursor-pointer group">
+                      <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#ffaa00]/20 group-hover:bg-[#ffaa00]/40 transition">
+                        <Calculator className="h-6 w-6 text-[#ffaa00]" />
+                      </span>
+                      <span className="text-xs text-[#ffaa00] group-hover:underline">Carica il computo</span>
+                      <Input
+                        type="file"
+                        accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
+                        onChange={(e) => {
+                          const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+                          setFormData(prev => ({ ...prev, metricFile: file }));
+                        }}
+                        className="hidden"
+                      />
+                    </label>
                     {formData.metricFile && (
                       <div className="mt-2 text-xs text-neutral-700">{formData.metricFile.name}</div>
                     )}
@@ -393,7 +409,7 @@ const InlineQuoteForm = () => {
             {/* Desktop: show file inputs as before */}
             <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium text-neutral-900 mb-2">Carica immagini</label>
+                <label className="block text-sm font-medium text-white mb-2">Carica immagini</label>
                 <Input
                   type="file"
                   multiple
@@ -413,7 +429,7 @@ const InlineQuoteForm = () => {
                       });
                     }
                   }}
-                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                  className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
                 />
                 {formData.images && formData.images.length > 0 && (
                   <ul className="mt-2 text-xs text-neutral-700">
@@ -429,7 +445,7 @@ const InlineQuoteForm = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il progetto</label>
+                <label className="block text-sm font-medium text-white mb-2">Carica il progetto</label>
                 <Input
                   type="file"
                   accept=".pdf,.doc,.docx,.zip,.rar"
@@ -438,14 +454,14 @@ const InlineQuoteForm = () => {
                     setFormData(prev => ({ ...prev, projectFile: file }));
                     // Do NOT call sendStepData here
                   }}
-                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                  className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
                 />
                 {formData.projectFile && (
                   <div className="mt-2 text-xs text-neutral-700">{formData.projectFile.name}</div>
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-900 mb-2">Carica il computo</label>
+                <label className="block text-sm font-medium text-white mb-2">Carica il computo</label>
                 <Input
                   type="file"
                   accept=".pdf,.xls,.xlsx,.csv,.zip,.rar"
@@ -454,7 +470,7 @@ const InlineQuoteForm = () => {
                     setFormData(prev => ({ ...prev, metricFile: file }));
                     // Do NOT call sendStepData here
                   }}
-                  className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                  className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
                 />
                 {formData.metricFile && (
                   <div className="mt-2 text-xs text-neutral-700">{formData.metricFile.name}</div>
@@ -467,42 +483,42 @@ const InlineQuoteForm = () => {
         return (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.name} *</label>
+              <label className="block text-sm font-medium text-white mb-2">{content.quote.form.name} *</label>
               <Input
                 type="text"
                 placeholder={content.quote.form.name}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.phone} *</label>
+              <label className="block text-sm font-medium text-white mb-2">{content.quote.form.phone} *</label>
               <Input
                 type="tel"
                 placeholder={content.quote.form.phone}
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.email} *</label>
+              <label className="block text-sm font-medium text-white mb-2">{content.quote.form.email} *</label>
               <Input
                 type="email"
                 placeholder={content.quote.form.email}
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-900 mb-2">{content.quote.form.message || 'Messaggio (Opzionale)'} </label>
+              <label className="block text-sm font-medium text-white mb-2">{content.quote.form.message || 'Messaggio (Opzionale)'} </label>
               <Textarea
                 placeholder={content.quote.form.message || 'Messaggio (Opzionale)'}
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
-                className="bg-white border-primary/30 text-neutral-900 placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-white placeholder:text-neutral-500"
               />
             </div>
           </div>
@@ -557,36 +573,36 @@ const InlineQuoteForm = () => {
   const progress = (currentStep / 3) * 100;
 
   return (
-    <Card className="bg-white border border-primary/20 shadow-lg">
+  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg">
       {showConfirmation ? (
-        <div className="flex flex-col items-center justify-center py-16">
-          <CheckCircle className="h-20 w-20 text-green-500 mb-4" />
-          <h3 className="text-2xl font-semibold text-primary mb-2">{content.quote.form.toast.successTitle}</h3>
-          <p className="text-lg text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
-          <p className="text-base text-primary/70 mt-4">Attendere prego, verrai reindirizzato...</p>
+        <div className="flex flex-col items-center justify-center py-8">
+          <CheckCircle className="h-16 w-16 text-green-500 mb-2" />
+          <h3 className="text-xl font-semibold text-primary mb-1">{content.quote.form.toast.successTitle}</h3>
+          <p className="text-base text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
+          <p className="text-sm text-primary/70 mt-2">Attendere prego, verrai reindirizzato...</p>
         </div>
       ) : (
         <>
-          <CardHeader className="pb-4">
+          <CardHeader className="pb-2 pt-3 px-4">
             <div className="flex items-center">
-              <CardTitle className="text-lg font-medium text-primary">{content.quote.title}</CardTitle>
+              <CardTitle className="text-base font-medium" style={{ color: '#ffaa00' }}>{content.quote.title}</CardTitle>
             </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm text-primary/70">
+            <div className="space-y-1">
+              <div className="flex items-center justify-between text-xs text-primary/70">
                 <span className="ml-auto text-right">{content.quote.form[`step${currentStep}`]}</span>
               </div>
-              <Progress value={progress} className="h-2 bg-primary/20" />
+              <Progress value={progress} className="h-1.5 bg-[#ffaa00]/30" />
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="text-neutral-900">{renderStep()}</div>
-            <div className="flex justify-between mt-6">
+          <CardContent className="px-4 pb-3 pt-1">
+            <div className="text-white">{renderStep(true)}</div>
+            <div className="flex flex-row justify-between items-center mt-4 gap-2">
               {/* Back button, only show if not on first step */}
               {currentStep > 1 && (
                 <Button
                   onClick={handlePrevious}
                   variant="outline"
-                  className="bg-transparent border-primary/30 text-primary hover:bg-primary/10"
+                  className="bg-transparent border-primary/30 text-primary hover:bg-primary/10 px-3 py-1.5 text-sm"
                 >
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Indietro
@@ -596,7 +612,7 @@ const InlineQuoteForm = () => {
                 {currentStep < 3 ? (
                   <Button
                     onClick={handleNext}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-1.5 text-sm"
                   >
                     {content.quote.form.next || 'Avanti'}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -604,7 +620,7 @@ const InlineQuoteForm = () => {
                 ) : (
                   <Button
                     onClick={handleSubmit}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-1.5 text-sm"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

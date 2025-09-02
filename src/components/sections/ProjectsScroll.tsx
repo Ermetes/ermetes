@@ -247,9 +247,10 @@ const ProjectsScroll = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [filteredProjects.length]);
 
+  // --- VERTICAL CAROUSEL UI ---
   return (
-  <section id="projects">
-      {/* Category Filter */}
+    <section id="projects">
+      {/* Category Filter (unchanged) */}
       <div className="bg-background sm:py-2 lg:sticky top-16 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center sm:mb-4 md:mb-6">
@@ -257,7 +258,6 @@ const ProjectsScroll = () => {
               {projectsScroll?.title || 'Our Projects'}
             </h2>
           </div>
-
           <div className="flex flex-nowrap overflow-x-auto gap-2 pb-2 md:flex-wrap md:overflow-x-visible md:pb-0 justify-center w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
             {categories.map((category) => (
               <Button
@@ -274,8 +274,7 @@ const ProjectsScroll = () => {
               </Button>
             ))}
           </div>
-
-          {/* Category Description */}
+          {/* Category Description (unchanged) */}
           <div className="text-center mt-2 mb-2">
             {normalize(selectedCategory) === "ristrutturazioni" && (
               <p className="text-muted-foreground text-base font-light max-w-2xl mx-auto">
@@ -290,37 +289,36 @@ const ProjectsScroll = () => {
           </div>
         </div>
       </div>
-
-      {/* Scrollable Projects - Center line and icons on the left, projects in a row */}
-      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex flex-col md:flex-row" ref={containerRef}>
-        {/* Center Line & Icons on the left (hidden on mobile) */}
-        <div className="hidden md:relative md:flex md:flex-col md:items-center md:py-12 md:px-2 md:w-32">
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-accent/60 to-primary/60" style={{left: '50%'}} />
-          <div className="sticky top-1/2 -translate-y-1/2">
-            <div className={`w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-2xl transition-all duration-500 transform shadow-xl border-4 border-background/80 border-primary`}>
-              {filteredProjects[activeIndex]?.icon}
-            </div>
-          </div>
-        </div>
-
-        {/* Project Panels: vertical stack on mobile, row on desktop */}
-        <div className="flex-1 flex flex-col">
-          {(showAll ? filteredProjects : filteredProjects.slice(0, 3)).map((project, index) => (
+      {/* Vertical Carousel */}
+      <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex flex-col items-center justify-center" ref={containerRef}>
+        <div className="flex flex-col items-center w-full max-w-4xl mx-auto py-8 relative">
+          {/* Up Arrow */}
+          <button
+            onClick={() => setActiveIndex(i => (i - 1 + filteredProjects.length) % filteredProjects.length)}
+            className="absolute left-1/2 -translate-x-1/2 -top-2 z-10 bg-white/80 hover:bg-primary/80 text-primary rounded-full p-2 shadow-lg border border-primary/30 transition disabled:opacity-40"
+            disabled={filteredProjects.length <= 1}
+            aria-label="Previous project"
+            style={{top: 0}}
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
+          </button>
+          {/* Project Panel (only active) */}
+          {filteredProjects.length > 0 && (
             <div
-              key={project.title}
-              className="flex flex-col md:flex-row items-center min-h-[10vh] md:min-h-[80vh] pb-4 md:pb-6"
+              key={filteredProjects[activeIndex].title}
+              className="flex flex-col md:flex-row items-center min-h-[60vh] w-full transition-all duration-500"
             >
               <div className="w-full max-w-5xl ml-0 md:ml-8 flex flex-row items-stretch">
                 <div className="w-full max-w-6xl flex flex-col justify-between">
-                  {/* Left: Image and summary */}
+                  {/* Image and summary (reuse existing code) */}
                   <div className="relative rounded-t-2xl md:rounded-l-xl rounded-r-xl overflow-visible md:overflow-hidden mx-1 lg:mx-0 group focus-within:z-10" tabIndex={0}>
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl${index === activeIndex ? '' : ' backdrop-blur-sm'}`} />
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl`} />
                     {(() => {
+                      const project = filteredProjects[activeIndex];
                       const folder = getFolderFromImagePath(project.image);
                       const images = (folder && Array.isArray(assetImages[folder])) ? assetImages[folder] : [];
-                      const idx = index;
                       if (isMobile) {
-                        const current = mobileCurrents[idx] || 0;
+                        const current = mobileCurrents[activeIndex] || 0;
                         return (
                           <div className="relative w-full h-[300px] overflow-hidden rounded-2xl">
                             <img
@@ -334,18 +332,18 @@ const ProjectsScroll = () => {
                       }
                       // Desktop
                       const filmImages = (images && images.length > 0) ? [...images, ...images] : [project.image];
-                      const offset = offsets[idx] || 0;
-                      const isPaused = paused[idx] || false;
+                      const offset = offsets[activeIndex] || 0;
+                      const isPaused = paused[activeIndex] || false;
                       return (
                         <div
                           className="relative w-full h-[600px] overflow-hidden rounded-2xl md:rounded-l-xl rounded-b-2xl"
-                          onMouseEnter={() => setPaused(prev => ({ ...prev, [idx]: true }))}
-                          onMouseLeave={() => setPaused(prev => ({ ...prev, [idx]: false }))}
-                          onFocus={() => setPaused(prev => ({ ...prev, [idx]: true }))}
-                          onBlur={() => setPaused(prev => ({ ...prev, [idx]: false }))}
+                          onMouseEnter={() => setPaused(prev => ({ ...prev, [activeIndex]: true }))}
+                          onMouseLeave={() => setPaused(prev => ({ ...prev, [activeIndex]: false }))}
+                          onFocus={() => setPaused(prev => ({ ...prev, [activeIndex]: true }))}
+                          onBlur={() => setPaused(prev => ({ ...prev, [activeIndex]: false }))}
                         >
                           <div
-                            ref={el => (containerRefs.current[idx] = el)}
+                            ref={el => (containerRefs.current[activeIndex] = el)}
                             className="flex h-full"
                             style={{
                               width: `${(filmImages.length / 2) * 100}%`,
@@ -367,7 +365,7 @@ const ProjectsScroll = () => {
                           {images.length > 1 && (
                             <>
                               <button
-                                onClick={() => handleArrow(idx, 'left', images.length)}
+                                onClick={() => handleArrow(activeIndex, 'left', images.length)}
                                 className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
                                 aria-label="Previous"
@@ -375,7 +373,7 @@ const ProjectsScroll = () => {
                                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
                               </button>
                               <button
-                                onClick={() => handleArrow(idx, 'right', images.length)}
+                                onClick={() => handleArrow(activeIndex, 'right', images.length)}
                                 className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-opacity duration-200 z-10"
                                 tabIndex={0}
                                 aria-label="Next"
@@ -389,39 +387,42 @@ const ProjectsScroll = () => {
                     })()}
                     <div className="absolute inset-0 p-4 md:p-8 md:flex flex-col justify-end block md:flex max-w-2xl">
                       <Badge variant="secondary" className="w-fit mb-4 bg-white/90 text-foreground font-semibold px-3 py-1">
-                        {project.category}
+                        {filteredProjects[activeIndex].category}
                       </Badge>
-                       <Badge 
-                            variant={project.status === "Completato" ? "default" : "secondary"} 
-                            className="mb-4 w-fit"
-                          >
-                            {project.status}
-                          </Badge>
+                      <Badge 
+                        variant={filteredProjects[activeIndex].status === "Completato" ? "default" : "secondary"} 
+                        className="mb-4 w-fit"
+                      >
+                        {filteredProjects[activeIndex].status}
+                      </Badge>
                       <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                        {project.link ? (
-                          <a href={project.link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                            {project.title}
+                        {filteredProjects[activeIndex].link ? (
+                          <a href={filteredProjects[activeIndex].link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                            {filteredProjects[activeIndex].title}
                           </a>
                         ) : (
-                          project.title
+                          filteredProjects[activeIndex].title
                         )}
                       </h3>
                       <p className="text-white/90 leading-relaxed text-sm md:text-base">
-                        {project.description}
+                        {filteredProjects[activeIndex].description}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-          {filteredProjects.length > 3 && !showAll && (
-            <div className="flex justify-center mt-8">
-              <Button onClick={() => setShowAll(true)} className="px-8 py-3 rounded-lg font-medium bg-primary text-white shadow-lg hover:bg-primary/80 transition-all duration-200">
-                Carica altri progetti
-              </Button>
-            </div>
           )}
+          {/* Down Arrow */}
+          <button
+            onClick={() => setActiveIndex(i => (i + 1) % filteredProjects.length)}
+            className="absolute left-1/2 -translate-x-1/2 -bottom-2 z-10 bg-white/80 hover:bg-primary/80 text-primary rounded-full p-2 shadow-lg border border-primary/30 transition disabled:opacity-40"
+            disabled={filteredProjects.length <= 1}
+            aria-label="Next project"
+            style={{bottom: 0}}
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+          </button>
         </div>
       </div>
     </section>
