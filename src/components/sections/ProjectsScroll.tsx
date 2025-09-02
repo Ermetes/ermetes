@@ -292,16 +292,6 @@ const ProjectsScroll = () => {
       {/* Vertical Carousel */}
       <div className="relative min-h-screen bg-gradient-to-b from-background/90 to-muted/50 flex flex-col items-center justify-center" ref={containerRef}>
         <div className="flex flex-col items-center w-full max-w-4xl mx-auto py-8 relative">
-          {/* Up Arrow */}
-          <button
-            onClick={() => setActiveIndex(i => (i - 1 + filteredProjects.length) % filteredProjects.length)}
-            className="absolute left-1/2 -translate-x-1/2 -top-2 z-10 bg-white/80 hover:bg-primary/80 text-primary rounded-full p-2 shadow-lg border border-primary/30 transition disabled:opacity-40"
-            disabled={filteredProjects.length <= 1}
-            aria-label="Previous project"
-            style={{top: 0}}
-          >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
-          </button>
           {/* Project Panel (only active) */}
           {filteredProjects.length > 0 && (
             <div
