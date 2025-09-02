@@ -49,9 +49,14 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-12 pt-8 text-center">
-          <p className="text-background/60">
-            {content.footer.copyright}
-          </p>
+          <p className="text-background/60" dangerouslySetInnerHTML={{
+            __html: typeof content.footer.copyright === 'string'
+              ? content.footer.copyright.replace(
+                  'Sintija Birgele',
+                  '<a href="https://de.linkedin.com/in/sintija-birgele" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Sintija Birgele</a>'
+                )
+              : content.footer.copyright
+          }} />
         </div>
       </div>
     </footer>
