@@ -51,7 +51,7 @@ const ServicesSection = () => {
       if (!blockRef.current || !endRef.current) return;
       const blockRect = blockRef.current.getBoundingClientRect();
       const endRect = endRef.current.getBoundingClientRect();
-      const topTrigger = window.innerHeight * 0.1 + 80;
+      const topTrigger = window.innerHeight * 0.1 + 10;
       // Show bg if block is above 10% from top and endRef is still visible
       if (blockRect.top < topTrigger && endRect.bottom > topTrigger) {
         setShowBg(true);
