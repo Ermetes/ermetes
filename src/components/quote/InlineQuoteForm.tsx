@@ -301,7 +301,7 @@ const InlineQuoteForm = () => {
                 />
               </div>
             </div>
-            <div className="relative" style={{ marginTop: '8px'}}>
+            <div className="relative" style={{ marginTop: '4px'}}>
               <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10">{content.quote.form.description} *</span>
               <Textarea
                 // @ts-ignore
