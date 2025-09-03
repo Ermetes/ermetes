@@ -272,9 +272,9 @@ const InlineQuoteForm = () => {
   const renderStep = (compact?: boolean) => {
     switch (currentStep) {
       case 1:
-        return (
-            <div className="space-y-3">
-            <div className="flex flex-col md:flex-row gap-2">
+    return (
+            <div className="space-y-3 min-h-[300px] md:min-h-[200px]">
+            <div className="flex flex-col md:flex-row gap-1">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-white mb-1">{content.quote.form.projectType} *</label>
                 <Select value={formData.projectType} onValueChange={(value) => handleInputChange('projectType', value)}>
@@ -407,49 +407,52 @@ const InlineQuoteForm = () => {
         );
       case 2:
         return (
-          <div className="space-y-4">
-            <div className="relative">
-              <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.name} *</span>
-              <Input
-                type="text"
-                value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                className="bg-white border-primary/30 text-black pt-7 h-14"
-              />
-            </div>
-            <div className="flex flex-row gap-2 items-start" style={{ marginTop: '4px'}}>
-              <div className="flex-1 relative">
-                <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.phone} *</span>
+          <div className="flex flex-col h-full justify-between min-h-[300px] md:min-h-[200px]">
+            <div className="space-y-4">
+              <div className="relative mt-2">
+                <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.name} *</span>
                 <Input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
                   className="bg-white border-primary/30 text-black pt-7 h-14"
                 />
               </div>
-              <div className="flex-1 relative">
-                <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.email} *</span>
-                <Input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  className="bg-white border-primary/30 text-black pt-7 h-14"
+              <div className="flex flex-row gap-2 items-start align-top" style={{ marginTop: '4px'}}>
+                <div className="flex-1 relative">
+                  <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.phone} *</span>
+                  <Input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className="bg-white border-primary/30 text-black pt-7 h-14"
+                  />
+                </div>
+                <div className="flex-1 relative">
+                  <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.email} *</span>
+                  <Input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="bg-white border-primary/30 text-black pt-7 h-14"
+                  />
+                </div>
+              </div>
+              <div className="relative" style={{ marginTop: '4px'}}>
+                <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.message || 'Messaggio (Opzionale)'}</span>
+                <Textarea
+                  value={formData.message}
+                  onChange={(e) => handleInputChange('message', e.target.value)}
+                  className="bg-white border-primary/30 text-black pt-7"
                 />
               </div>
             </div>
-            <div className="relative" style={{ marginTop: '4px'}}>
-              <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.message || 'Messaggio (Opzionale)'}</span>
-              <Textarea
-                value={formData.message}
-                onChange={(e) => handleInputChange('message', e.target.value)}
-                className="bg-white border-primary/30 text-black pt-7"
-              />
-            </div>
+            {/* Buttons will remain at the bottom as in step 3 */}
           </div>
         );
       case 3:
         return (
-          <div className="flex flex-col h-full justify-between" style={{ minHeight: '200px' }}>
+          <div className="flex flex-col h-full justify-between min-h-[300px] md:min-h-[200px]">
             <div className="flex flex-col gap-3 mb-2">
               <div className="flex items-start gap-3">
                 <FileText className="h-7 w-7 text-primary text-white drop-shadow-lg mt-1" />
@@ -500,13 +503,15 @@ const InlineQuoteForm = () => {
   const progress = (currentStep / 3) * 100;
 
   return (
-  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg min-h-[200px] flex flex-col justify-between">
+  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg min-h-[440px] md:min-h-[200px] flex flex-col justify-between">
       {showConfirmation ? (
-        <div className="flex flex-col items-center justify-center min-h-[300px] w-full bg-white">
-          <CheckCircle className="h-16 w-16 text-green-500 mb-2" />
-          <h3 className="text-xl font-semibold text-primary mb-1">{content.quote.form.toast.successTitle}</h3>
-          <p className="text-base text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
-          <p className="text-sm text-primary/70 mt-2">Attendere prego, verrai reindirizzato...</p>
+  <div className="flex flex-1 items-center justify-center min-h-[300px] w-full bg-white">
+          <div className="flex flex-col items-center justify-center w-full">
+            <CheckCircle className="h-16 w-16 text-green-500 mb-2" />
+            <h3 className="text-xl font-semibold text-primary mb-1">{content.quote.form.toast.successTitle}</h3>
+            <p className="text-base text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
+            <p className="text-sm text-primary/70 mt-2">Attendere prego, verrai reindirizzato...</p>
+          </div>
         </div>
       ) : (
         <>
