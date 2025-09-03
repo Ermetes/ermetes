@@ -162,7 +162,7 @@
     "services": {
       "title": "I Nostri Servizi",
       "subtitle": "Offriamo soluzioni complete per ogni esigenza edilizia",
-      "ctaTitle": "Vuoi entrare a far parte del progetto sociale Ermetes?",
+      "ctaTitle": "Vuoi entrare a far parte del progetto Ermetes?",
       "ctaDescription": "Contattaci per un preventivo gratuito e personalizzato",
       "ctaButton": "Richiedi un Preventivo Gratuito",
       "items": [
@@ -291,7 +291,7 @@
       }
     },
     "footer": {
-      "company": "Ermetes Multiservizi",
+      "company": "Ermetes Multiservizi SCS",
       "address": "Via San Francesco d'Assisi 10 - 38122 - Trento (TN)",
       "fiscalCode": "Codice fiscale e numero di iscrizione al registro imprese: 02755460223",
       "registration": "Iscrizione al Registro degli Enti Cooperativi: Numero C142156",

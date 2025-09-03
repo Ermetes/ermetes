@@ -36,6 +36,8 @@ const Index = () => {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  // Hide .eapps-widget-toolbar-panel-share-block when it appears
+  useHideShareBlock();
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10">
@@ -67,7 +69,7 @@ const Index = () => {
           </div>
         </section>
         <ProjectsScroll />
-        <div className="elfsight-app-7c2e78f2-c2bc-46da-9ac9-34aed222a164 md:mt-5 mb-2 md:mb-10" data-elfsight-app-lazy></div>
+        <div className="elfsight-app-7c2e78f2-c2bc-46da-9ac9-34aed222a164" data-elfsight-app-lazy></div>
         <SustainabilitySection />
         <WorkWithUs />
         <Footer />
@@ -76,4 +78,14 @@ const Index = () => {
   );
 };
 
+function useHideShareBlock() {
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = `.eapps-widget-toolbar-panel-share-block { width: 0 !important; overflow: hidden !important; }`;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+}
 export default Index;

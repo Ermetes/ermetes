@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const { content } = useLanguage();
+  console.log(content.footer)
 
   return (
     <footer className="bg-[#03325a] text-background py-6" id="contact">
@@ -12,7 +13,14 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <span className="text-xl font-bold">{content.footer.company}</span>
+                <span className="text-xl font-bold">
+                  {typeof content.footer.company === 'string' && content.footer.company.includes('SCS')
+                    ? <>
+                        {content.footer.company.replace(/SCS/, '')}
+                        <span className="text-base ml-1 align-bottom">scs</span>
+                      </>
+                    : content.footer.company}
+                </span>
             </div>
             <p className="text-background/80 leading-relaxed">
               {content.footer.description}
@@ -45,14 +53,20 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-background/20 mt-12 pt-8 text-center">
-          <p className="text-background/60" dangerouslySetInnerHTML={{
-            __html: typeof content.footer.copyright === 'string'
-              ? content.footer.copyright.replace(
-                  'Sintija Birgele',
-                  '<a href="https://de.linkedin.com/in/sintija-birgele" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Sintija Birgele</a>'
-                )
-              : content.footer.copyright
-          }} />
+          <p className="text-background/60">
+            {typeof content.footer.copyright === 'string'
+              ? (() => {
+                  let copyright = content.footer.copyright.replace(
+                    'Sintija Birgele',
+                    '<a href="https://de.linkedin.com/in/sintija-birgele" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Sintija Birgele</a>'
+                  );
+                  if (copyright.includes('SCS')) {
+                    copyright = copyright.replace(/SCS/, '<span style="font-size:0.75rem;vertical-align:bottom;margin-left:2px;">SCS</span>');
+                  }
+                  return <span dangerouslySetInnerHTML={{ __html: copyright }} />;
+                })()
+              : content.footer.copyright}
+          </p>
         </div>
       </div>
     </footer>

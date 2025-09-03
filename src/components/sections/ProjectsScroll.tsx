@@ -386,7 +386,7 @@ const ProjectsScroll = () => {
                         </div>
                       );
                     })()}
-                    <div className="absolute inset-0 py-4 px-6 md:p-8 flex flex-col justify-between max-w-2xl h-full">
+                    <div className="absolute inset-0 py-4 pb-0 x-6 md:p-8 md:pb-0 flex flex-col justify-between max-w-2xl h-full">
                       <div>
                         <Badge 
                           variant={filteredProjects[activeIndex].status === "Completato" ? "default" : "secondary"} 

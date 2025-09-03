@@ -215,7 +215,7 @@ const InlineQuoteForm = () => {
     // Wait until all uploads are finished before closing confirmation
     const waitForUploads = async () => {
       while (pendingUploads > 0) {
-        await new Promise(res => setTimeout(res, 200));
+        await new Promise(res => setTimeout(res, 8000));
       }
     };
     await waitForUploads();
@@ -237,7 +237,7 @@ const InlineQuoteForm = () => {
       setCurrentStep(1);
       setIsSubmitting(false);
       setSessionId(uuidv4()); // Reset sessionId for new form
-    }, 1200); // Show confirmation for at least 1.2s after uploads
+    }, 10000); // Show confirmation for at least 1.2s after uploads
   };
 
   const isStepValid = () => {
@@ -273,7 +273,7 @@ const InlineQuoteForm = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-4">
+            <div className="space-y-3">
             <div className="flex flex-col md:flex-row gap-2">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-white mb-1">{content.quote.form.projectType} *</label>
@@ -408,81 +408,82 @@ const InlineQuoteForm = () => {
       case 2:
         return (
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-white mb-1">{content.quote.form.name} *</label>
+            <div className="relative">
+              <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.name} *</span>
               <Input
                 type="text"
-                placeholder={content.quote.form.name}
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
-                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-black pt-7 h-14"
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-white mb-1">{content.quote.form.phone} *</label>
-              <Input
-                type="tel"
-                placeholder={content.quote.form.phone}
-                value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
-                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
-              />
+            <div className="flex flex-row gap-2 items-start" style={{ marginTop: '4px'}}>
+              <div className="flex-1 relative">
+                <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.phone} *</span>
+                <Input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  className="bg-white border-primary/30 text-black pt-7 h-14"
+                />
+              </div>
+              <div className="flex-1 relative">
+                <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.email} *</span>
+                <Input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  className="bg-white border-primary/30 text-black pt-7 h-14"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-white mb-1">{content.quote.form.email} *</label>
-              <Input
-                type="email"
-                placeholder={content.quote.form.email}
-                value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white mb-1">{content.quote.form.message || 'Messaggio (Opzionale)'} </label>
+            <div className="relative" style={{ marginTop: '4px'}}>
+              <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.message || 'Messaggio (Opzionale)'}</span>
               <Textarea
-                placeholder={content.quote.form.message || 'Messaggio (Opzionale)'}
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
-                className="bg-white border-primary/30 text-black placeholder:text-neutral-500"
+                className="bg-white border-primary/30 text-black pt-7"
               />
             </div>
           </div>
         );
       case 3:
         return (
-          <div className="space-y-4 text-center">
-            <div className="flex items-center justify-center gap-3">
-              <FileText className="h-7 w-7 text-primary text-white drop-shadow-lg" />
-              <h3 className="text-xl font-medium text-white m-0">{content.quote.form.summary.title}</h3>
+          <div className="flex flex-col h-full justify-between" style={{ minHeight: '200px' }}>
+            <div className="flex flex-col gap-3 mb-2">
+              <div className="flex items-start gap-3">
+                <FileText className="h-7 w-7 text-primary text-white drop-shadow-lg mt-1" />
+                <h3 className="text-xl font-medium text-white m-0 text-left">{content.quote.form.summary.title}</h3>
+              </div>
+              <div className="bg-white rounded-lg p-4 text-left text-blue-900 space-y-2">
+                <p className="text-blue-900"><strong>{content.quote.form.summary.project}:</strong> {formData.projectType}</p>
+                <p className="text-blue-900"><strong>{content.quote.form.summary.address}:</strong> {formData.address}</p>
+                <p className="text-blue-900"><strong>{content.quote.form.summary.contact}:</strong> {formData.name} - {formData.phone}</p>
+                {(formData.images && formData.images.length > 0) && (
+                  <div className="mt-2">
+                    <span className="font-semibold">Immagini allegate:</span>
+                    <ul className="list-disc list-inside text-sm mt-1">
+                      {formData.images.map((file, idx) => (
+                        <li key={idx}>{file.name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {formData.projectFile && (
+                  <div className="mt-2">
+                    <span className="font-semibold">Progetto allegato:</span>
+                    <span className="ml-2 text-sm">{formData.projectFile.name}</span>
+                  </div>
+                )}
+                {formData.metricFile && (
+                  <div className="mt-2">
+                    <span className="font-semibold">Computo allegato:</span>
+                    <span className="ml-2 text-sm">{formData.metricFile.name}</span>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="bg-white rounded-lg p-4 text-left text-blue-900 space-y-2">
-              <p className="text-blue-900"><strong>{content.quote.form.summary.project}:</strong> {formData.projectType}</p>
-              <p className="text-blue-900"><strong>{content.quote.form.summary.address}:</strong> {formData.address}</p>
-              <p className="text-blue-900"><strong>{content.quote.form.summary.contact}:</strong> {formData.name} - {formData.phone}</p>
-              {(formData.images && formData.images.length > 0) && (
-                <div className="mt-2">
-                  <span className="font-semibold">Immagini allegate:</span>
-                  <ul className="list-disc list-inside text-sm mt-1">
-                    {formData.images.map((file, idx) => (
-                      <li key={idx}>{file.name}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {formData.projectFile && (
-                <div className="mt-2">
-                  <span className="font-semibold">Progetto allegato:</span>
-                  <span className="ml-2 text-sm">{formData.projectFile.name}</span>
-                </div>
-              )}
-              {formData.metricFile && (
-                <div className="mt-2">
-                  <span className="font-semibold">Computo allegato:</span>
-                  <span className="ml-2 text-sm">{formData.metricFile.name}</span>
-                </div>
-              )}
-            </div>
+            {/* Buttons remain at the bottom as before */}
           </div>
         );
       default:
@@ -499,9 +500,9 @@ const InlineQuoteForm = () => {
   const progress = (currentStep / 3) * 100;
 
   return (
-  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg">
+  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg min-h-[200px] flex flex-col justify-between">
       {showConfirmation ? (
-        <div className="flex flex-col items-center justify-center py-8 bg-white">
+        <div className="flex flex-col items-center justify-center min-h-[300px] w-full bg-white">
           <CheckCircle className="h-16 w-16 text-green-500 mb-2" />
           <h3 className="text-xl font-semibold text-primary mb-1">{content.quote.form.toast.successTitle}</h3>
           <p className="text-base text-primary/80 text-center max-w-md">{content.quote.form.toast.successDescription}</p>
