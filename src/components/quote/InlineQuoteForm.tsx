@@ -273,7 +273,7 @@ const InlineQuoteForm = () => {
     switch (currentStep) {
       case 1:
     return (
-            <div className="space-y-3 min-h-[300px] md:min-h-[200px]">
+            <div className="space-y-3 min-h-[260px] md:min-h-[220px]">
             <div className="flex flex-col md:flex-row gap-1">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-white mb-1">{content.quote.form.projectType} *</label>
@@ -311,7 +311,7 @@ const InlineQuoteForm = () => {
               />
             </div>
             {/* Unified file upload UX for all devices */}
-            <div className='w-full md:flex md:flex-row md:gap-4'>
+            <div className='w-full md:flex md:flex-row md:gap-4' style={{ marginTop: '4px'}}>
               <Button
                 type="button"
                 variant="outline"
@@ -407,7 +407,7 @@ const InlineQuoteForm = () => {
         );
       case 2:
         return (
-          <div className="flex flex-col h-full justify-between min-h-[300px] md:min-h-[200px]">
+          <div className="flex flex-col h-full justify-between min-h-[260px] md:min-h-[220px]">
             <div className="space-y-4">
               <div className="relative mt-2">
                 <span className="absolute left-2 top-2 text-sm font-medium text-black px-1 rounded pointer-events-none z-10 bg-white">{content.quote.form.name} *</span>
@@ -452,7 +452,7 @@ const InlineQuoteForm = () => {
         );
       case 3:
         return (
-          <div className="flex flex-col h-full justify-between min-h-[300px] md:min-h-[200px]">
+          <div className="flex flex-col h-full justify-between min-h-[260px] md:min-h-[220px]">
             <div className="flex flex-col gap-3 mb-2">
               <div className="flex items-start gap-3">
                 <FileText className="h-7 w-7 text-primary text-white drop-shadow-lg mt-1" />
@@ -503,9 +503,9 @@ const InlineQuoteForm = () => {
   const progress = (currentStep / 3) * 100;
 
   return (
-  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg min-h-[440px] md:min-h-[200px] flex flex-col justify-between">
+  <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg min-h-[260px] md:min-h-[220px] flex flex-col justify-between">
       {showConfirmation ? (
-  <div className="flex flex-1 items-center justify-center min-h-[300px] w-full bg-white">
+  <div className="flex flex-1 items-center justify-center min-h-[260px] w-full bg-white">
           <div className="flex flex-col items-center justify-center w-full">
             <CheckCircle className="h-16 w-16 text-green-500 mb-2" />
             <h3 className="text-xl font-semibold text-primary mb-1">{content.quote.form.toast.successTitle}</h3>
