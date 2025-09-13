@@ -8,16 +8,6 @@
       "categories": ["Ristrutturazioni",  "Manutenzioni"],
       "projects": [
         {
-          "title": "Coperture in Legno: La Soluzione Definitiva per la Casa Moderna",
-          "category": "Ristrutturazioni",
-          "description": "Scopri come Ermetes trasforma la copertura in legno in una soluzione definitiva per comfort, efficienza e valorizzazione immobiliare, grazie a innovazione digitale e materiali naturali.",
-          "image": "./assets/roofing/Rifacimento copertura edificio Trento.jpg",
-          "icon": "🪵",
-          "extendedInfo": "Soluzioni innovative per coperture in legno, comfort abitativo, efficienza energetica e valorizzazione immobiliare.",
-          "status": "Completato",
-          "link": "/ermetes/magazine/it/tetto-legno"
-        },
-        {
           "title": "Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto",
           "category": "Manutenzioni",
           "description": "Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto",
@@ -73,17 +63,19 @@
           "icon": "🔥",
           "extendedInfo": "Comfort intelligente, risparmio energetico e sostenibilità con impianti radianti a pavimento.",
           "status": "Completato",
-          "link": "/ermetes/magazine/it/riscaldamento-pavimento"
+          "link": "",
+          "_link": "/ermetes/magazine/it/riscaldamento-pavimento"
         },
         {
-          "title": "Spazi Commerciali: Design, Efficienza e Identità con Ermetes",
+          "title": "Ristrutturazione bar Hermès Mezzolombardo",
           "category": "Ristrutturazioni",
-          "description": "Scopri come Ermetes trasforma spazi commerciali in ambienti di successo, integrando design, efficienza gestionale e tecnologie avanzate per risultati concreti e duraturi.",
+          "description": "Ristrutturazione bar Hermès Mezzolombardo",
           "image": "./assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
           "icon": "🏢",
           "extendedInfo": "Design, efficienza gestionale e tecnologie avanzate per spazi commerciali di successo.",
           "status": "Completato",
-          "link": "/ermetes/magazine/it/spazio-commerciale"
+          "link": "",
+          "_link": "/ermetes/magazine/it/spazio-commerciale"
         },
         {
           "title": "Costruttori di Successo: Come i General Contractor Gestiscono Rischi e Valore",
@@ -93,7 +85,8 @@
           "icon": "🏗️",
           "extendedInfo": "Strategie innovative e tecnologie digitali per la gestione di rischi e valore in edilizia.",
           "status": "Completato",
-          "link": "/ermetes/magazine/it/redditivita-rischio"
+           "link": "",
+          "_link": "/ermetes/magazine/it/redditivita-rischio"
         },
         {
           "title": "Dati e Decisioni: La Nuova Frontiera del Cost Management in Edilizia",
@@ -106,7 +99,8 @@
           "duration": "3 mesi",
           "budget": "€ 150K",
           "features": ["Digitalizzazione", "Efficienza", "Valore Aggiunto"],
-          "link": "/ermetes/magazine/it/tecnologia-cost-management"
+           "link": "",
+          "_link": "/ermetes/magazine/it/tecnologia-cost-management"
         }
       ]
     },
