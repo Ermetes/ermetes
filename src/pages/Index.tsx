@@ -61,10 +61,10 @@ const Index = () => {
           {/* Main team photo */}
           <div className="relative z-10 w-full flex justify-center items-center">
             <img
-              src="./assets/team.jpg"
+              src="./assets/team.jpeg"
               alt="Team Ermetes"
-              className="w-full max-w-3xl h-[320px] md:h-[420px] object-cover object-center rounded-2xl shadow-xl"
-              style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)' }}
+              className="w-full max-w-3xl h-[80vh] md:h-[90vh] object-cover object-center rounded-2xl shadow-xl"
+              style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)', minHeight: '320px' }}
             />
           </div>
         </section>
