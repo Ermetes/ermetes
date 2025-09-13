@@ -16,36 +16,93 @@ const assetImages: Record<string, string[]> = {
   ],
   commercial: [
     "assets/commercial/Ristrutturazione bar Ospedale S.Maurizio Bolzano.jpg",
-    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM.jpeg",
-    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.02 PM (1).jpeg",
-    "assets/commercial/WhatsApp Image 2025-08-17 at 10.12.03 PM.jpeg"
+    "assets/commercial/Bar-Bolzano-2.jpg",
   ],
-  maintenance: [
-    "assets/maintenance/construction-2.jpg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.05 PM.jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.36 PM.jpeg"
+  'maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto': [
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/1.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/2.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/3.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/4.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/5.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/6.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/7.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/8.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/9.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/10.jpeg",
+    "assets/maintenance/Intervento di manutenzione straordinaria manto stradale e ripristino pozzetto/11.jpeg"
+  ],
+  'maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento': [
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/1.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/2.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/3.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/4.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/5.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/6.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/7.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/8.jpeg",
+    "assets/maintenance/Manutenzioni straordinarie interni Istituto scolastico A Fogazzaro Trento/9.jpeg",
+  ],
+  'maintenance/Manutenzioni straordinarie presso presidio ospedaliero di Mezzolombardo Trento': [
+    "assets/maintenance/Manutenzioni straordinarie presso presidio ospedaliero di Mezzolombardo Trento/1.png",
+    "assets/maintenance/Manutenzioni straordinarie presso presidio ospedaliero di Mezzolombardo Trento/2.png"
+  ],
+  'maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento': [
+    "assets/maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento/1.png",
+    "assets/maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento/2.png",
+    "assets/maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento/3.png",
+    "assets/maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento/4.png",
+    "assets/maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento/5.png",
+    "assets/maintenance/Manutenzioni straordinarie, smontaggio e sistemazione finestre presso presidio ospedaliero di Arco Trento/6.png"
+  ],
+  "renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento": [
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/1.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/2.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/3.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/4.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/5.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/6.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/7.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/8.jpeg",
+      "assets/renovation/Rifacimento tubature impianto idraulico Scuola A. Fogazzaro Comune di Trento/9.jpeg",
+  ],
+  "renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento": [
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/1.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/2.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/3.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/4.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/5.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/6.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/7.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/8.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/9.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/10.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/11.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/12.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/13.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/14.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/15.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/16.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/17.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/18.jpeg",
+      "assets/renovation/Ristrutturazione e ripristino cortile interno palazzo storico Torre del Massarello Trento/19.jpeg"
   ],
   roofing: [
     "assets/roofing/IMG-20240831-WA0034.jpg",
-    "assets/roofing/Rifacimento copertura edificio Trento.jpg",
-        "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM.jpeg",
-    "assets/maintenance/WhatsApp Image 2025-08-17 at 10.12.15 PM (1).jpeg"
+    "assets/roofing/Rifacimento copertura edificio Trento.jpg"
   ],
   underfloor: [
     "assets/underfloor/Ristrutturazione abitazione privata, Trento.jpg",
     "assets/underfloor/WhatsApp Image 2025-08-17 at 10.11.54 PM.jpeg",
     "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (1).jpeg",
     "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (2).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (1).jpeg",
-    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.36 PM (2).jpeg"
+    "assets/underfloor/WhatsApp Image 2025-08-17 at 10.12.03 PM (3).jpeg"
   ]
 };
 
 function getFolderFromImagePath(imagePath: string) {
-  const match = imagePath.match(/assets\/([^/]+)\//);
+  // Remove leading './' if present, then match everything between 'assets/' and the last '/' before the filename, including subfolders
+  const normalized = imagePath.replace(/^\.\//, "");
+  const match = normalized.match(/^assets\/((?:[^/]+\/)*[^/]+)\//);
   return match ? match[1] : null;
 }
 
@@ -73,7 +130,7 @@ const ProjectsScroll = () => {
   // Normalize category names for filtering (handle translation/case)
   const normalize = (str: string) => str.trim().toLowerCase().replace(/\s+/g, " ");
   let filteredProjects = projects;
-  if (categories.length > 0 && selectedCategory && normalize(selectedCategory) !== normalize(categories[0])) {
+  if (selectedCategory) {
     filteredProjects = filteredProjects.filter(project => normalize(project.category) === normalize(selectedCategory));
   }
 
