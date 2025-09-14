@@ -66,7 +66,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="relative w-full flex items-stretch overflow-hidden">
-      <div className="max-w-9xl relative w-full flex flex-col lg:flex-row items-stretch justify-center md:py-8 px-0 gap-0">
+      <div className="max-w-9xl relative w-full flex flex-col lg:flex-row items-stretch justify-center md:pt-8 md:pb-24 px-0 gap-0">
         {/* Conditionally show background image only when block is in viewport */}
         {showBg && (
           <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">

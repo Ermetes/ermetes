@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const teamPhotoRef = useRef<HTMLImageElement>(null);
   const [showBannerBg, setShowBannerBg] = useState(true);
 
   useEffect(() => {
@@ -27,10 +28,15 @@ const Index = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!heroRef.current) return;
+      if (!heroRef.current || !teamPhotoRef.current) return;
       const heroRect = heroRef.current.getBoundingClientRect();
-      // Hide image if hero is in viewport (top 60% of screen)
-      setShowBannerBg(!(heroRect.bottom > 0 && heroRect.top < window.innerHeight * 0.6));
+      const teamRect = teamPhotoRef.current.getBoundingClientRect();
+      // Hide background if team photo is entering the viewport (top 30% of screen)
+      if (teamRect.top < window.innerHeight * 0.1) {
+        setShowBannerBg(false);
+      } else {
+        setShowBannerBg(!(heroRect.bottom > 0 && heroRect.top < window.innerHeight * 0.6));
+      }
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
@@ -40,6 +46,7 @@ const Index = () => {
   useHideShareBlock();
   return (
     <div className="relative min-h-screen">
+      {showBannerBg && <ConstructionBackground />}
       <div className="relative z-10">
         <ModernNavigation />
         <div ref={heroRef}>
@@ -57,16 +64,15 @@ const Index = () => {
         
         <ServicesSection />
         {/* Team Photo Section */}
-        <section className="w-full relative flex justify-center items-center py-0" style={{ minHeight: '320px' }}>
+        <section className="px-4 md:px-24 relative flex justify-center items-center py-0 left-1/2 right-1/2 -translate-x-1/2" style={{ minHeight: '320px', position: 'relative' }}>
           {/* Main team photo */}
-          <div className="relative z-10 w-full flex justify-center items-center">
-            <img
-              src="./assets/team.jpeg"
-              alt="Team Ermetes"
-              className="w-full max-w-3xl h-[80vh] md:h-[90vh] object-cover object-center rounded-2xl shadow-xl"
-              style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)', minHeight: '320px' }}
-            />
-          </div>
+          <img
+            ref={teamPhotoRef}
+            src="./assets/team.jpeg"
+            alt="Team Ermetes"
+            className="w-screen h-[80vh] md:h-[90vh] object-cover object-center rounded-2xl shadow-xl"
+            style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)', minHeight: '320px', position: 'relative', left: '50%', right: '50%', transform: 'translateX(-50%)' }}
+          />
         </section>
         <ProjectsScroll />
         <div className="elfsight-app-7c2e78f2-c2bc-46da-9ac9-34aed222a164" data-elfsight-app-lazy></div>
