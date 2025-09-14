@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button";
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const teamPhotoRef = useRef<HTMLImageElement>(null);
-  const [showBannerBg, setShowBannerBg] = useState(true);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -26,27 +25,10 @@ const Index = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!heroRef.current || !teamPhotoRef.current) return;
-      const heroRect = heroRef.current.getBoundingClientRect();
-      const teamRect = teamPhotoRef.current.getBoundingClientRect();
-      // Hide background if team photo is entering the viewport (top 30% of screen)
-      if (teamRect.top < window.innerHeight * 0.1) {
-        setShowBannerBg(false);
-      } else {
-        setShowBannerBg(!(heroRect.bottom > 0 && heroRect.top < window.innerHeight * 0.6));
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   // Hide .eapps-widget-toolbar-panel-share-block when it appears
   useHideShareBlock();
   return (
     <div className="relative min-h-screen">
-      {showBannerBg && <ConstructionBackground />}
       <div className="relative z-10">
         <ModernNavigation />
         <div ref={heroRef}>
