@@ -347,11 +347,12 @@ const ProjectsScroll = () => {
                       if (isMobile) {
                         const current = mobileCurrents[activeIndex] || 0;
                         return (
-                          <div className="relative w-full h-[300px] overflow-hidden rounded-2xl">
+                          <div className="relative w-screen h-[300px] overflow-hidden rounded-2xl" style={{ maxWidth: '100vw' }}>
                             <img
                               src={images && images.length > 0 ? images[current % images.length] : project.image}
                               alt={project.title}
                               className="h-full w-full object-cover select-none pointer-events-none"
+                              style={{ objectFit: 'cover', width: '100vw', height: '100%', maxWidth: '100vw', maxHeight: '100%' }}
                               draggable={false}
                             />
                             {images.length > 1 ? (
