@@ -54,9 +54,9 @@ const ServicesSection = () => {
       // On mobile, use a lower trigger so bg stays longer
       const isMobile = window.innerWidth < 768;
       const topTrigger = isMobile ? window.innerHeight * 0.25 : window.innerHeight * 0.1 + 10;
-      const endTrigger = isMobile ? topTrigger : window.innerHeight * 0.05;
-      // On desktop, hide bg as soon as endRef enters viewport by 5%
-      if (blockRect.top < topTrigger && endRect.top > endTrigger) {
+      const endTrigger = isMobile ? window.innerHeight * 0.10 : window.innerHeight * 0.05;
+      // On desktop, hide bg as soon as endRef enters viewport by 5%, on mobile by 10%
+      if (blockRect.top < topTrigger && endRef.current && endRect.top > endTrigger) {
         setShowBg(true);
       } else {
         setShowBg(false);
