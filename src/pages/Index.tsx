@@ -46,15 +46,20 @@ const Index = () => {
         
         <ServicesSection />
         {/* Team Photo Section */}
-        <section className="px-4 md:px-24 relative flex justify-center items-center py-0 left-1/2 right-1/2 -translate-x-1/2" style={{ minHeight: '320px', position: 'relative' }}>
+  <section className="md:px-24 relative flex justify-center items-center py-0 left-1/2 right-1/2 -translate-x-1/2" style={{ minHeight: '320px', position: 'relative' }}>
           {/* Main team photo */}
-          <img
-            ref={teamPhotoRef}
-            src="./assets/team.jpeg"
-            alt="Team Ermetes"
-            className="w-screen h-[80vh] md:h-[90vh] object-cover object-center rounded-2xl shadow-xl"
-            style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)', minHeight: '320px', position: 'relative', left: '50%', right: '50%', transform: 'translateX(-50%)' }}
-          />
+          <section
+            className="w-screen rounded-2xl shadow-xl relative h-[400px] md:h-[auto] overflow-hidden md:overflow-visible"
+            style={{ position: 'relative', left: '50%', right: '50%', transform: 'translateX(-50%)' }}
+          >
+            <img
+              ref={teamPhotoRef}
+              src="./assets/team.jpeg"
+              alt="Team Ermetes"
+              className="w-screen h-[80vh] md:h-[90vh] object-cover object-center rounded-2xl shadow-xl"
+              style={{ objectPosition: 'center', background: 'rgba(255,255,255,0.2)', minHeight: '320px', position: 'relative', left: '50%', right: '50%', transform: 'translateX(-50%)' }}
+            />
+          </section>
         </section>
         <ProjectsScroll />
         <div className="elfsight-app-7c2e78f2-c2bc-46da-9ac9-34aed222a164" data-elfsight-app-lazy></div>
