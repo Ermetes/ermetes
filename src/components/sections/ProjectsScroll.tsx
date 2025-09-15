@@ -298,7 +298,7 @@ const ProjectsScroll = () => {
 
   // --- VERTICAL CAROUSEL UI ---
   return (
-    <section id="projects">
+  <section id="projects">
       {/* Category Filter (unchanged) */}
   <div className="bg-background sm:py-2 z-40 border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -326,16 +326,20 @@ const ProjectsScroll = () => {
         </div>
       </div>
       {/* Vertical Carousel */}
-       <div className="fixed left-0 right-0 bg-gradient-to-b from-background/90 to-muted/50 flex flex-col justify-center w-full" style={{ width: '100vw', position: 'relative' }} ref={containerRef}>
-         <div className="flex flex-col justify-center w-full px-0 md:px-0 mx-0 py-8 relative" style={{ width: '100vw' }}>
+      <div
+        className="fixed left-0 right-0 bg-gradient-to-b from-background/90 to-muted/50 flex flex-col justify-center w-full px-4 md:px-24"
+        style={{ width: '100vw', position: 'relative' }}
+        ref={containerRef}
+      >
+        <div className="flex flex-col justify-center w-full max-w-full mx-auto py-8 relative">
           {/* Project Panel (only active) */}
           {filteredProjects.length > 0 && filteredProjects[activeIndex] && (
-             <div
-               key={filteredProjects[activeIndex].title}
-               className="flex flex-col md:flex-row items-center justify-center min-h-[20vh] w-full transition-all duration-500"
-             >
-               <div className="w-full flex flex-row items-stretch justify-center" style={{ width: '100vw' }}>
-                 <div className="w-full flex flex-col justify-between items-center" style={{ width: '100vw' }}>
+            <div
+              key={filteredProjects[activeIndex].title}
+              className="flex flex-col md:flex-row items-center justify-center min-h-[20vh] w-full transition-all duration-500"
+            >
+              <div className="w-full flex flex-row items-stretch justify-center" style={{ maxWidth: '100vw' }}>
+                <div className="w-full flex flex-col justify-between items-center" style={{ maxWidth: '100vw' }}>
                   {/* Image and summary (reuse existing code) */}
                   <div className="relative rounded-t-2xl md:rounded-l-xl rounded-r-xl overflow-visible md:overflow-hidden mx-1 lg:mx-0 group focus-within:z-10" tabIndex={0}>
                     <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-300 group-hover:from-black/70 rounded-b-2xl rounded-t-2xl md:rounded-l-xl`} />
@@ -386,7 +390,7 @@ const ProjectsScroll = () => {
                        return (
                          <div
                            className="relative h-[600px] overflow-hidden rounded-2xl md:rounded-l-xl rounded-b-2xl flex justify-center items-center"
-                           style={{ width: '100vw' }}
+                           style={{ maxWidth: '100vw', width: '100%' }}
                            ref={el => (containerRefs.current[activeIndex] = el)}
                          >
                            {/* Left navigation button: switch category */}
