@@ -75,7 +75,7 @@ const Article = () => {
       const mappedArticle = articles.find(a => a.id === otherArticle.id);
       if (mappedArticle) {
         // Redirect to correct slug
-        window.location.replace(`/ermetes/magazine/${selectedLang}/${mappedArticle.link.split('/').pop()}`);
+        window.location.replace(`/magazine/${selectedLang}/${mappedArticle.link.split('/').pop()}`);
         return null;
       }
     }
@@ -93,7 +93,7 @@ const Article = () => {
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="mb-8">
-            <a href="/ermetes/" className="inline-flex items-center text-primary hover:underline mb-6">
+            <a href="/" className="inline-flex items-center text-primary hover:underline mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
               {language === 'it' ? 'Torna alla Home' : 'Back to Home'}
             </a>
