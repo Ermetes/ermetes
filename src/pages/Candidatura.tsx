@@ -120,7 +120,7 @@ export default function CandidaturaPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-12 max-w-5xl mx-auto">
             {/* Back to home link */}
-            <a href="/" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
+            <a href="/ermetes" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
               <ArrowLeft className="h-5 w-5 mr-2" />
               Torna alla home
             </a>
@@ -177,7 +177,7 @@ export default function CandidaturaPage() {
               </div>
               <div className="flex items-center gap-2">
                 <input type="checkbox" name="privacy" checked={formData.privacy} onChange={handleInputChange} required />
-                <span className="text-sm text-gray-700">Accetto i <a href="/privacypolicy" target="_blank" rel="noopener noreferrer" className="text-pink-600 underline">Termini e le Condizioni</a> di utilizzo del Sito e <a href="/privacypolicy" target="_blank" rel="noopener noreferrer" className="text-pink-600 underline">Privacy Policy</a></span>
+                <span className="text-sm text-gray-700">Accetto i <a href="/ermetes/privacypolicy" target="_blank" rel="noopener noreferrer" className="text-pink-600 underline">Termini e le Condizioni</a> di utilizzo del Sito e <a href="/ermetes/privacypolicy" target="_blank" rel="noopener noreferrer" className="text-pink-600 underline">Privacy Policy</a></span>
               </div>
               <button type="submit" className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-8 py-3 rounded-lg" disabled={isSubmitting}>
                 {isSubmitting ? 'Invio...' : 'INVIA'}
