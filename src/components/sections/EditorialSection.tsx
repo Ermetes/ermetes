@@ -30,8 +30,8 @@ const EditorialSection = () => {
   // Helper to get magazine link for React Router navigation
   const getMagazineLink = (link: string) => {
     // Remove /ermetes prefix if present
-    if (link.startsWith("/ermetes/")) {
-      return link.replace("/ermetes", "");
+    if (link.startsWith("/")) {
+      return link.replace("", "");
     }
     return link;
   }
@@ -40,7 +40,7 @@ const EditorialSection = () => {
     <section id="articles" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Back to home link */}
-        <a href="/ermetes" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
+        <a href="/" className="flex items-center mt-0 md:mt-10 text-black font-light mb-4 w-fit hover:underline">
           <ArrowLeft className="h-5 w-5 mr-2" />
           Torna alla home
         </a>
