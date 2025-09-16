@@ -66,11 +66,11 @@ const ModernNavigation = () => {
   };
 
   const navigationItems = [
-    { key: "projects", label: content.navigation.projects, href: '/ermetes/#projects' },
-    { key: "services", label: content.navigation.services, href: '/ermetes/#services' },
-    { key: "about", label: content.navigation.about, href: '/ermetes/about' },
-    { key: "articles", label: content.navigation.articles, href: "/ermetes/magazine" },
-    { key: "contact", label: content.navigation.contact, href: '/ermetes/#contact'},
+    { key: "projects", label: content.navigation.projects, href: '/#projects' },
+    { key: "services", label: content.navigation.services, href: '/#services' },
+    { key: "about", label: content.navigation.about, href: '/about' },
+    { key: "articles", label: content.navigation.articles, href: "/magazine" },
+    { key: "contact", label: content.navigation.contact, href: '/#contact'},
   ];
 
   return (
