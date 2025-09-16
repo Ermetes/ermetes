@@ -25,7 +25,7 @@ const WorkWithUs = () => {
           <Button
             className="text-white px-8 mt-5 py-3 rounded-xl shadow-lg font-regular tracking-wide text-md lg:text-lg hover:bg-[#FFAA00]/80 transition-colors px-8 py-4 lg:py-6"
             style={{ backgroundColor: '#FFAA00' }}
-            onClick={() => window.location.href = '/ermetes/candidatura'}
+            onClick={() => window.location.href = '/candidatura'}
           >
             Contact us
           </Button>
