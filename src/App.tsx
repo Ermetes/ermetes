@@ -24,7 +24,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter basename="/ermetes">
+          <BrowserRouter basename="/">
             <Routes>
               {/* Multilingual magazine article route */}
               <Route path="magazine/:lang/:slug" element={<Article />} />
