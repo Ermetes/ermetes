@@ -87,7 +87,7 @@ export default function CandidaturaPage() {
 
     // Send via XMLHttpRequest (replace URL with your Google Script endpoint)
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxzzU2gnypJ0U5WtDAqsGpa8mwP4LdxlfjvGkVOilhOwitfc-E9FlSDMxf-Yr7pbMKBzQ/exec');
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxMF6IwD-pFNZzKzK-gbhHxmZ14TzdSakiwRz586HDoeszI9kM4mJgy4Nc3Txrf6O7wfA/exec');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {

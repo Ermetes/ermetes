@@ -32,7 +32,11 @@ const InlineQuoteForm = () => {
 
   // Only send fields relevant to the current step
   const sendStepData = async (step: number, data: any) => {
-    let payload: any = { sessionId };
+  // Add current date and time in dd-mm-yyyy hh:mm (24h) format
+  const now = new Date();
+  const pad = (n: number) => n < 10 ? '0' + n : n;
+  const date = `${pad(now.getDate())}-${pad(now.getMonth() + 1)}-${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  let payload: any = { sessionId, date };
     if (step === 1) {
       // Step 1: projectType, projectDetails, address, images, projectFile, metricFile
       payload.projectType = data.projectType;
@@ -73,7 +77,7 @@ const InlineQuoteForm = () => {
       payload.message = data.message;
     } else if (step === 3) {
       // Step 3: summary/confirmation, send all fields for final submission
-      payload = { ...data, sessionId };
+      payload = { ...data, sessionId, date };
       // Encode images
       if (Array.isArray(data.images)) {
         payload.images = [];

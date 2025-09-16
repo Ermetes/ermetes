@@ -27,9 +27,6 @@ const QuoteForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here you would normally send the data to your backend
-    console.log('Form submitted:', formData);
-    
     toast({
       title: "Richiesta inviata con successo!",
       description: "Ti contatteremo entro 24 ore per fornirti un preventivo dettagliato.",

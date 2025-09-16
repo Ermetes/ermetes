@@ -4,7 +4,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const { content } = useLanguage();
-  console.log(content.footer)
 
   return (
     <footer className="bg-[#03325a] text-background py-6" id="contact">
