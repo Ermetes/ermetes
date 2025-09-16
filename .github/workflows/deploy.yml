@@ -32,6 +32,9 @@ jobs:
       - name: Build
         run: yarn build && cp dist/index.html dist/404.html
 
+      - name: Add CNAME file
+        run: echo "ermetes.it" > dist/CNAME
+
       - name: Verify dist contents
         run: ls -la ./dist
 
