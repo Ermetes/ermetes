@@ -509,7 +509,7 @@ const InlineQuoteForm = () => {
   return (
   <Card className="w-full max-w-none p-0 backdrop-blur-md bg-[rgba(255, 174, 0, 0.7)] border-4 border-[#ffaa00] shadow-lg min-h-[260px] md:min-h-[205px] flex flex-col justify-between">
       {showConfirmation ? (
-  <div className="flex flex-1 items-center justify-center min-h-[260px] w-full bg-white">
+  <div className="flex flex-1 items-center justify-center min-h-[260px] w-full bg-[rgba(255,255,255,0.8)] backdrop-blur-lg">
           <div className="flex flex-col items-center justify-center w-full">
             <CheckCircle className="h-16 w-16 text-green-500 mb-2" />
             <h3 className="text-xl font-semibold text-primary mb-1">{content.quote.form.toast.successTitle}</h3>
