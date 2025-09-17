@@ -61,7 +61,7 @@ export default function AboutPage() {
               </h2>
               <ul className="list-disc pl-6 space-y-4">
                 <li className="text-justify">
-                  <strong>Ufficio amministrativo (referente Elisa Mantovani):</strong>{" "}
+                  <strong>Ufficio amministrativo:</strong>{" "}
                   l’obiettivo dell’ufficio è quello di semplificare l’attività
                   operativa di cantiere rendendola compatibile con la presenza di
                   figure svantaggiate. L’ufficio composto da soci lavoratori e
@@ -71,8 +71,7 @@ export default function AboutPage() {
                 </li>
                 <li className="text-justify">
                   <strong>
-                    Un coordinatore per ogni squadra di lavoro (referente Aron
-                    Ioris):
+                    Un coordinatore per ogni squadra di lavoro:
                   </strong>{" "}
                   le squadre di lavoro (attualmente n.1 attiva dedicata a
                   manutenzioni e lavori edili, in fase di creazione la seconda)
@@ -86,7 +85,7 @@ export default function AboutPage() {
                 </li>
                 <li className="text-justify">
                   <strong>
-                    Responsabile risorse umane (referente Adderrazzak Edbali):
+                    Responsabile risorse umane:
                   </strong>{" "}
                   si tratta di una figura specializzata nell’individuazione e
                   coinvolgimento dei soggetti svantaggiati nella cooperativa, nella
