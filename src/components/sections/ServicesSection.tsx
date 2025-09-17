@@ -90,7 +90,7 @@ const ServicesSection = () => {
               <div className="text-gray-800 text-justify [word-spacing:-1.5px] text-lg leading-relaxed text-left w-full mt-4">
                 <p className="mb-2 text-justify">Il nome si ispira ad Ermete Trismegisto, leggendario alchimista antico che, secondo la tradizione, aveva scoperto e trascritto la formula per la trasformazione del piombo in oro.</p>
                 <p className="mb-2 text-justify">I numerosi discepoli alchimisti che nel corso del medioevo interpretarono la formula in senso letterale ed eseguirono gli esperimenti di trasformazione con fine speculativo alla ricerca di oro e facile ricchezza andarono incontro a reazioni chimiche ed esplosioni trovando morte certa.</p>
-                <p className="mb-2 text-justify" ref={endRef}>I discepoli che invece la leggevano le formule con la giusta chiave di lettura spirituale, con etica e buon animo, scoprivano insegnamenti molto più profondi. La vera trasformazione non era quella dei metalli, ma quella dell’essere umano: il passaggio dal “piombo” della pesante vita quotidiana lontana dalla conoscenza all’“oro” della crescita spirituale, della saggezza e del bene comune.</p>
+                <p className="mb-2 text-justify" ref={endRef}>I discepoli che invece la leggevano le formule con la giusta chiave di lettura spirituale, con etica e buon animo, scoprivano insegnamenti molto più profondi.</p>
               </div>
             </div>
           </div>
