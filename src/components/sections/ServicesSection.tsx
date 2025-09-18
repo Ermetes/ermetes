@@ -28,7 +28,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="relative w-full flex items-stretch overflow-hidden">
-      <div className="max-w-9xl relative w-full flex flex-col lg:flex-row items-stretch justify-center md:pb-24 px-0 gap-0 w-full md:px-16 md:pb-16">
+      <div className="max-w-9xl relative w-full flex flex-col gap-2 md:gap-0 lg:flex-row items-stretch justify-center md:pb-24 px-0 gap-0 w-full md:px-16 md:pb-16">
         {/* Left: Text */}
   <div className="relative z-10 flex-1 flex flex-col justify-start items-start px-4 md:pl-24 md:pr-8 lg:pt-0 lg:pr-0 bg-transparent text-justify">
           <div className="w-full flex flex-col items-end justify-start font-extralight h-full" ref={blockRef}>
@@ -42,8 +42,8 @@ const ServicesSection = () => {
           </div>
         </div>
         {/* Right: Second column with text block */}
-        <div className="relative z-10 flex-1 flex flex-col justify-start items-center px-4 pl-2 md:px-24 pt-0 bg-transparent text-justify">
-          <div className="w-full h-full min-h-[200px] flex flex-col justify-between max-w-2xl mx-auto text-justify bg-white/40 backdrop-blur-md rounded-xl shadow-md p-6 border border-gray-100">
+        <div className="relative z-10 flex-1 flex flex-col justify-start items-center px-4 md:pl-2 md:px-24 pt-0 bg-transparent text-justify">
+          <div className="w-full h-full min-h-[200px] flex flex-col justify-between max-w-2xl mx-auto text-justify bg-white/40 backdrop-blur-md rounded-xl shadow-md p-6 mb-2 md:mb-0 border border-gray-100">
             <h2 className="mt-2 text-4xl md:text-4xl text-left font-light mb-4 text-[#00338D] drop-shadow-lg">La missione di Ermetes</h2>
             <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight mb-2">Come l’alchimia ermetica trasmuta l’essere umano, così la nostra cooperativa aspira a trasformare le difficoltà quotidiane in opportunità di sviluppo e benessere collettivo.</p>
             <div  onClick={() => window.location.href = '/about'} className="pb-2">
