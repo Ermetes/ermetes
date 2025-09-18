@@ -327,7 +327,7 @@ const ProjectsScroll = () => {
       </div>
       {/* Vertical Carousel */}
       <div
-        className="fixed left-0 right-0 bg-gradient-to-b from-background/90 to-muted/50 flex flex-col justify-center w-full px-4 md:px-24"
+        className="fixed left-0 right-0 bg-gradient-to-b from-background/90 to-muted/50 flex flex-col justify-center w-full px-4 md:px-40"
         style={{ width: '100vw', position: 'relative' }}
         ref={containerRef}
       >
@@ -447,7 +447,7 @@ const ProjectsScroll = () => {
                         </Badge>
                       </div>
                       <div className="flex items-end">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 backdrop-blur-md bg-black/20 rounded-xl px-4 py-3 shadow-lg">
+                        <h3 className="text-xl md:text-3xl font-bold text-white mb-3 backdrop-blur-md bg-black/20 rounded-xl px-4 py-3 shadow-lg">
                           {filteredProjects[activeIndex].link ? (
                             <a href={filteredProjects[activeIndex].link} className="underline hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                               {filteredProjects[activeIndex].title}

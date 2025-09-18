@@ -67,9 +67,8 @@ const ModernNavigation = () => {
 
   const navigationItems = [
     { key: "projects", label: content.navigation.projects, href: '/#projects' },
-    { key: "services", label: content.navigation.services, href: '/#services' },
     { key: "about", label: content.navigation.about, href: '/about' },
-    { key: "articles", label: content.navigation.articles, href: "/magazine" },
+    { key: "impact", label: content.navigation.impact, href: '/impact' },
     { key: "contact", label: content.navigation.contact, href: '/#contact'},
   ];
 
@@ -81,12 +80,14 @@ const ModernNavigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <img 
-              src="https://ermetes.github.io/ermetes/assets/logo.png" 
-              alt="Ermetes Multiservizi" 
-              className="w-auto"
-              style={{ height: '56px', paddingLeft: '0px'}}
-            />
+            <a href="/">
+              <img 
+                src="https://ermetes.github.io/ermetes/assets/logo.png" 
+                alt="Ermetes Multiservizi" 
+                className="w-auto"
+                style={{ height: '56px', paddingLeft: '0px'}}
+              />
+            </a>
           </div>
 
           {/* Desktop Navigation */}

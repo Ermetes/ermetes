@@ -35,7 +35,7 @@ const Index = () => {
           <ConstructionHero />
         </div>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 py-4 md:py-12">
-          <div className="w-full md:px-16 md:py-16">
+          <div className="w-full px-6 md:px-16 md:py-16">
             <h2 className="text-4xl md:text-5xl font-light mb-2 md:mb-8 text-[#00338D] text-left drop-shadow-lg w-full md:text-center">Perchè affidarci un nuovo lavoro?</h2>
             <p className="font-bold text-xl font-normal mb-2 text-[#00338D] text-left w-full md:text-center">In un settore ricco di insidie come quello edile il team ERMETES ci tiene a distinguersi per correttezza e trasparenza.</p>
             <p className="text-gray-800 text-lg leading-relaxed text-justify [word-spacing:-1.5px] w-full font-extralight">
@@ -46,7 +46,7 @@ const Index = () => {
         
         <ServicesSection />
         {/* Team Photo Section */}
-  <section className="md:px-24 relative flex justify-center items-center py-0 left-1/2 right-1/2 -translate-x-1/2" style={{ minHeight: '320px', position: 'relative' }}>
+          <section className="md:px-40 relative flex justify-center items-center py-0 left-1/2 right-1/2 -translate-x-1/2" style={{ minHeight: '320px', position: 'relative' }}>
           {/* Main team photo */}
           <section
             className="w-screen rounded-2xl shadow-xl relative h-[400px] md:h-[auto] overflow-hidden md:overflow-visible"
