@@ -26,7 +26,6 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              {/* Multilingual magazine article route */}
               <Route path="magazine/:lang/:slug" element={<Article />} />
               <Route path="magazine" element={<Articles />} />
               <Route path="about" element={<About />} />
